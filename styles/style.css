@@ -1,50 +1,60 @@
 /*
- CSS for first Assignment from  T1CG Academy
+ CSS for CrimeButter Application
 */
 html, body{
-  background-color: blue;
+  background-color: gray;
   text-align: center;;
   font-size: 12px;
 }
-body{
-  width: 50%;
-  padding: 20px 50px;
-  border: 5px solid black;
-  background-color: cyan;
+
+#bodyMiddle{
+  width: 90%;
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+#visualizationDisplaySection{
+  width: 50%;
+  height: 400px;
+  padding: 20px 50px;
+  border: 5px solid black;
+  background-color: powderblue;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+}
+
+#visualizationMenu{
+  width: 100px;
+  height: 400px;
+  padding-left: 100px;
+  border: 5px solid black;
+  background-color: powderblue;
+
 }
 img {
   display: block;
   margin: 0 auto;
 }
 
-#table {
-font-family: arial, sans-serif;
-border-collapse: collapse;
-width: 400px;
-align-self: center;
-margin: 0 auto;
-}
-
-td, th {
-border: 1px solid #dddddd;
-text-align: left;
-padding: 8px;
-}
-
-tr:nth-child(even) {
-background-color: #dddddd;
-}
-
 a:hover{
   color: purple;
 }
 
-h2{
-  font-family: 'Joti One', cursive;
-}
+/*Header for all pages(ALL STRINGS WILL BE DIFFERENT)*/
+h1 {
+  align: margin-top;
+	width: 100%;
+	background-color: #000e1a;
+	text-align: center;
+	color: #f5ca5c;
+	margin: 120px auto 20px;
+	display: block;
+	font-family: Times New Roman, serif;
+	box-shadow: 5px 5px 5px grey;
+	border-radius: 5px;
+ }
 
 .displayClass{
   display: none;
@@ -62,15 +72,4 @@ h2{
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-.listItem {
-  /* background-color: #3346FF;
-  color: lightgreen;
-  font-family: papyrus;
-  text-transform: uppercase;
-  margin-top: 100%; */
-  width: 300px;
-    border: 25px solid green;
-    padding: 25px;
-    margin: 25px;
 }
