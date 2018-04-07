@@ -64,7 +64,8 @@ function initMap() {
 		'<p><b>Crime</b> was commited here at <b>time</b> on <b>date</b>.</p>'+
 		'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
 		'here</a></p> '+
-		'<p><button onclick="addComment()">Add comment</button></p>' +
+		'<p><button onclick="addComment()">Add comment</button>' +
+		'<button onclick="viewComments()">View comments</button></p>' +
 		'</div>'+
 		'</div>';
 
@@ -99,7 +100,7 @@ var locations = [
 {lat: 39.2904, lng: -76.6}
 ]
 
-//add in data
+//KS--add in code
 function addComment() {
     var user = "USERNAME";
     var comment = prompt("Enter comment:", "");
@@ -107,6 +108,23 @@ function addComment() {
         //<user> added comment to <crime entry>
     }
 }
+
+//KS--add in code
+function viewComments() {
+	//load comments and jump to comment section
+	$('#comments').goTo();
+}
+
+//KS
+// Jumps to specific element
+(function($) {
+    $.fn.goTo = function() {
+        $('html, body').animate({
+            scrollTop: $(this).offset().top + 'px'
+        }, 'fast');
+        return this; // for chaining...
+    }
+})(jQuery);
 
 </script>
 
@@ -475,7 +493,7 @@ function showEltBlank(eltId) {
     <hr>
 
 
-    <div class="w3-container">
+    <div class="w3-container" id="comments">
       <h5>Recent Comments</h5>
       <div class="w3-row">
         <div class="w3-col m2 text-center">
