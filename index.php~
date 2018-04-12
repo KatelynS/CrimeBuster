@@ -219,19 +219,14 @@ function showEltBlank(eltId) {
     </div>
     <div class="w3-bar-block">
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
- 
-      
       <!-- <label class=container> <b>Weapon Filter</b> </label> -->
-      <!--
       <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>  Weapon Filter</a>
       <div id="weaponFilterDiv" class ="w3-padding-large">
         <label class=container> One<input type = "checkbox" ><span class="checkmark"></span></label> <!-- <input type = "checkbox" checked="checked"> -->
-        <!--
         <label class="container">Two<input type="checkbox"><span class="checkmark"></span></label>
         <label class="container">Three<input type="checkbox"><span class="checkmark"></span></label>
         <label class="container">Four<input type="checkbox"><span class="checkmark"></span></label>
     </div>
-    -->
 
   <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
       <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>  Crime Type</a>
@@ -245,12 +240,10 @@ function showEltBlank(eltId) {
         <label class=container> Homicide <input id ="homicide" type = "checkbox" > <span class="checkmark"></span></label>
         <label class=container> Larceny <input id ="larceny" type = "checkbox" > <span class="checkmark"></span></label>
         <label class=container> Rape <input id ="rape" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Robbery - Street <input id ="robbery_street" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Robbery - Carjacking <input id ="robbery_carjacking" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Robbery - Commercial <input id ="robbery_commercial" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Robbery - Residence <input id ="robbery_residence" type = "checkbox" > <span class="checkmark"></span></label>
+        <label class=container> Robbery <input id ="robbery" type = "checkbox" > <span class="checkmark"></span></label>
         <label class=container> Shooting <input id ="shooting" type = "checkbox" > <span class="checkmark"></span></label>
-        
+        <label class=container> Other <input id ="other_crimeType" type = "checkbox" > <span class="checkmark"></span></label>
+
         <!-- there are different types of robery, Larceny, and assault. we can drill down further -->
     </div>
 
@@ -267,16 +260,10 @@ function showEltBlank(eltId) {
       <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  District</a>
       <div id="districtTypeDiv" class ="w3-padding-large">
-        <label class=container> Northern <input id ="district_north" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Southern <input id ="district_south" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Eastern <input id ="district_east" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Western <input id ="district_west" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Central <input id ="district_central" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> North Eastern <input id ="district_ne" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> North Western <input id ="district_nw" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> South Eastern <input id ="district_se" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> South Western <input id ="district_sw" type = "checkbox" > <span class="checkmark"></span></label>
-        
+        <label class=container> North Baltimore <input id ="district_north" type = "checkbox" > <span class="checkmark"></span></label>
+        <label class=container> South Baltimore <input id ="district_south" type = "checkbox" > <span class="checkmark"></span></label>
+        <label class=container> East Baltimore <input id ="district_east" type = "checkbox" > <span class="checkmark"></span></label>
+        <label class=container> West Baltimore <input id ="district_west" type = "checkbox" > <span class="checkmark"></span></label>
       </div>
 
       <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
