@@ -94,11 +94,26 @@ function initMap() {
 }//KS
 var locations = [
 // Get {lat, long} of all selected crimes using SQL
-{lat: 39.2904, lng: -76.6122},
+,
 {lat: 39.3, lng: -76.6},
 {lat: 39.3, lng: -76.6122},
 {lat: 39.2904, lng: -76.6}
 ]
+
+//KS update map
+function updateMap(crimes) {
+	var locations[];
+	//get crimes[lat]
+	//get crimes[lng]
+	/*
+	for(i = 0; i < crimes.length; i++)
+	{
+		var lat = crimes[i].lat
+		var lng = crimes[i].lng
+		locations.push({lat: 39.2904, lng: -76.6122});
+	}
+	*/
+}
 
 //KS--add in code
 function addComment() {
