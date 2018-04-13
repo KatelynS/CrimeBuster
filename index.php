@@ -137,6 +137,7 @@ function viewComments() {
 //control function based on user interaction
 function updateFormControls() {
 
+
 }
 
 //manipilation of side bar
