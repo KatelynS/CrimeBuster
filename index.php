@@ -108,8 +108,8 @@ function updateMap(crimes) {
 	/*
 	for(i = 0; i < crimes.length; i++)
 	{
-		var lat = crimes[i].lat
-		var lng = crimes[i].lng
+		var lat = crimes[i][9];
+		var lng = crimes[i][16];
 		locations.push({lat: 39.2904, lng: -76.6122});
 	}
 	*/
