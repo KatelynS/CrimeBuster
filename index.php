@@ -12,7 +12,13 @@ while ($row = $results->fetchArray()) {
 	array_push($myArray, $row[9]." ". $row[16]);
 	
 }
+<<<<<<< HEAD
 >>>>>>> 2822958c0a0b1bd59b0b757d691f51c485f2f347
+=======
+
+//echo json_encode($myArray);
+
+>>>>>>> d7be4c2c8aac08796b668d5aa9aed60ecc068d6e
 ?>
 
 <!DOCTYPE html >
@@ -88,7 +94,6 @@ function initMap() {
 	var markerCluster = new MarkerClusterer(map, markers,
 		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 }
-
 //KS
 /*var locations = [
 // Get {lat, long} of all selected crimes using SQL
@@ -96,13 +101,10 @@ function initMap() {
 {lat: 39.3, lng: -76.6},
 {lat: 39.3, lng: -76.6122},
 {lat: 39.2904, lng: -76.6}
-];
-*/
+]; */
+
 var locations = getLocations();
 
-//var locations = getLocations();
-//this function is not working correctly
-//template of updating map
 function getLocations(){
 	
 	var myLocations = new Array();
@@ -136,11 +138,9 @@ var contentString = '<div id="content">'+
 	'</div>'+
 	'</div>';
 	
-
-//KS--breaks map
-//updates markers on map
-function updateMap(crimes) {
 /*
+//KS update map
+function updateMap(crimes) {
 	var loc[];
 	for(i = 0; i < crimes.length; i++)
 	{
@@ -148,27 +148,9 @@ function updateMap(crimes) {
 		var lng = crimes[i][16];
 		loc.push({lat: lat, lng: lng});
 	}
-	
-	var tooltip = new google.maps.InfoWindow({
-		content: contentString
-	});
-
-	var markers = loc.map(function(location, i) {
-		var marker = new google.maps.Marker({
-			position: location,
-			map: map
-			});
-		marker.addListener('click', function() {
-			tooltip.open(map, marker);
-		});
-		return marker
-		});
-	// Add a marker clusterer to manage the markers.
-	var markerCluster = new MarkerClusterer(map, markers,
-		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-*/
+	//return loc;
 }
-
+*/
 //KS--add in code
 function addComment() {
     var user = "USERNAME";
@@ -648,8 +630,12 @@ function showEltBlank(eltId) {
 
     <!-- End page content -->
     
-    <Button type='button' onClick='updateFormControls()'> ClickMe to get Locations!</Button>
-    <p>Pulling Stuff: <span id="ajaxText"></span></p>
+   // <Button type='button' onClick='updateFormControls()'> ClickMe to get Locations!</Button>
+    //<p>Pulling Stuff: <span id="ajaxText"></span></p>
+    
+     <Button type='button' onClick='getLocations()'> ClickMe to get Locations!</Button>
+   
+    
   </div>
 
 </body>
