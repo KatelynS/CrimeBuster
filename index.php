@@ -15,6 +15,7 @@
 <link href="styles/style2.css" rel="stylesheet" type="text/css">
 
 <!-- javascript functions goes here -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 
     // Get the Sidebar
@@ -52,27 +53,11 @@ function initMap() {
 		center: {lat: 39.2904, lng: -76.6122}
 	});
 
-	// Create an array of alphabetical characters used to label the markers.
-	//var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	
-	// Set body of tooltip
-	var contentString = '<div id="content">'+
-		'<div id="siteNotice">'+
-		'</div>'+
-		'<h1 id="firstHeading" class="firstHeading">CRIME</h1>'+
-		'<div id="bodyContent">'+
-		'<p><b>Crime</b> was commited here at <b>time</b> on <b>date</b>.</p>'+
-		'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-		'here</a></p> '+
-		'<p><button onclick="addComment()">Add comment</button>' +
-		'<button onclick="viewComments()">View comments</button></p>' +
-		'</div>'+
-		'</div>';
-
 	// Create tooltip that will appear when marker is clicked
 	var tooltip = new google.maps.InfoWindow({
 		content: contentString
 		});
+	
 	// Add some markers to the map.
 	// Note: The code uses the JavaScript Array.prototype.map() method to
 	// create an array of markers based on a given "locations" array.
@@ -80,8 +65,7 @@ function initMap() {
 	var markers = locations.map(function(location, i) {
 		var marker = new google.maps.Marker({
 			position: location,
-			map: map,
-			//label: labels[i % labels.length]
+			map: map
 			});
 		marker.addListener('click', function() {
 			tooltip.open(map, marker);
@@ -91,30 +75,43 @@ function initMap() {
 	// Add a marker clusterer to manage the markers.
 	var markerCluster = new MarkerClusterer(map, markers,
 		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-}//KS
+}
+//KS
 var locations = [
 // Get {lat, long} of all selected crimes using SQL
-,
+//,
 {lat: 39.3, lng: -76.6},
 {lat: 39.3, lng: -76.6122},
 {lat: 39.2904, lng: -76.6}
-]
+];
 
+// Set body of tooltip
+var contentString = '<div id="content">'+
+	'<div id="siteNotice">'+
+	'</div>'+
+	'<h1 id="firstHeading" class="firstHeading">CRIME</h1>'+
+	'<div id="bodyContent">'+
+	'<p><b>Crime</b> was commited here at <b>time</b> on <b>date</b>.</p>'+
+	'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+	'here</a></p> '+
+	'<p><button onclick="addComment()">Add comment</button>' +
+	'<button onclick="viewComments()">View comments</button></p>' +
+	'</div>'+
+	'</div>';
+	
+/*
 //KS update map
 function updateMap(crimes) {
-	var locations[];
-	//get crimes[lat]
-	//get crimes[lng]
-	/*
+	var loc[];
 	for(i = 0; i < crimes.length; i++)
 	{
 		var lat = crimes[i][9];
 		var lng = crimes[i][16];
-		locations.push({lat: 39.2904, lng: -76.6122});
+		loc.push({lat: lat, lng: lng});
 	}
-	*/
+	//return loc;
 }
-
+*/
 //KS--add in code
 function addComment() {
     var user = "USERNAME";
@@ -124,7 +121,7 @@ function addComment() {
     }
 }
 
-//KS--add in code
+//KS--load comments
 function viewComments() {
 	//load comments and jump to comment section
 	$('#comments').goTo();
@@ -139,7 +136,7 @@ function viewComments() {
         }, 'fast');
         return this; // for chaining...
     }
-})(jQuery);
+})(jQuery); 
 
 </script>
 
