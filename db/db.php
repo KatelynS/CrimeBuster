@@ -60,7 +60,7 @@ $startingLat = 39.29433;
 $endingLat = 39.3239;
 $results = $db->query("SELECT * FROM mydb WHERE latitude > '$startingLat' and latitude < '$endingLat' and longitude > '$startingLong' and longitude < '$endingLong'");
 
-//above tests all the different fileters, now combine them to one SQL statement
+//above tests all the different filters, now combine them to one SQL statement
 $results = $db->query("SELECT * FROM mydb WHERE (latitude > '$startingLat' and latitude < '$endingLat' and longitude > '$startingLong' and longitude < '$endingLong' and crimetime > '$startTime') and (crimetime < '$endTime' and crimedate > '$startDate' and crimedate < '$endDate') and (district = '$central' or district = '$western' or district = '$northEastern' or district = '$southWestern' or district = '$southEastern' or district = '$southern' or district = '$northern' or district = '$eastern' or district = '$northWestern') and (description = '$aggAssault' or description = '$arson' or description = '$assaultByThreat' or description = '$autoTheft' or description = '$burglary' or description = '$commonAssault' or description = '$homicide' or description = '$larceny' or description = '$larcenyAuto' or description = '$rape' or description = '$robberyStreet' or description = '$robberyCar' or description = '$robberyCom' or description = '$robberyRes' or description = '$shooting') and (weapon ='$other'or  weapon = '$hands' or weapon ='$knife' or weapon ='$firearm')");
 
 /*

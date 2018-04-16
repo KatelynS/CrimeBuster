@@ -1,6 +1,7 @@
 <?PHP
 //php code stuff as setting up db and stuff goes here
-
+$db = new SQLite3('db/mydb.db');				//KS
+$results = $db->query("SELECT * FROM mydb");	//KS
 ?>
 
 <!DOCTYPE html >
@@ -76,6 +77,7 @@ function initMap() {
 	var markerCluster = new MarkerClusterer(map, markers,
 		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 }
+
 //KS
 var locations = [
 // Get {lat, long} of all selected crimes using SQL
@@ -99,9 +101,11 @@ var contentString = '<div id="content">'+
 	'</div>'+
 	'</div>';
 	
-/*
-//KS update map
+
+//KS--breaks map
+//updates markers on map
 function updateMap(crimes) {
+/*
 	var loc[];
 	for(i = 0; i < crimes.length; i++)
 	{
@@ -109,9 +113,27 @@ function updateMap(crimes) {
 		var lng = crimes[i][16];
 		loc.push({lat: lat, lng: lng});
 	}
-	//return loc;
-}
+	
+	var tooltip = new google.maps.InfoWindow({
+		content: contentString
+	});
+
+	var markers = loc.map(function(location, i) {
+		var marker = new google.maps.Marker({
+			position: location,
+			map: map
+			});
+		marker.addListener('click', function() {
+			tooltip.open(map, marker);
+		});
+		return marker
+		});
+	// Add a marker clusterer to manage the markers.
+	var markerCluster = new MarkerClusterer(map, markers,
+		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 */
+}
+
 //KS--add in code
 function addComment() {
     var user = "USERNAME";
