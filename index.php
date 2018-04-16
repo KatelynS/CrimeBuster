@@ -152,6 +152,24 @@ function viewComments() {
 //control function based on user interaction
 function updateFormControls() {
 
+		//testing ajax
+				if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        
+        xmlhttp.onreadystatechange = function() {
+            //if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajaxText").innerHTML = this.responseText;
+            //}
+        };
+        var str=1;
+        xmlhttp.open("GET","db/templateAjax.php?q="+str,true);
+        xmlhttp.send();
+
 }
 
 //manipilation of side bar
@@ -575,6 +593,8 @@ function showEltBlank(eltId) {
     </footer> -->
 
     <!-- End page content -->
+    
+    <div id="ajaxText"><b>Pulling stuff...</b></div>
   </div>
 
 </body>
