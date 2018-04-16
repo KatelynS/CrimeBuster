@@ -87,6 +87,26 @@ var locations = [
 {lat: 39.2904, lng: -76.6}
 ];
 
+//var locations = getLocations();
+//this function is not working correctly
+//template of updating map
+function getLocations(){
+	
+	var myLocations = new Array();
+	$.ajax({
+    url:"db/getMapLocations.php",
+    type:"POST",
+    success:function(msg){
+        myLocations = msg;
+    },
+    dataType:"json"
+	});
+	console.log("we got here");
+	console.log(myLocations[0]);
+	
+	return myLocations;
+}
+
 // Set body of tooltip
 var contentString = '<div id="content">'+
 	'<div id="siteNotice">'+

@@ -1,7 +1,15 @@
 <?PHP
 //php code stuff as setting up db and stuff goes here
-$db = new SQLite3('db/mydb.db');				//KS
-$results = $db->query("SELECT * FROM mydb");	//KS
+$db = new SQLite3('db/mydb.db');
+$myStreet="STREET";
+$results = $db->query("SELECT * FROM mydb WHERE premise='$myStreet'");
+
+
+$myArray = array();
+while ($row = $results->fetchArray()) {
+	array_push($myArray, $row[9]." ". $row[16]);
+	
+}
 ?>
 
 <!DOCTYPE html >
@@ -79,13 +87,15 @@ function initMap() {
 }
 
 //KS
-var locations = [
+/*var locations = [
 // Get {lat, long} of all selected crimes using SQL
 //,
 {lat: 39.3, lng: -76.6},
 {lat: 39.3, lng: -76.6122},
 {lat: 39.2904, lng: -76.6}
 ];
+*/
+var locations = getLocations();
 
 //var locations = getLocations();
 //this function is not working correctly
@@ -93,7 +103,9 @@ var locations = [
 function getLocations(){
 	
 	var myLocations = new Array();
-	$.ajax({
+	var ar = <?php echo json_encode($myArray) ?>;
+	console.log(ar);
+/*	$.ajax({
     url:"db/getMapLocations.php",
     type:"POST",
     success:function(msg){
@@ -102,7 +114,7 @@ function getLocations(){
     dataType:"json"
 	});
 	console.log("we got here");
-	console.log(myLocations[0]);
+	console.log(myLocations[0]); */
 	
 	return myLocations;
 }
