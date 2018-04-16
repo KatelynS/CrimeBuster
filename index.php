@@ -613,7 +613,8 @@ function showEltBlank(eltId) {
 
     <!-- End page content -->
     
-    <div id="ajaxText"><b>Pulling stuff...</b></div>
+    <Button type='button' onClick='updateFormControls()'> ClickMe to get Locations!</Button>
+    <p>Pulling Stuff: <span id="ajaxText"></span></p>
   </div>
 
 </body>
