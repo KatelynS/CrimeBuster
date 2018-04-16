@@ -19,6 +19,7 @@ while ($row = $results->fetchArray()) {
 
 for($x=0; $x<count($myArray); $x++){
 	//print($myArray[$x]);
+	echo "<br> $myArray[$x] ";
 }
 
 ?>
