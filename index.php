@@ -209,6 +209,37 @@ function viewComments() {
 <script type="text/javascript">
 
 //control function based on user interaction
+
+function updateVisualizations(clicked_id){
+	
+			//testing ajax
+				if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        
+       // calling appropriate chart using ajax
+        if(clicked_id == "barChartX"){
+        	var myArray = new Array();
+        	myArray.push("Test1");
+        	var xVal = document.getElementById('barChartX').value;
+        	 console.log(xVal);
+        	 xmlhttp.onreadystatechange = function() {
+            
+                document.getElementById("barChart").innerHTML = this.responseText;
+        	};
+        var str=1;
+        xmlhttp.open("GET","db/barChart.php?q="+xVal, myArray, true);
+        xmlhttp.send();
+        }
+       
+        
+        
+	
+}
 function updateFormControls() {
 
 		//testing ajax
@@ -653,10 +684,20 @@ function showEltBlank(eltId) {
 
     <!-- End page content -->
     
-   // <Button type='button' onClick='updateFormControls()'> ClickMe to get Locations!</Button>
-    //<p>Pulling Stuff: <span id="ajaxText"></span></p>
+    <!--
+    <Button type='button' onClick='updateFormControls()'> ClickMe to get Locations!</Button>
+    <p>Pulling Stuff: <span id="ajaxText"></span></p> -->
     
-     <Button type='button' onClick='getLocations()'> ClickMe to get Locations!</Button>
+    <span id="barChart"></span>
+    <span> X axis </span>
+     <select id='barChartX' name='barChartX' onchange="updateVisualizations(id);">
+		      <option value="">Please select an option</option>
+		      <option value="Crime_Type" selected='selected'>Crime Type</option>
+          <option value="Weapon_Type">Weapon Type</option>
+		      
+		   </select>
+    
+    
    
     
   </div>
