@@ -1,7 +1,6 @@
 <?PHP
 //php code stuff as setting up db and stuff goes here
-<<<<<<< HEAD
-=======
+
 $db = new SQLite3('db/mydb.db');
 $myStreet="STREET";
 $results = $db->query("SELECT * FROM mydb WHERE premise='$myStreet'");
@@ -12,13 +11,11 @@ while ($row = $results->fetchArray()) {
 	array_push($myArray, $row[9]." ". $row[16]);
 	
 }
-<<<<<<< HEAD
->>>>>>> 2822958c0a0b1bd59b0b757d691f51c485f2f347
-=======
+
+
 
 //echo json_encode($myArray);
 
->>>>>>> d7be4c2c8aac08796b668d5aa9aed60ecc068d6e
 ?>
 
 <!DOCTYPE html >
@@ -70,8 +67,8 @@ function initMap() {
 		zoom: 11,
 		center: {lat: 39.2904, lng: -76.6122}
 	});
-
-	// Create tooltip that will appear when marker is clicked
+	
+		// Create tooltip that will appear when marker is clicked
 	var tooltip = new google.maps.InfoWindow({
 		content: contentString
 		});
@@ -93,6 +90,7 @@ function initMap() {
 	// Add a marker clusterer to manage the markers.
 	var markerCluster = new MarkerClusterer(map, markers,
 		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
 }
 //KS
 /*var locations = [
@@ -102,14 +100,22 @@ function initMap() {
 {lat: 39.3, lng: -76.6122},
 {lat: 39.2904, lng: -76.6}
 ]; */
-
 var locations = getLocations();
 
 function getLocations(){
 	
 	var myLocations = new Array();
 	var ar = <?php echo json_encode($myArray) ?>;
-	console.log(ar);
+	
+	for(var i = 0; i < ar.length; i++)
+	{
+		var loc = ar[i].split(" ");
+		var lat = parseFloat(loc[0]);
+		var lng = parseFloat(loc[1]);
+		myLocations.push({lat: lat, lng: lng});
+	}
+	
+	console.log(myLocations);
 /*	$.ajax({
     url:"db/getMapLocations.php",
     type:"POST",
@@ -141,16 +147,33 @@ var contentString = '<div id="content">'+
 /*
 //KS update map
 function updateMap(crimes) {
-	var loc[];
-	for(i = 0; i < crimes.length; i++)
-	{
-		var lat = crimes[i][9];
-		var lng = crimes[i][16];
-		loc.push({lat: lat, lng: lng});
-	}
-	//return loc;
+
+	// Create tooltip that will appear when marker is clicked
+	var tooltip = new google.maps.InfoWindow({
+		content: contentString
+		});
+	
+	// Add some markers to the map.
+	// Note: The code uses the JavaScript Array.prototype.map() method to
+	// create an array of markers based on a given "locations" array.
+	// The map() method here has nothing to do with the Google Maps API.
+	var markers = locations.map(function(location, i) {
+		var marker = new google.maps.Marker({
+			position: location,
+			map: map
+			});
+		marker.addListener('click', function() {
+			tooltip.open(map, marker);
+		});
+		return marker
+		});
+	// Add a marker clusterer to manage the markers.
+	var markerCluster = new MarkerClusterer(map, markers,
+		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
 }
 */
+
 //KS--add in code
 function addComment() {
     var user = "USERNAME";
