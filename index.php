@@ -30,6 +30,8 @@ while ($row = $results->fetchArray()) {
 <link href="styles/style2.css" rel="stylesheet" type="text/css">
 
 <!-- javascript functions goes here -->
+ <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
+ <script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.ocean.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 
