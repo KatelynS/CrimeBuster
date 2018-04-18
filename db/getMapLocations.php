@@ -1,6 +1,6 @@
 <?php
 
-$q = ($_GET['q']);
+//$q = ($_GET['q']);
 
 $db = new SQLite3('mydb.db');
 $myStreet="STREET";

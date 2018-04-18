@@ -3,7 +3,9 @@
 
 $db = new SQLite3('db/mydb.db');
 $myStreet="STREET";
-$results = $db->query("SELECT * FROM mydb WHERE premise='$myStreet'");
+//$results = $db->query("SELECT * FROM mydb WHERE premise='$myStreet'");
+$results = $db->query("SELECT * FROM mydb");
+
 
 
 $myArray = array();
@@ -267,10 +269,27 @@ function updateFormControls() {
 //manipilation of side bar
 function updateSideBar(clicked_id){
   //this is currently not working, will need to fix later
-  if(clicked_id=="weaponFilterPanel"){
+  if(clicked_id=="agg_assault"){
     console.log(clicked_id);
-  }
-}
+    
+    if (document.getElementById('agg_assault').checked) {
+    	console.log("In if ststement");
+    	var id_numbers = new Array();
+			$.ajax({
+		    url:"db/getMapLocations.php",
+		    data: {action: 'test'},
+		    type:"POST",
+		    success:function(msg){
+		        id_numbers = msg;
+		        console.log(id_numbers);
+		    },
+		    dataType:"json"
+			});
+			console.log(id_numbers[0]);
+			
+  	}//close second if
+	}//close if
+}//close function
 
 //hides all fields on page
 function hideall() {
@@ -361,7 +380,7 @@ function showEltBlank(eltId) {
   <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
       <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>  Crime Type</a>
       <div id="crimeTypeDiv" class ="w3-padding-large">
-        <label class=container> AGG. Assault <input id ="agg_assault" type = "checkbox" > <span class="checkmark"></span></label>
+        <label class=container> AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Arson <input id ="arson" type = "checkbox" > <span class="checkmark"></span></label>
         <label class=container> Assault By Threat <input id ="assault_threat" type = "checkbox" > <span class="checkmark"></span></label>
         <label class=container> Auto Theft <input id ="auto_theft" type = "checkbox" > <span class="checkmark"></span></label>
