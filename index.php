@@ -271,24 +271,31 @@ function updateSideBar(clicked_id){
   //this is currently not working, will need to fix later
   if(clicked_id=="agg_assault"){
     console.log(clicked_id);
-    
     if (document.getElementById('agg_assault').checked) {
-    	console.log("In if ststement");
-    	var id_numbers = new Array();
+ 
 			$.ajax({
 		    url:"db/getMapLocations.php",
-		    data: {action: 'test'},
+		    data: {action: 'test1'},
 		    type:"POST",
 		    success:function(msg){
-		        id_numbers = msg;
-		        console.log(id_numbers);
+		        //id_numbers = msg;
+		       // returnD=$(msg);
+		        //console.log(id_numbers);
+		        handleResponse(msg);
 		    },
 		    dataType:"json"
 			});
-			console.log(id_numbers[0]);
 			
   	}//close second if
 	}//close if
+	
+	
+	function handleResponse(data) {
+    // do something with data here, pershaps render map
+    console.log("In handle response");
+    console.log(data);
+	}
+	
 }//close function
 
 //hides all fields on page
