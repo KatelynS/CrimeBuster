@@ -160,7 +160,7 @@ function updateMap(crimes) {
 	
 	for(var i = 0; i < crimes.length; i++)
 	{
-		console.log(crimes[i]);
+		//console.log(crimes[i]);
 		
 		var loc = crimes[i].split(",");
 		var lat = parseFloat(loc[0]);
@@ -249,7 +249,8 @@ function updateVisualizations(clicked_id){
                 document.getElementById("barChart").innerHTML = this.responseText;
         	};
         var str=1;
-        xmlhttp.open("GET","db/barChart.php?q="+xVal, myArray, true);
+        //xmlhttp.open("GET","db/barChart.php?q="+xVal, myArray, true);
+        xmlhttp.open("GET","db/barChart2.php", true);
         xmlhttp.send();
         }
        
@@ -281,26 +282,151 @@ function updateFormControls() {
 
 //manipilation of side bar
 function updateSideBar(clicked_id){
+  //weapons
   var wt_Other="";
   var wt_Hands="";
   var wt_Knife="";
   var wt_Firearm="";
   
+  //crime types
+  var wt_AggAssault = "";
+	var wt_Arson = "";
+	var wt_AssaultByThreat = "";
+	var wt_AutoTheft = "";
+	var wt_Burglary = "";
+	var wt_CommonAssault = "";
+	var wt_Homicide = "";
+	var wt_Larceny = "";
+	var wt_LarcenyAuto = "";
+	var wt_Rape = "";
+	var wt_RobberyStreet = "";
+	var wt_RobberyCar = "";
+	var wt_RobberyCom = "";
+	var wt_RobberyRes = "";
+	var wt_Shooting = "";
+	
+	
+	//districts
+	var wt_Northern = "";
+	var wt_Southern = "";
+	var wt_Eastern = "";
+	var wt_Western = "";
+	var wt_Central = "";
+	var wt_NorthEastern = "";
+	var wt_NorthWestern = "";
+	var wt_SouthEastern = "";
+	var wt_SouthWestern = "";
+	
+  
   //firearm
   if(clicked_id=="weapon_firearm"||clicked_id=="weapon_hands"||clicked_id=="weapon_knife"||clicked_id=="weapon_other"){
   	if (document.getElementById('weapon_firearm').checked) {
   		wt_Firearm="FIREARM";
+  		console.log("FIREARM");
   	}
   	if (document.getElementById('weapon_hands').checked) {
   		wt_Hands="HANDS";}
+  		console.log("HANDS");
   	if (document.getElementById('weapon_knife').checked) {
   		wt_Knife="KNIFE";
+  		console.log("KNIFE");
   	}
   	if (document.getElementById('weapon_other').checked) {
   		wt_Other="OTHER";
+  		console.log("OTHER");
   	}
   	
   }
+  
+  if(clicked_id == "agg_assault" || clicked_id == "arson" || clicked_id == "assault_threat" || 
+  clicked_id == "auto_theft" || clicked_id == "burglary" || clicked_id == "common_assault" ||
+  clicked_id  == "homicide" || clicked_id == "larceny" || clicked_id == "larceny_auto" || clicked_id == "rape" || 
+  clicked_id == "robbery_street" || clicked_id == "robbery_carjacking" || clicked_id == 
+  "robbery_commercial" || clicked_id == "robbery_residence" || clicked_id == "shooting"){
+  	
+  	if (document.getElementById('agg_assault').checked) {
+  		wt_AggAssault="AGG. ASSAULT";
+  	}
+  	if (document.getElementById('arson').checked) {
+  		wt_Arson="ARSON";
+  	}
+  	if (document.getElementById('assault_threat').checked) {
+  		wt_AssaultByThreat="ASSALT BY THREAT";
+  	}
+  	if (document.getElementById('auto_theft').checked) {
+  		wt_AutoTheft="AUTO THEFT";
+  	}
+  	if (document.getElementById('burglary').checked) {
+  		wt_Burglary="BURGLARY";
+  	}
+  	if (document.getElementById('common_assault').checked) {
+  		wt_CommonAssault="COMMON ASSAULT";
+  	}
+  	if (document.getElementById('homicide').checked) {
+  		wt_Homicide="HOMICIDE";
+  	}
+  	if (document.getElementById('larceny').checked) {
+  		wt_Larceny="LARCENY";
+  	}
+  	if (document.getElementById('larceny_auto').checked) {
+  		wt_LarcenyAuto="LARCENY FROM AUTO";
+  	}
+  	if (document.getElementById('rape').checked) {
+  		wt_Rape="RAPE";
+  	}
+  	if (document.getElementById('robbery_street').checked) {
+  		wt_RobberyStreet="ROBBERY - STREET";
+  	}
+  	if (document.getElementById('robbery_carjacking').checked) {
+  		wt_RobberyCar="ROBBERY - CARJACKING";
+  	}
+  	if (document.getElementById('robbery_commercial').checked) {
+  		wt_RobberyCom="ROBBERY - COMMERCIAL";
+  	}
+  	if (document.getElementById('robbery_residence').checked) {
+  		wt_RobberyRes="ROBBERY - RESIDENCE";
+  	}
+  	if (document.getElementById('shooting').checked) {
+  		wt_Shooting="SHOOTING";
+  	}
+  	
+  }
+  
+  if(clicked_id == "district_north" || clicked_id == "district_south" || clicked_id == "district_east" || 
+  clicked_id == "district_west" || clicked_id == "district_central" || clicked_id == "district_ne" ||
+  clicked_id  == "district_nw" || clicked_id == "district_se" || clicked_id == "district_sw"){
+  	
+  		if (document.getElementById('district_north').checked) {
+  		wt_Northern="NORTHERN";
+  	}
+  	if (document.getElementById('district_south').checked) {
+  		wt_Southern="SOUTHERN";
+  	}
+  	if (document.getElementById('district_east').checked) {
+  		wt_Eastern="EASTERN";
+  	}
+  	if (document.getElementById('district_west').checked) {
+  		wt_Western="WESTERN";
+  	}
+  	if (document.getElementById('district_central').checked) {
+  		wt_Central="CENTRAL";
+  	}
+  	if (document.getElementById('district_ne').checked) {
+  		wt_NorthEastern="NORTHEASTERN";
+  	}
+  	if (document.getElementById('district_nw').checked) {
+  		wt_NorthWestern="NORTHWESTERN";
+  	}
+  	if (document.getElementById('district_se').checked) {
+  		wt_SouthEastern="SOUTHEASTERN";
+  	}
+  	if (document.getElementById('district_sw').checked) {
+  		wt_SouthWestern="SOUTHWESTERN";
+  	}
+  	
+  }
+  
+  
   
   if(clicked_id=="agg_assault"){
     console.log(clicked_id);
@@ -323,9 +449,19 @@ function updateSideBar(clicked_id){
 	}//close if
 	
 	//ajax call here
+	
+	
 	$.ajax({
 		    url:"db/getMapLocations.php",
-		    data: {wt_Other: wt_Other, wt_Hands: wt_Hands, wt_Knife: wt_Knife, wt_Firearm: wt_Firearm},
+		    data: {wt_Other: wt_Other, wt_Hands: wt_Hands, wt_Knife: wt_Knife, wt_Firearm: wt_Firearm,
+		    	wt_AggAssault: wt_AggAssault, wt_Arson: wt_Arson, wt_AssaultByThreat: wt_AssaultByThreat, 
+		    	wt_AutoTheft: wt_AutoTheft, wt_Burglary: wt_Burglary, wt_CommonAssault: wt_CommonAssault,
+		    	wt_Homicide: wt_Homicide, wt_Larceny: wt_Larceny, wt_LarcenyAuto: wt_LarcenyAuto, wt_Rape: wt_Rape,
+		    	wt_RobberyStreet: wt_RobberyStreet, wt_RobberyCar: wt_RobberyCar, wt_RobberyCom: wt_RobberyCom,
+		    	wt_RobberyRes: wt_RobberyRes, wt_Shooting: wt_Shooting, wt_Northern: wt_Northern, 
+		    	wt_Southern: wt_Southern, wt_Eastern: wt_Eastern, wt_Western: wt_Western, wt_Central: 
+		    	wt_Central, wt_NorthEastern: wt_NorthEastern, wt_NorthWestern: wt_NorthWestern,
+		    	wt_SouthEastern: wt_SouthEastern, wt_SouthWestern: wt_SouthWestern},
 		    type:"POST",
 		    success:function(msg){
 		        handleResponse(msg);
@@ -441,6 +577,7 @@ function showEltBlank(eltId) {
         <label class=container> Common Assault <input id ="common_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Homicide <input id ="homicide" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Larceny <input id ="larceny" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Larceny From Auto <input id ="larceny_auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Rape <input id ="rape" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Robbery - Street <input id ="robbery_street" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Robbery - Carjacking <input id ="robbery_carjacking" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
