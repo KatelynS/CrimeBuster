@@ -268,14 +268,34 @@ function updateFormControls() {
 
 //manipilation of side bar
 function updateSideBar(clicked_id){
-  //this is currently not working, will need to fix later
+  var wt_Other="";
+  var wt_Hands="";
+  var wt_Knife="";
+  var wt_Firearm="";
+  
+  //firearm
+  if(clicked_id=="weapon_firearm"||clicked_id=="weapon_hands"||clicked_id=="weapon_knife"||clicked_id=="weapon_other"){
+  	if (document.getElementById('weapon_firearm').checked) {
+  		wt_Firearm="FIREARM";
+  	}
+  	if (document.getElementById('weapon_hands').checked) {
+  		wt_Hands="HANDS";}
+  	if (document.getElementById('weapon_knife').checked) {
+  		wt_Knife="KNIFE";
+  	}
+  	if (document.getElementById('weapon_other').checked) {
+  		wt_Other="OTHER";
+  	}
+  	
+  }
+  
   if(clicked_id=="agg_assault"){
     console.log(clicked_id);
     if (document.getElementById('agg_assault').checked) {
  
 			$.ajax({
 		    url:"db/getMapLocations.php",
-		    data: {action: 'test1'},
+		    data: {wt_Other: wt_Other, wt_Hands: wt_Hands, wt_Knife: wt_Knife, wt_Firearm: wt_Firearm},
 		    type:"POST",
 		    success:function(msg){
 		        //id_numbers = msg;
@@ -289,6 +309,16 @@ function updateSideBar(clicked_id){
   	}//close second if
 	}//close if
 	
+	//ajax call here
+	$.ajax({
+		    url:"db/getMapLocations.php",
+		    data: {wt_Other: wt_Other, wt_Hands: wt_Hands, wt_Knife: wt_Knife, wt_Firearm: wt_Firearm},
+		    type:"POST",
+		    success:function(msg){
+		        handleResponse(msg);
+		    },
+		    dataType:"json"
+			});
 	
 	function handleResponse(data) {
     // do something with data here, pershaps render map
@@ -388,19 +418,19 @@ function showEltBlank(eltId) {
       <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>  Crime Type</a>
       <div id="crimeTypeDiv" class ="w3-padding-large">
         <label class=container> AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> Arson <input id ="arson" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Assault By Threat <input id ="assault_threat" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Auto Theft <input id ="auto_theft" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Burglary <input id ="burglary" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Common Assault <input id ="common_assault" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Homicide <input id ="homicide" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Larceny <input id ="larceny" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Rape <input id ="rape" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Robbery - Street <input id ="robbery_street" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Robbery - Carjacking <input id ="robbery_carjacking" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Robbery - Commercial <input id ="robbery_commercial" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Robbery - Residence <input id ="robbery_residence" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Shooting <input id ="shooting" type = "checkbox" > <span class="checkmark"></span></label>
+        <label class=container> Arson <input id ="arson" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Assault By Threat <input id ="assault_threat" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Auto Theft <input id ="auto_theft" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Burglary <input id ="burglary" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Common Assault <input id ="common_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Homicide <input id ="homicide" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Larceny <input id ="larceny" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Rape <input id ="rape" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Robbery - Street <input id ="robbery_street" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Robbery - Carjacking <input id ="robbery_carjacking" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Robbery - Commercial <input id ="robbery_commercial" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Robbery - Residence <input id ="robbery_residence" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Shooting <input id ="shooting" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         
         <!-- there are different types of robery, Larceny, and assault. we can drill down further -->
     </div>
@@ -409,34 +439,34 @@ function showEltBlank(eltId) {
 
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Weapon Type</a>
       <div id="weaponTypeDiv" class ="w3-padding-large">
-        <label class=container> Firearm <input id ="weapon_firearm" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Hands <input id ="weapon_hands" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Knife <input id ="weapon_knife" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Other <input id ="weapon_other" type = "checkbox" > <span class="checkmark"></span></label>
+        <label class=container> Firearm <input id ="weapon_firearm" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Hands <input id ="weapon_hands" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Knife <input id ="weapon_knife" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Other <input id ="weapon_other" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       </div>
 
       <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  District</a>
       <div id="districtTypeDiv" class ="w3-padding-large">
-        <label class=container> Northern <input id ="district_north" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Southern <input id ="district_south" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Eastern <input id ="district_east" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Western <input id ="district_west" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> Central <input id ="district_central" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> North Eastern <input id ="district_ne" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> North Western <input id ="district_nw" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> South Eastern <input id ="district_se" type = "checkbox" > <span class="checkmark"></span></label>
-        <label class=container> South Western <input id ="district_sw" type = "checkbox" > <span class="checkmark"></span></label>
+        <label class=container> Northern <input id ="district_north" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Southern <input id ="district_south" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Eastern <input id ="district_east" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Western <input id ="district_west" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> Central <input id ="district_central" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> North Eastern <input id ="district_ne" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> North Western <input id ="district_nw" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> South Eastern <input id ="district_se" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> South Western <input id ="district_sw" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         
       </div>
 
       <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Location/Premise</a>
         <div id="locationTypeDiv" class ="w3-padding-large">
-          <label class=container> Home <input id ="premise_home" type = "checkbox" > <span class="checkmark"></span></label>
-          <label class=container> Bus/Auto <input id ="premise_bus/auto" type = "checkbox" > <span class="checkmark"></span></label>
-          <label class=container> Hotel <input id ="premise_hotel" type = "checkbox" > <span class="checkmark"></span></label>
-          <label class=container> Gas Station <input id ="premise_gasStation" type = "checkbox" > <span class="checkmark"></span></label>
+          <label class=container> Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> Bus/Auto <input id ="premise_bus/auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> Hotel <input id ="premise_hotel" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> Gas Station <input id ="premise_gasStation" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         </div>
       <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
