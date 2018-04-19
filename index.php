@@ -148,20 +148,33 @@ var contentString = '<div id="content">'+
 	'</div>'+
 	'</div>';
 	
-/*
+
 //KS update map
 function updateMap(crimes) {
-
 	// Create tooltip that will appear when marker is clicked
 	var tooltip = new google.maps.InfoWindow({
 		content: contentString
 		});
+
+	var locs = new Array();
+	
+	for(var i = 0; i < crimes.length; i++)
+	{
+		console.log(crimes[i]);
+		
+		var loc = crimes[i].split(",");
+		var lat = parseFloat(loc[0]);
+		var lng = parseFloat(loc[1]);
+		locs.push({lat: lat, lng: lng});
+
+	}
 	
 	// Add some markers to the map.
 	// Note: The code uses the JavaScript Array.prototype.map() method to
 	// create an array of markers based on a given "locations" array.
 	// The map() method here has nothing to do with the Google Maps API.
-	var markers = locations.map(function(location, i) {
+	/*
+	var markers = locs.map(function(location, i) {
 		var marker = new google.maps.Marker({
 			position: location,
 			map: map
@@ -174,9 +187,9 @@ function updateMap(crimes) {
 	// Add a marker clusterer to manage the markers.
 	var markerCluster = new MarkerClusterer(map, markers,
 		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
+	*/
 }
-*/
+
 
 //KS--add in code
 function addComment() {
@@ -322,8 +335,11 @@ function updateSideBar(clicked_id){
 	
 	function handleResponse(data) {
     // do something with data here, pershaps render map
+
     console.log("In handle response");
     console.log(data);
+
+	updateMap(data);
 	}
 	
 }//close function
