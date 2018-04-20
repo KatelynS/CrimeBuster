@@ -57,10 +57,23 @@ district = '$southEastern' or district = '$southern' or district = '$northern' o
   '$shooting') and (weapon ='$other'or  weapon = '$hands' or weapon ='$knife' or weapon ='$firearm')");
   */
  
-//$results = $db->query("SELECT * FROM mydb WHERE ((district = '$central' or district = '$western' or district = '$northEastern' or district = '$southWestern' or district = '$southEastern' or district = '$southern' or district = '$northern' or district = '$eastern'or district = '$northWestern') and (description = '$aggAssault' or description = '$arson' or description= '$assaultByThreat' or description = '$autoTheft' or description = '$burglary' or description = '$commonAssault' or description = '$homicide' or description = '$larceny' or description = '$larcenyAuto' or description = '$rape' or description = '$robberyStreet' or description = '$robberyCar' or description = '$robberyCom' or description = '$robberyRes' or description = '$shooting') and (weapon ='$other'or  weapon = '$hands' or weapon ='$knife' or weapon ='$firearm')");
-  
+ 
+$results = $db->query("SELECT * FROM mydb WHERE (district = '$central' or district = 
+'$western' or district = '$northEastern' or district = '$southWestern' or district = 
+'$southEastern' or district = '$southern' or district = '$northern' or district = '$eastern'or 
+district = '$northWestern' or description = '$aggAssault' or description = '$arson' or description
+= '$assaultByThreat' or description = '$autoTheft' or description = '$burglary' or description = 
+'$commonAssault' or description = '$homicide' or description = '$larceny' or description = 
+'$larcenyAuto' or description = '$rape' or description = '$robberyStreet' or description = 
+'$robberyCar' or description = '$robberyCom' or description = '$robberyRes' or description = 
+'$shooting' or weapon ='$other'or  weapon = '$hands' or weapon ='$knife' or weapon ='$firearm')");
+
+ /*
+ $results = $db->query("SELECT * FROM mydb WHERE (weapon ='$other'or weapon = '$hands' or weapon ='$knife' or weapon ='$firearm') or (district = '$central' or district = '$western' or district = '$northEastern' or district = '$southWestern' or 
+district = '$southEastern' or district = '$southern' or district = '$northern' or district = '$eastern' or district = '$northWestern')");
+ */
 //just testing weapon type
-$results = $db->query("SELECT * FROM mydb WHERE weapon ='$other'or  weapon = '$hands' or weapon ='$knife' or weapon ='$firearm'");
+//$results = $db->query("SELECT * FROM mydb WHERE weapon ='$other'or  weapon = '$hands' or weapon ='$knife' or weapon ='$firearm'");
 
 
 $myArray = array();

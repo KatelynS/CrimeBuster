@@ -346,48 +346,63 @@ function updateSideBar(clicked_id){
   	
   	if (document.getElementById('agg_assault').checked) {
   		wt_AggAssault="AGG. ASSAULT";
+  		console.log("AGG. ASSAULT");
   	}
   	if (document.getElementById('arson').checked) {
   		wt_Arson="ARSON";
+  		console.log("ARSON");
   	}
   	if (document.getElementById('assault_threat').checked) {
   		wt_AssaultByThreat="ASSALT BY THREAT";
+  		console.log("ASSALT BY THREAT");
   	}
   	if (document.getElementById('auto_theft').checked) {
   		wt_AutoTheft="AUTO THEFT";
+  		console.log("AUTO THEFT");
   	}
   	if (document.getElementById('burglary').checked) {
   		wt_Burglary="BURGLARY";
+  		console.log("BURGLARY");
   	}
   	if (document.getElementById('common_assault').checked) {
   		wt_CommonAssault="COMMON ASSAULT";
+  		console.log("COMMON ASSAULT");
   	}
   	if (document.getElementById('homicide').checked) {
   		wt_Homicide="HOMICIDE";
+  		console.log("HOMICIDE");
   	}
   	if (document.getElementById('larceny').checked) {
   		wt_Larceny="LARCENY";
+  		console.log("LARCENY");
   	}
   	if (document.getElementById('larceny_auto').checked) {
   		wt_LarcenyAuto="LARCENY FROM AUTO";
+  		console.log("LARCENY FROM AUTO");
   	}
   	if (document.getElementById('rape').checked) {
   		wt_Rape="RAPE";
+  		console.log("RAPE");
   	}
   	if (document.getElementById('robbery_street').checked) {
   		wt_RobberyStreet="ROBBERY - STREET";
+  		console.log("ROBBERY - STREET");
   	}
   	if (document.getElementById('robbery_carjacking').checked) {
   		wt_RobberyCar="ROBBERY - CARJACKING";
+  		console.log("ROBBERY - CARJACKING");
   	}
   	if (document.getElementById('robbery_commercial').checked) {
   		wt_RobberyCom="ROBBERY - COMMERCIAL";
+  		console.log("ROBBERY - COMMERCIAL");
   	}
   	if (document.getElementById('robbery_residence').checked) {
   		wt_RobberyRes="ROBBERY - RESIDENCE";
+  		console.log("ROBBERY - RESIDENCE");
   	}
   	if (document.getElementById('shooting').checked) {
   		wt_Shooting="SHOOTING";
+  		console.log("SHOOTING");
   	}
   	
   }
@@ -427,7 +442,7 @@ function updateSideBar(clicked_id){
   }
   
   
-  
+  /*
   if(clicked_id=="agg_assault"){
     console.log(clicked_id);
     if (document.getElementById('agg_assault').checked) {
@@ -447,7 +462,7 @@ function updateSideBar(clicked_id){
 			
   	}//close second if
 	}//close if
-	
+	*/
 	//ajax call here
 	
 	
