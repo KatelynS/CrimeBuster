@@ -111,11 +111,10 @@ var contentString = '<div id="content">'+
 function updateMap(crimes, myMarkers) {
 	// Create tooltip that will appear when marker is clicked
 	initMap();
+	var info = new google.maps.InfoWindow()
 	var markers = myMarkers;
 	console.log("In update map Marker Type is");
 	console.log(typeof markers);
-	var tooltip = 
-
 	var locs = new Array();
 	var tips = new Array();
 	for(var i = 0; i < crimes.length; i++)
@@ -127,13 +126,12 @@ function updateMap(crimes, myMarkers) {
 		var lng = parseFloat(loc[1]);
 		var crime = loc[2];
 		var time = loc[3];
-		var date = loc[4];
+		var date = loc[4].substring(0, 10);
 		locs.push({lat: lat, lng: lng});
-		tips.push(new google.maps.InfoWindow({
-		content: '<div id="content">'+
+		tips.push('<div id="content">'+
 	'<div id="siteNotice">'+
 	'</div>'+
-	'<h1 id="firstHeading" class="firstHeading">CRIME</h1>'+
+	'<h1 id="firstHeading" class="firstHeading">'+crime+'</h1>'+
 	'<div id="bodyContent">'+
 	'<p>'+crime+' was commited here at '+time+' on '+date+'.</p>'+
 	'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
@@ -141,9 +139,7 @@ function updateMap(crimes, myMarkers) {
 	'<p><button onclick="addComment()">Add comment</button>' +
 	'<button onclick="viewComments()">View comments</button></p>' +
 	'</div>'+
-	'</div>';
-		});
-		);
+	'</div>');
 	}
 	markers = locs.map(function(loc, i) {
 		var marker = new google.maps.Marker({
@@ -151,7 +147,8 @@ function updateMap(crimes, myMarkers) {
 			map: map
 			});
 		marker.addListener('click', function() {
-			tooltip.open(map, marker);
+			info.setContent(tips[i]);
+			info.open(map, marker);
 		});
 		return marker
 		});
