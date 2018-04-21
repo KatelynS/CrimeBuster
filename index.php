@@ -518,30 +518,43 @@ function updateSideBar(clicked_id){
   //}
   
   
-  /*
-  if(clicked_id=="agg_assault"){
-    console.log(clicked_id);
-    if (document.getElementById('agg_assault').checked) {
- 
+  
+	//ajax call here
+	if(clicked_id == "barChartX"){
+		if(document.getElementById('barChartX').value =="weapon_Type_barChart"){
+			console.log("Calling weapon type from bar chart");
 			$.ajax({
-		    url:"db/getMapLocations.php",
-		    data: {wt_Other: wt_Other, wt_Hands: wt_Hands, wt_Knife: wt_Knife, wt_Firearm: wt_Firearm},
+		    url:"db/getWeaponChartData.php",
+		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
+		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
+		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
+		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
+		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
+		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
+		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
+		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
+		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern},
 		    type:"POST",
 		    success:function(msg){
-		        //id_numbers = msg;
-		       // returnD=$(msg);
-		        //console.log(id_numbers);
-		        handleResponse(msg);
+		    	console.log("should return here for bar chart");
+		    	console.log(msg);
+		        handleResponseBChart(msg);
 		    },
+		    /*failure:function(msg2){
+		    		console.log("did not work");
+		    }*/
 		    dataType:"json"
 			});
 			
-  	}//close second if
-	}//close if
-	*/
-	//ajax call here
+			function handleResponseBChart(data) {
+				console.log("IN handle response for b chart");
+				console.log(data);
+		
+			}//inner handler
+		}//close if
+	}
 	
-	
+	else{
 	$.ajax({
 		    url:"db/getMapLocations.php",
 		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
@@ -569,6 +582,8 @@ function updateSideBar(clicked_id){
 	console.log(typeof markers);
 	updateMap(data, markers);
 	}
+	
+}//close else
 	
 }//close function
 
@@ -687,7 +702,7 @@ function showEltBlank(eltId) {
 	</script>
 
 	<hr>
-      <label class=container>  Crime Type <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+      <label class=container>  Crime Type <input class= "myPadding_sm" id ="crime_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       <div id="crimeTypeDiv" class ="w3-padding-large">
         <label class=container> AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Arson <input id ="arson" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1025,11 +1040,11 @@ function showEltBlank(eltId) {
     <p>Pulling Stuff: <span id="ajaxText"></span></p> -->
     
     <span id="barChart"></span>
-    <span> X axis </span>
-     <select id='barChartX' name='barChartX' onchange="updateVisualizations(id);">
+    <span> Category </span>
+     <select id='barChartX' name='barChartX' onchange="updateSideBar(id);">
 		      <option value="">Please select an option</option>
 		      <option value="Crime_Type" selected='selected'>Crime Type</option>
-          <option value="Weapon_Type">Weapon Type</option>
+          <option value="weapon_Type_barChart">Weapon Type</option>
 		      
 		   </select>
     
