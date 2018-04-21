@@ -39,6 +39,15 @@ while ($row = $results->fetchArray()) {
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyBxevA7di7Avo5vGKAgPPSkJa8ud4gnI&callback=initMap"></script>
 
+<!-- Include Required Prerequisites -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+ 
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
 <script type="text/javascript">
 
     // Get the Sidebar
@@ -111,12 +120,15 @@ var contentString = '<div id="content">'+
 function updateMap(crimes, myMarkers) {
 	// Create tooltip that will appear when marker is clicked
 	initMap();
-	var info = new google.maps.InfoWindow()
 	var markers = myMarkers;
 	console.log("In update map Marker Type is");
 	console.log(typeof markers);
+	var tooltip = new google.maps.InfoWindow({
+		content: contentString
+		});
+
 	var locs = new Array();
-	var tips = new Array();
+	
 	for(var i = 0; i < crimes.length; i++)
 	{
 		//console.log(crimes[i]);
@@ -124,22 +136,8 @@ function updateMap(crimes, myMarkers) {
 		var loc = crimes[i].split(",");
 		var lat = parseFloat(loc[0]);
 		var lng = parseFloat(loc[1]);
-		var crime = loc[2];
-		var time = loc[3];
-		var date = loc[4].substring(0, 10);
 		locs.push({lat: lat, lng: lng});
-		tips.push('<div id="content">'+
-	'<div id="siteNotice">'+
-	'</div>'+
-	'<h1 id="firstHeading" class="firstHeading">'+crime+'</h1>'+
-	'<div id="bodyContent">'+
-	'<p>'+crime+' was commited here at '+time+' on '+date+'.</p>'+
-	'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-	'here</a></p> '+
-	'<p><button onclick="addComment()">Add comment</button>' +
-	'<button onclick="viewComments()">View comments</button></p>' +
-	'</div>'+
-	'</div>');
+
 	}
 	markers = locs.map(function(loc, i) {
 		var marker = new google.maps.Marker({
@@ -147,8 +145,7 @@ function updateMap(crimes, myMarkers) {
 			map: map
 			});
 		marker.addListener('click', function() {
-			info.setContent(tips[i]);
-			info.open(map, marker);
+			tooltip.open(map, marker);
 		});
 		return marker
 		});
@@ -622,15 +619,23 @@ function showEltBlank(eltId) {
 <body class="w3-light-grey">
 
   <!-- Top container -->
-  <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Filters</button>
-    <span class="w3-bar-item w3-right">CrimeBuster</span>
+  <div class="w3-bar w3-top w3-black w3-large" style="z-index:7">
+    <!--<button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Filter</button>-->
+    <span class="w3-bar-item w3-animate-left"> CrimeBuster</span>
+    <div style="float: right;">
+      <div class="w3-col s8 w3-bar" style = "width:150px;">
+          <span>Welcome, <strong>John</strong></span><br>
+          <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+          <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+          <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+        </div>
+      </div>
   </div>
 
   <!-- Sidebar/menu -->
   <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
-      <div class="w3-col s4">
+    <!--  <div class="w3-col s4">
         <img src="images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
       </div>
       <div class="w3-col s8 w3-bar">
@@ -640,10 +645,10 @@ function showEltBlank(eltId) {
         <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
       </div>
     </div>
-    <hr>
+    <hr> -->
     <div class="w3-container">
       <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a> -->
-      <h4>Dashboard</h4>
+      <h4>Filters</h4>
     </div>
     <div class="w3-bar-block">
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
@@ -663,7 +668,26 @@ function showEltBlank(eltId) {
 
   <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
      <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>  Crime Type</a>-->
-      <label class=container> Crime Type <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+
+     <hr>
+     
+     <label class = container> Time Picker </label>
+     <input type="text" name="daterange" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM" />
+ 
+	<script type="text/javascript">
+		$(function() {
+    		$('input[name="daterange"]').daterangepicker({
+        		timePicker: true,
+        		timePickerIncrement: 30,
+        		locale: {
+            		format: 'MM/DD/YYYY h:mm A'
+        		}
+    		});
+		});
+	</script>
+
+	<hr>
+      <label class=container>  Crime Type <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       <div id="crimeTypeDiv" class ="w3-padding-large">
         <label class=container> AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Arson <input id ="arson" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -683,7 +707,7 @@ function showEltBlank(eltId) {
         
         <!-- there are different types of robery, Larceny, and assault. we can drill down further -->
     </div>
-
+    <hr>
   <!-- side panel for options of weapon type -->
 
       <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Weapon Type</a>-->
@@ -695,7 +719,7 @@ function showEltBlank(eltId) {
         <label class=container> Other <input id ="weapon_other" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> No Weapon <input id ="weapon_none" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       </div>
-
+      <hr>
       <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
       <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  District</a>-->
       <label class=container> District <input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -711,7 +735,7 @@ function showEltBlank(eltId) {
         <label class=container> South Western <input id ="district_sw" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         
       </div>
-
+      <hr>
       <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
         <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Location/Premise</a>-->
         <label class=container> Location/Premise <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -721,6 +745,7 @@ function showEltBlank(eltId) {
           <label class=container> Hotel <input id ="premise_hotel" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> Gas Station <input id ="premise_gasStation" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         </div>
+        <hr>
       <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a> -->
