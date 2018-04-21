@@ -7,6 +7,7 @@ $other=($_POST['wt_Other1']);
 $hands=($_POST['wt_Hands1']);
 $knife=($_POST['wt_Knife1']);
 $firearm=($_POST['wt_Firearm1']);
+$none=($_POST['wt_None1']);
 
 
 //crime type
@@ -56,7 +57,7 @@ district = '$southEastern' or district = '$southern' or district = '$northern' o
   '$robberyCar' or description = '$robberyCom' or description = '$robberyRes' or description = 
   '$shooting') and (weapon ='$other'or  weapon = '$hands' or weapon ='$knife' or weapon ='$firearm')");
   */
-  
+if($none == "NONE"){
   $results = $db->query("
   SELECT sub2.* 
   
@@ -79,6 +80,30 @@ district = '$southEastern' or district = '$southern' or district = '$northern' o
 WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
+}else{
+	$results = $db->query("
+  SELECT sub2.* 
+  
+  FROM ( SELECT sub.* 
+  
+  			FROM (
+  			 		SELECT * 
+  			 		FROM mydb 
+  			 		WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
+  					 ='$knife' or weapon ='$firearm')
+  			)sub
+  			
+  			WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
+  			= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
+  			'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
+  			'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
+  			'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
+  			'$shooting' or sub.description IS NULL)
+  )sub2
+WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
+sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
+ or sub2.district = '$northWestern' or sub2.district IS NULL);");
+}
   
   /*
   $results = $db->query("SELECT sub.* 
