@@ -35,6 +35,7 @@ while ($row = $results->fetchArray()) {
  <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
  <script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.ocean.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+
 <script type="text/javascript">
 
     // Get the Sidebar
@@ -282,6 +283,108 @@ function updateFormControls() {
 
 //manipilation of side bar
 function updateSideBar(clicked_id){
+	
+	if(clicked_id == "weapon_type"){
+		if (document.getElementById('weapon_type').checked) {
+			document.getElementById("weapon_firearm").checked = true;
+			document.getElementById("weapon_hands").checked = true;
+			document.getElementById("weapon_knife").checked = true;
+			document.getElementById("weapon_other").checked = true;
+			console.log("firearm is now check");
+		}
+		else{
+			document.getElementById("weapon_firearm").checked = false;
+			document.getElementById("weapon_hands").checked = false;
+			document.getElementById("weapon_knife").checked = false;
+			document.getElementById("weapon_other").checked = false;
+		}
+	}
+	
+	if(clicked_id=="crime_type"){
+		if (document.getElementById('crime_type').checked) {
+			document.getElementById("agg_assault").checked = true;
+			document.getElementById("arson").checked = true;
+			document.getElementById("assault_threat").checked = true;
+			document.getElementById("auto_theft").checked = true;
+			document.getElementById("burglary").checked = true;
+			document.getElementById("common_assault").checked = true;
+			document.getElementById("homicide").checked = true;
+			document.getElementById("larceny").checked = true;
+			document.getElementById("larceny_auto").checked = true;
+			document.getElementById("rape").checked = true;
+			document.getElementById("robbery_street").checked = true;
+			document.getElementById("robbery_carjacking").checked = true;
+			document.getElementById("robbery_commercial").checked = true;
+			document.getElementById("robbery_residence").checked = true;
+			document.getElementById("shooting").checked = true;
+			
+			//console.log("firearm is now check");
+		}
+		else{
+			document.getElementById("agg_assault").checked = false;
+			document.getElementById("arson").checked = false;
+			document.getElementById("assault_threat").checked = false
+			document.getElementById("auto_theft").checked = false;
+			document.getElementById("burglary").checked = false;
+			document.getElementById("common_assault").checked = false;
+			document.getElementById("homicide").checked = false;
+			document.getElementById("larceny").checked = false;
+			document.getElementById("larceny_auto").checked = false;
+			document.getElementById("rape").checked = false;
+			document.getElementById("robbery_commercial").checked = false;
+			document.getElementById("robbery_residence").checked = false;
+			document.getElementById("shooting").checked = false;
+			document.getElementById("robbery_street").checked = false;
+			document.getElementById("robbery_carjacking").checked = false;
+		}
+		
+	}
+	
+	
+	if(clicked_id == "district"){
+		if (document.getElementById('district').checked) {
+			document.getElementById("district_north").checked = true;
+			document.getElementById("district_south").checked = true;
+			document.getElementById("district_east").checked = true;
+			document.getElementById("district_west").checked = true;
+			document.getElementById("district_central").checked = true;
+			document.getElementById("district_ne").checked = true;
+			document.getElementById("district_nw").checked = true;
+			document.getElementById("district_se").checked = true;
+			document.getElementById("district_sw").checked = true;
+			console.log("firearm is now check");
+		}
+		else{
+				document.getElementById("district_north").checked = false;
+			document.getElementById("district_south").checked = false;
+			document.getElementById("district_east").checked = false;
+			document.getElementById("district_west").checked = false;
+			document.getElementById("district_central").checked = false;
+			document.getElementById("district_ne").checked = false;
+			document.getElementById("district_nw").checked = false;
+			document.getElementById("district_se").checked = false;
+			document.getElementById("district_sw").checked = false;
+		}
+	}
+	
+	if(clicked_id == "location_Premise"){
+		if (document.getElementById('location_Premise').checked) {
+			document.getElementById("premise_home").checked = true;
+			document.getElementById("premise_bus/auto").checked = true;
+			document.getElementById("premise_hotel").checked = true;
+			document.getElementById("premise_gasStation").checked = true;
+			console.log("location_premise is now check");
+		}
+		else{
+			document.getElementById("premise_home").checked = false;
+			document.getElementById("premise_bus/auto").checked = false;
+			document.getElementById("premise_hotel").checked = false;
+			document.getElementById("premise_gasStation").checked = false;
+			
+		}
+	}
+	
+	
   //weapons
   var wt_Other="";
   var wt_Hands="";
@@ -581,8 +684,10 @@ function showEltBlank(eltId) {
     </div>
     -->
 
-  <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
-      <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>  Crime Type</a>
+  <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'
+      <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>  Crime Type</a> -->
+       <label class=container> Crime Type <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+
       <div id="crimeTypeDiv" class ="w3-padding-large">
         <label class=container> AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Arson <input id ="arson" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -603,9 +708,11 @@ function showEltBlank(eltId) {
         <!-- there are different types of robery, Larceny, and assault. we can drill down further -->
     </div>
 
-  <!-- side panel for options of weapon type -->
+  <!-- side panel for options of weapon type 
 
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Weapon Type</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Weapon Type</a> -->
+     <label class=container> Weapon Type <input id ="weapon_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+
       <div id="weaponTypeDiv" class ="w3-padding-large">
         <label class=container> Firearm <input id ="weapon_firearm" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Hands <input id ="weapon_hands" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -613,8 +720,10 @@ function showEltBlank(eltId) {
         <label class=container> Other <input id ="weapon_other" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       </div>
 
-      <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  District</a>
+      <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ 
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  District</a> -->
+     <label class=container> District <input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+
       <div id="districtTypeDiv" class ="w3-padding-large">
         <label class=container> Northern <input id ="district_north" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Southern <input id ="district_south" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -628,8 +737,10 @@ function showEltBlank(eltId) {
         
       </div>
 
-      <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Location/Premise</a>
+      <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot
+        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Location/Premise</a> -->
+         <label class=container> Location/Premise <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+
         <div id="locationTypeDiv" class ="w3-padding-large">
           <label class=container> Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> Bus/Auto <input id ="premise_bus/auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
