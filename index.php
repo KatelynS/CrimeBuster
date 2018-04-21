@@ -35,7 +35,6 @@ while ($row = $results->fetchArray()) {
  <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
  <script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.ocean.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-
 <script type="text/javascript">
 
     // Get the Sidebar
@@ -284,6 +283,7 @@ function updateFormControls() {
 //manipilation of side bar
 function updateSideBar(clicked_id){
 	
+	
 	if(clicked_id == "weapon_type"){
 		if (document.getElementById('weapon_type').checked) {
 			document.getElementById("weapon_firearm").checked = true;
@@ -386,43 +386,45 @@ function updateSideBar(clicked_id){
 	
 	
   //weapons
-  var wt_Other="";
-  var wt_Hands="";
-  var wt_Knife="";
-  var wt_Firearm="";
+  var wt_Other="n/a";
+  var wt_Hands="n/a";
+  var wt_Knife="n/a";
+  var wt_Firearm="n/a";
   
   //crime types
-  var wt_AggAssault = "";
-	var wt_Arson = "";
-	var wt_AssaultByThreat = "";
-	var wt_AutoTheft = "";
-	var wt_Burglary = "";
-	var wt_CommonAssault = "";
-	var wt_Homicide = "";
-	var wt_Larceny = "";
-	var wt_LarcenyAuto = "";
-	var wt_Rape = "";
-	var wt_RobberyStreet = "";
-	var wt_RobberyCar = "";
-	var wt_RobberyCom = "";
-	var wt_RobberyRes = "";
-	var wt_Shooting = "";
+  var wt_AggAssault = "n/a";
+	var wt_Arson = "n/a";
+	var wt_AssaultByThreat = "n/a";
+	var wt_AutoTheft = "n/a";
+	var wt_Burglary = "n/a";
+	var wt_CommonAssault = "n/a";
+	var wt_Homicide = "n/a";
+	var wt_Larceny = "n/a";
+	var wt_LarcenyAuto = "n/a";
+	var wt_Rape = "n/a";
+	var wt_RobberyStreet = "n/a";
+	var wt_RobberyCar = "n/a";
+	var wt_RobberyCom = "n/a";
+	var wt_RobberyRes = "n/a";
+	var wt_Shooting = "n/a";
 	
 	
 	//districts
-	var wt_Northern = "";
-	var wt_Southern = "";
-	var wt_Eastern = "";
-	var wt_Western = "";
-	var wt_Central = "";
-	var wt_NorthEastern = "";
-	var wt_NorthWestern = "";
-	var wt_SouthEastern = "";
-	var wt_SouthWestern = "";
+	var wt_Northern = "n/a";
+	var wt_Southern = "n/a";
+	var wt_Eastern = "n/a";
+	var wt_Western = "n/a";
+	var wt_Central = "n/a";
+	var wt_NorthEastern = "n/a";
+	var wt_NorthWestern = "n/a";
+	var wt_SouthEastern = "n/a";
+	var wt_SouthWestern = "n/a";
 	
   
   //firearm
-  if(clicked_id=="weapon_firearm"||clicked_id=="weapon_hands"||clicked_id=="weapon_knife"||clicked_id=="weapon_other"){
+  
+  //if(clicked_id=="weapon_firearm"||clicked_id=="weapon_hands"||clicked_id=="weapon_knife"||clicked_id=="weapon_other"){
+  	
   	if (document.getElementById('weapon_firearm').checked) {
   		wt_Firearm="FIREARM";
   		console.log("FIREARM");
@@ -439,13 +441,14 @@ function updateSideBar(clicked_id){
   		console.log("OTHER");
   	}
   	
-  }
-  
+  //}
+  /*
   if(clicked_id == "agg_assault" || clicked_id == "arson" || clicked_id == "assault_threat" || 
   clicked_id == "auto_theft" || clicked_id == "burglary" || clicked_id == "common_assault" ||
   clicked_id  == "homicide" || clicked_id == "larceny" || clicked_id == "larceny_auto" || clicked_id == "rape" || 
   clicked_id == "robbery_street" || clicked_id == "robbery_carjacking" || clicked_id == 
   "robbery_commercial" || clicked_id == "robbery_residence" || clicked_id == "shooting"){
+  */
   	
   	if (document.getElementById('agg_assault').checked) {
   		wt_AggAssault="AGG. ASSAULT";
@@ -456,8 +459,8 @@ function updateSideBar(clicked_id){
   		console.log("ARSON");
   	}
   	if (document.getElementById('assault_threat').checked) {
-  		wt_AssaultByThreat="ASSALT BY THREAT";
-  		console.log("ASSALT BY THREAT");
+  		wt_AssaultByThreat="ASSAULT BY THREAT";
+  		console.log("ASSAULT BY THREAT");
   	}
   	if (document.getElementById('auto_theft').checked) {
   		wt_AutoTheft="AUTO THEFT";
@@ -508,12 +511,12 @@ function updateSideBar(clicked_id){
   		console.log("SHOOTING");
   	}
   	
-  }
-  
+  //}
+  /*
   if(clicked_id == "district_north" || clicked_id == "district_south" || clicked_id == "district_east" || 
   clicked_id == "district_west" || clicked_id == "district_central" || clicked_id == "district_ne" ||
   clicked_id  == "district_nw" || clicked_id == "district_se" || clicked_id == "district_sw"){
-  	
+  	*/
   		if (document.getElementById('district_north').checked) {
   		wt_Northern="NORTHERN";
   	}
@@ -542,7 +545,7 @@ function updateSideBar(clicked_id){
   		wt_SouthWestern="SOUTHWESTERN";
   	}
   	
-  }
+  //}
   
   
   /*
@@ -571,15 +574,15 @@ function updateSideBar(clicked_id){
 	
 	$.ajax({
 		    url:"db/getMapLocations.php",
-		    data: {wt_Other: wt_Other, wt_Hands: wt_Hands, wt_Knife: wt_Knife, wt_Firearm: wt_Firearm,
-		    	wt_AggAssault: wt_AggAssault, wt_Arson: wt_Arson, wt_AssaultByThreat: wt_AssaultByThreat, 
-		    	wt_AutoTheft: wt_AutoTheft, wt_Burglary: wt_Burglary, wt_CommonAssault: wt_CommonAssault,
-		    	wt_Homicide: wt_Homicide, wt_Larceny: wt_Larceny, wt_LarcenyAuto: wt_LarcenyAuto, wt_Rape: wt_Rape,
-		    	wt_RobberyStreet: wt_RobberyStreet, wt_RobberyCar: wt_RobberyCar, wt_RobberyCom: wt_RobberyCom,
-		    	wt_RobberyRes: wt_RobberyRes, wt_Shooting: wt_Shooting, wt_Northern: wt_Northern, 
-		    	wt_Southern: wt_Southern, wt_Eastern: wt_Eastern, wt_Western: wt_Western, wt_Central: 
-		    	wt_Central, wt_NorthEastern: wt_NorthEastern, wt_NorthWestern: wt_NorthWestern,
-		    	wt_SouthEastern: wt_SouthEastern, wt_SouthWestern: wt_SouthWestern},
+		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
+		    	wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
+		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
+		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
+		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
+		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
+		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
+		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
+		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern},
 		    type:"POST",
 		    success:function(msg){
 		        handleResponse(msg);
@@ -684,10 +687,9 @@ function showEltBlank(eltId) {
     </div>
     -->
 
-  <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'
-      <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>  Crime Type</a> -->
-       <label class=container> Crime Type <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-
+  <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
+     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>  Crime Type</a>-->
+      <label class=container> Crime Type <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       <div id="crimeTypeDiv" class ="w3-padding-large">
         <label class=container> AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Arson <input id ="arson" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -708,11 +710,10 @@ function showEltBlank(eltId) {
         <!-- there are different types of robery, Larceny, and assault. we can drill down further -->
     </div>
 
-  <!-- side panel for options of weapon type 
+  <!-- side panel for options of weapon type -->
 
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Weapon Type</a> -->
-     <label class=container> Weapon Type <input id ="weapon_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Weapon Type</a>-->
+      <label class=container> Weapon Type <input id ="weapon_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       <div id="weaponTypeDiv" class ="w3-padding-large">
         <label class=container> Firearm <input id ="weapon_firearm" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Hands <input id ="weapon_hands" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -720,10 +721,9 @@ function showEltBlank(eltId) {
         <label class=container> Other <input id ="weapon_other" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       </div>
 
-      <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ 
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  District</a> -->
-     <label class=container> District <input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-
+      <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  District</a>-->
+      <label class=container> District <input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
         <label class=container> Northern <input id ="district_north" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> Southern <input id ="district_south" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -737,10 +737,9 @@ function showEltBlank(eltId) {
         
       </div>
 
-      <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Location/Premise</a> -->
-         <label class=container> Location/Premise <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-
+      <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
+        <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Location/Premise</a>-->
+        <label class=container> Location/Premise <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <div id="locationTypeDiv" class ="w3-padding-large">
           <label class=container> Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> Bus/Auto <input id ="premise_bus/auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
