@@ -30,6 +30,7 @@ while ($row = $results->fetchArray()) {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- styles are here -->
 <link href="styles/style2.css" rel="stylesheet" type="text/css">
+<link href="c3-0.5.3/c3.css" rel="stylesheet">
 
 <!-- javascript functions goes here -->
  <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
@@ -1012,8 +1013,18 @@ function showEltBlank(eltId) {
     
     
    
-    
+    <div id="chart"></div>
   </div>
+  
+  
+  
+
 
 </body>
+
+  <!-- Load d3.js and c3.js 
+<script src="/path/to/d3.v4.min.js" charset="utf-8"></script> -->
+<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+<script src="c3-0.5.3/c3.min.js"></script>
+<script src="scripts/chartVis.js"></script>
 </html>

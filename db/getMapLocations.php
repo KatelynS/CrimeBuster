@@ -183,7 +183,7 @@ district = '$southEastern' or district = '$southern' or district = '$northern' o
 
 $myArray = array();
 while ($row = $results->fetchArray()) {
-	array_push($myArray, $row[9].",". $row[16]);
+	array_push($myArray, $row[9].",". $row[16].",".$row[6].",".$row[5].",".$row[4]);
 }
 
 
