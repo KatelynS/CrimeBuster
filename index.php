@@ -35,6 +35,9 @@ while ($row = $results->fetchArray()) {
  <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
  <script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.ocean.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyBxevA7di7Avo5vGKAgPPSkJa8ud4gnI&callback=initMap"></script>
+
 <script type="text/javascript">
 
     // Get the Sidebar
@@ -61,13 +64,11 @@ while ($row = $results->fetchArray()) {
     }
 
 
-
-</script>
-
-<script type="text/javascript">
 //KS
+var markers = [];
+var map;
 function initMap() {
-	var map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 11,
 		center: {lat: 39.2904, lng: -76.6122}
 	});
@@ -81,7 +82,7 @@ function initMap() {
 	// Note: The code uses the JavaScript Array.prototype.map() method to
 	// create an array of markers based on a given "locations" array.
 	// The map() method here has nothing to do with the Google Maps API.
-	var markers = locations.map(function(location, i) {
+	markers = locations.map(function(location, i) {
 		var marker = new google.maps.Marker({
 			position: location,
 			map: map
@@ -91,19 +92,15 @@ function initMap() {
 		});
 		return marker
 		});
+	
+		//console.log("Marker Type is");
+		//console.log(typeof markers);
 	// Add a marker clusterer to manage the markers.
 	var markerCluster = new MarkerClusterer(map, markers,
 		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
 }
-//KS
-/*var locations = [
-// Get {lat, long} of all selected crimes using SQL
-//,
-{lat: 39.3, lng: -76.6},
-{lat: 39.3, lng: -76.6122},
-{lat: 39.2904, lng: -76.6}
-]; */
+
 var locations = getLocations();
 
 function getLocations(){
@@ -120,17 +117,6 @@ function getLocations(){
 	}
 	
 	console.log(myLocations);
-/*	$.ajax({
-    url:"db/getMapLocations.php",
-    type:"POST",
-    success:function(msg){
-        myLocations = msg;
-    },
-    dataType:"json"
-	});
-	console.log("we got here");
-	console.log(myLocations[0]); */
-	
 	return myLocations;
 }
 
@@ -150,8 +136,11 @@ var contentString = '<div id="content">'+
 	
 
 //KS update map
-function updateMap(crimes) {
+function updateMap(crimes, myMarkers) {
 	// Create tooltip that will appear when marker is clicked
+	var markers = myMarkers;
+	console.log("In update map Marker Type is");
+	console.log(typeof markers);
 	var tooltip = new google.maps.InfoWindow({
 		content: contentString
 		});
@@ -168,15 +157,14 @@ function updateMap(crimes) {
 		locs.push({lat: lat, lng: lng});
 
 	}
-	
-	// Add some markers to the map.
-	// Note: The code uses the JavaScript Array.prototype.map() method to
-	// create an array of markers based on a given "locations" array.
-	// The map() method here has nothing to do with the Google Maps API.
-	/*
-	var markers = locs.map(function(location, i) {
+	console.log(markers);
+	for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+    }
+	markers = [];
+	markers = locs.map(function(loc, i) {
 		var marker = new google.maps.Marker({
-			position: location,
+			position: loc,
 			map: map
 			});
 		marker.addListener('click', function() {
@@ -185,9 +173,9 @@ function updateMap(crimes) {
 		return marker
 		});
 	// Add a marker clusterer to manage the markers.
-	var markerCluster = new MarkerClusterer(map, markers,
-		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-	*/
+	/*var markerCluster = new MarkerClusterer(map, markers,
+		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});*/
+
 }
 
 
@@ -217,13 +205,12 @@ function viewComments() {
     }
 })(jQuery); 
 
-</script>
 
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyBxevA7di7Avo5vGKAgPPSkJa8ud4gnI&callback=initMap"></script>
+
+
 
 <!-- additional scripts that interactive with page -->
-<script type="text/javascript">
+
 
 //control function based on user interaction
 
@@ -602,8 +589,9 @@ function updateSideBar(clicked_id){
 
     console.log("In handle response");
     console.log(data);
-
-	updateMap(data);
+	console.log("In handle response markers type is");
+	console.log(typeof markers);
+	updateMap(data, markers);
 	}
 	
 }//close function
