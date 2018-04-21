@@ -72,36 +72,7 @@ function initMap() {
 		zoom: 11,
 		center: {lat: 39.2904, lng: -76.6122}
 	});
-	
-		// Create tooltip that will appear when marker is clicked
-	var tooltip = new google.maps.InfoWindow({
-		content: contentString
-		});
-	
-	// Add some markers to the map.
-	// Note: The code uses the JavaScript Array.prototype.map() method to
-	// create an array of markers based on a given "locations" array.
-	// The map() method here has nothing to do with the Google Maps API.
-	markers = locations.map(function(location, i) {
-		var marker = new google.maps.Marker({
-			position: location,
-			map: map
-			});
-		marker.addListener('click', function() {
-			tooltip.open(map, marker);
-		});
-		return marker
-		});
-	
-		//console.log("Marker Type is");
-		//console.log(typeof markers);
-	// Add a marker clusterer to manage the markers.
-	var markerCluster = new MarkerClusterer(map, markers,
-		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
 }
-
-var locations = getLocations();
 
 function getLocations(){
 	
@@ -138,6 +109,7 @@ var contentString = '<div id="content">'+
 //KS update map
 function updateMap(crimes, myMarkers) {
 	// Create tooltip that will appear when marker is clicked
+	initMap();
 	var markers = myMarkers;
 	console.log("In update map Marker Type is");
 	console.log(typeof markers);
@@ -157,11 +129,6 @@ function updateMap(crimes, myMarkers) {
 		locs.push({lat: lat, lng: lng});
 
 	}
-	console.log(markers);
-	for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(null);
-    }
-	markers = [];
 	markers = locs.map(function(loc, i) {
 		var marker = new google.maps.Marker({
 			position: loc,
@@ -173,11 +140,10 @@ function updateMap(crimes, myMarkers) {
 		return marker
 		});
 	// Add a marker clusterer to manage the markers.
-	/*var markerCluster = new MarkerClusterer(map, markers,
-		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});*/
+	var markerCluster = new MarkerClusterer(map, markers,
+		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
 }
-
 
 //KS--add in code
 function addComment() {
