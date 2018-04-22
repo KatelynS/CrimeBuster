@@ -101,34 +101,16 @@ function getLocations(){
 	return myLocations;
 }
 
-// Set body of tooltip
-var contentString = '<div id="content">'+
-	'<div id="siteNotice">'+
-	'</div>'+
-	'<h1 id="firstHeading" class="firstHeading">CRIME</h1>'+
-	'<div id="bodyContent">'+
-	'<p><b>Crime</b> was commited here at <b>time</b> on <b>date</b>.</p>'+
-	'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-	'here</a></p> '+
-	'<p><button onclick="addComment()">Add comment</button>' +
-	'<button onclick="viewComments()">View comments</button></p>' +
-	'</div>'+
-	'</div>';
-	
-
 //KS update map
 function updateMap(crimes, myMarkers) {
 	// Create tooltip that will appear when marker is clicked
 	initMap();
+	var info = new google.maps.InfoWindow();
 	var markers = myMarkers;
 	console.log("In update map Marker Type is");
 	console.log(typeof markers);
-	var tooltip = new google.maps.InfoWindow({
-		content: contentString
-		});
-
 	var locs = new Array();
-	
+	var tips = new Array();
 	for(var i = 0; i < crimes.length; i++)
 	{
 		//console.log(crimes[i]);
@@ -136,8 +118,22 @@ function updateMap(crimes, myMarkers) {
 		var loc = crimes[i].split(",");
 		var lat = parseFloat(loc[0]);
 		var lng = parseFloat(loc[1]);
+		var crime = loc[2];
+		var time = loc[3];
+		var date = loc[4].substring(0, 10);
 		locs.push({lat: lat, lng: lng});
-
+		tips.push('<div id="content">'+
+			'<div id="siteNotice">'+
+			'</div>'+
+			'<h1 id="firstHeading" class="firstHeading">'+crime+'</h1>'+
+			'<div id="bodyContent">'+
+			'<p>'+crime+' was commited here at '+time+' on '+date+'.</p>'+
+			'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+			'here</a></p> '+
+			'<p><button onclick="addComment()">Add comment</button>' +
+			'<button onclick="viewComments()">View comments</button></p>' +
+			'</div>'+
+			'</div>');
 	}
 	markers = locs.map(function(loc, i) {
 		var marker = new google.maps.Marker({
@@ -145,7 +141,8 @@ function updateMap(crimes, myMarkers) {
 			map: map
 			});
 		marker.addListener('click', function() {
-			tooltip.open(map, marker);
+			info.setContent(tips[i]);
+			info.open(map, marker);
 		});
 		return marker
 		});
