@@ -43,7 +43,7 @@ $db = new SQLite3('mydb.db');
 
 if($none == "NONE"){
 $centralCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -64,7 +64,7 @@ $centralCnt = $db->query("
 WHERE (sub2.district ='$central');");
 }else{
 	$centralCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -84,11 +84,11 @@ WHERE (sub2.district ='$central');");
   )sub2
 WHERE (sub2.district ='$central');");
 }
-
+$centralCnt =$centralCnt->fetchArray();
 
 if($none == "NONE"){
 $westernCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -109,7 +109,7 @@ $westernCnt = $db->query("
 WHERE ( sub2.district = '$western');");
 }else{
 	$westernCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -129,11 +129,11 @@ WHERE ( sub2.district = '$western');");
   )sub2
 WHERE ( sub2.district = '$western');");
 }
-
+$westernCnt =$westernCnt->fetchArray();
 
 if($none == "NONE"){
 $northEasternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -154,7 +154,7 @@ $northEasternCnt = $db->query("
 WHERE ( sub2.district = '$northEastern' );");
 }else{
 	$northEasternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -174,11 +174,11 @@ WHERE ( sub2.district = '$northEastern' );");
   )sub2
 WHERE ( sub2.district = '$northEastern' );");
 }
-
+$northEasternCnt =$northEasternCnt->fetchArray();
 
 if($none == "NONE"){
 $southWesternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -199,7 +199,7 @@ $southWesternCnt = $db->query("
 WHERE ( sub2.district = '$southWestern' );");
 }else{
 	$southWesternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -219,11 +219,11 @@ WHERE ( sub2.district = '$southWestern' );");
   )sub2
 WHERE ( sub2.district = '$southWestern' );");
 }
-
+$southWesternCnt =$southWesternCnt->fetchArray();
 
 if($none == "NONE"){
 $southEasternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -244,7 +244,7 @@ $southEasternCnt = $db->query("
 WHERE ( sub2.district = '$southEastern' );");
 }else{
 	$southEasternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -264,11 +264,11 @@ WHERE ( sub2.district = '$southEastern' );");
   )sub2
 WHERE ( sub2.district = '$southEastern' );");
 }
-
+$southEasternCnt =$southEasternCnt->fetchArray();
 
 if($none == "NONE"){
 $southernCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -289,7 +289,7 @@ $southernCnt = $db->query("
 WHERE ( sub2.district = '$southern' );");
 }else{
 	$southernCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -309,11 +309,11 @@ WHERE ( sub2.district = '$southern' );");
   )sub2
 WHERE ( sub2.district = '$southern' );");
 }
-
+$southernCnt =$southernCnt->fetchArray();
 
 if($none == "NONE"){
 $northernCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -334,7 +334,7 @@ $northernCnt = $db->query("
 WHERE ( sub2.district = '$northern' );");
 }else{
 	$northernCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -354,11 +354,11 @@ WHERE ( sub2.district = '$northern' );");
   )sub2
 WHERE ( sub2.district = '$northern' );");
 }
-
+$northernCnt =$northernCnt->fetchArray();
 
 if($none == "NONE"){
 $easternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -379,7 +379,7 @@ $easternCnt = $db->query("
 WHERE ( sub2.district = '$eastern');");
 }else{
 	$easternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -399,11 +399,11 @@ WHERE ( sub2.district = '$eastern');");
   )sub2
 WHERE ( sub2.district = '$eastern');");
 }
-
+$easternCnt =$easternCnt->fetchArray();
 
 if($none == "NONE"){
 $northWesternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -424,7 +424,7 @@ $northWesternCnt = $db->query("
 WHERE (sub2.district = '$northWestern' );");
 }else{
 	$northWesternCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -444,43 +444,44 @@ WHERE (sub2.district = '$northWestern' );");
   )sub2
 WHERE (sub2.district = '$northWestern' );");
 }
+$northWesternCnt =$northWesternCnt->fetchArray();
 
 $myArray = array();
  for($x = 0; $x < 9; $x++){
  	if($x == 0){
- 		array_push($myArray, "Northern");
- 		array_push($myArray, $northernCnt);
+ 		//array_push($myArray, "Northern");
+ 		array_push($myArray, $northernCnt['total']);
  	}elseif($x == 1){
- 		array_push($myArray, "Southern");
- 		array_push($myArray, $southernCnt);
+ 		//array_push($myArray, "Southern");
+ 		array_push($myArray, $southernCnt['total']);
  		
  	}elseif($x == 2){
- 		array_push($myArray, "Eastern");
- 		array_push($myArray, $easternCnt);
+ 		//array_push($myArray, "Eastern");
+ 		array_push($myArray, $easternCnt['total']);
  		
  	}elseif($x == 3){
- 		array_push($myArray, "Western");
- 		array_push($myArray, $westernCnt);
+ 		//array_push($myArray, "Western");
+ 		array_push($myArray, $westernCnt['total']);
  		
  	}elseif($x == 4){
- 		array_push($myArray, "Central");
- 		array_push($myArray, $centralCnt);
+ 		//array_push($myArray, "Central");
+ 		array_push($myArray, $centralCnt['total']);
  		
  	}elseif($x == 5){
- 		array_push($myArray, "North Eastern");
- 		array_push($myArray, $northEasternCnt);
+ 		//array_push($myArray, "North Eastern");
+ 		array_push($myArray, $northEasternCnt['total']);
  		
  	}elseif($x == 6){
- 		array_push($myArray, "North Western");
- 		array_push($myArray, $northWesternCnt);
+ 		//array_push($myArray, "North Western");
+ 		array_push($myArray, $northWesternCnt['total']);
  		
  	}elseif($x == 7){
- 		array_push($myArray, "South Eastern");
- 		array_push($myArray, $southEasternCnt);
+ 		//array_push($myArray, "South Eastern");
+ 		array_push($myArray, $southEasternCnt['total']);
  		
  	}else{
- 		array_push($myArray, "South Western");
- 		array_push($myArray, $southWesternCnt);
+ 		//array_push($myArray, "South Western");
+ 		array_push($myArray, $southWesternCnt['total']);
  	}
 }
 

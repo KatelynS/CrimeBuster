@@ -111,7 +111,7 @@ function updateMap(crimes, myMarkers) {
 	var info = new google.maps.InfoWindow();
 	var markers = myMarkers;
 	console.log("In update map Marker Type is");
-	console.log(typeof markers);
+	//console.log(typeof markers);
 	var locs = new Array();
 	var tips = new Array();
 	for(var i = 0; i < crimes.length; i++)
@@ -167,7 +167,7 @@ function addComment() {
 //KS--load comments
 function viewComments() {
 	//load comments and jump to comment section
-	$('#comments').goTo();
+	$('#commentsPanel').goTo();
 }
 
 //KS
@@ -450,63 +450,63 @@ function updateSideBar(clicked_id){
   	
   	if (document.getElementById('agg_assault').checked) {
   		wt_AggAssault="AGG. ASSAULT";
-  		console.log("AGG. ASSAULT");
+  	//	console.log("AGG. ASSAULT");
   	}
   	if (document.getElementById('arson').checked) {
   		wt_Arson="ARSON";
-  		console.log("ARSON");
+  	//	console.log("ARSON");
   	}
   	if (document.getElementById('assault_threat').checked) {
   		wt_AssaultByThreat="ASSAULT BY THREAT";
-  		console.log("ASSAULT BY THREAT");
+  	//	console.log("ASSAULT BY THREAT");
   	}
   	if (document.getElementById('auto_theft').checked) {
   		wt_AutoTheft="AUTO THEFT";
-  		console.log("AUTO THEFT");
+  	//	console.log("AUTO THEFT");
   	}
   	if (document.getElementById('burglary').checked) {
   		wt_Burglary="BURGLARY";
-  		console.log("BURGLARY");
+  	//	console.log("BURGLARY");
   	}
   	if (document.getElementById('common_assault').checked) {
   		wt_CommonAssault="COMMON ASSAULT";
-  		console.log("COMMON ASSAULT");
+  	//	console.log("COMMON ASSAULT");
   	}
   	if (document.getElementById('homicide').checked) {
   		wt_Homicide="HOMICIDE";
-  		console.log("HOMICIDE");
+  	//	console.log("HOMICIDE");
   	}
   	if (document.getElementById('larceny').checked) {
   		wt_Larceny="LARCENY";
-  		console.log("LARCENY");
+  	//	console.log("LARCENY");
   	}
   	if (document.getElementById('larceny_auto').checked) {
   		wt_LarcenyAuto="LARCENY FROM AUTO";
-  		console.log("LARCENY FROM AUTO");
+  	//	console.log("LARCENY FROM AUTO");
   	}
   	if (document.getElementById('rape').checked) {
   		wt_Rape="RAPE";
-  		console.log("RAPE");
+  	//	console.log("RAPE");
   	}
   	if (document.getElementById('robbery_street').checked) {
   		wt_RobberyStreet="ROBBERY - STREET";
-  		console.log("ROBBERY - STREET");
+  	//	console.log("ROBBERY - STREET");
   	}
   	if (document.getElementById('robbery_carjacking').checked) {
   		wt_RobberyCar="ROBBERY - CARJACKING";
-  		console.log("ROBBERY - CARJACKING");
+  		//console.log("ROBBERY - CARJACKING");
   	}
   	if (document.getElementById('robbery_commercial').checked) {
   		wt_RobberyCom="ROBBERY - COMMERCIAL";
-  		console.log("ROBBERY - COMMERCIAL");
+  		//console.log("ROBBERY - COMMERCIAL");
   	}
   	if (document.getElementById('robbery_residence').checked) {
   		wt_RobberyRes="ROBBERY - RESIDENCE";
-  		console.log("ROBBERY - RESIDENCE");
+  		//console.log("ROBBERY - RESIDENCE");
   	}
   	if (document.getElementById('shooting').checked) {
   		wt_Shooting="SHOOTING";
-  		console.log("SHOOTING");
+  		//console.log("SHOOTING");
   	}
   	
   //}
@@ -568,8 +568,8 @@ function updateSideBar(clicked_id){
 	}//close if
 	*/
 	//ajax call here
-	//ajax call here
-	//if(clicked_id == "barChartX"){
+
+	//ajax call for  bar chart
 		if(document.getElementById('barChartX').value =="weapon_Type_barChart"){
 			console.log("Calling weapon type from bar chart");
 			$.ajax({
@@ -586,8 +586,9 @@ function updateSideBar(clicked_id){
 		    type:"POST",
 		    success:function(msg){
 		    	console.log("should return here for bar chart");
-		    	console.log(msg);
-		        handleResponseBChart(msg);
+		    	//console.log(msg);
+		    	//var bCType = "crimeBC";
+		        handleResponseBChart(msg, "weaponBC");
 		    },
 		    /*failure:function(msg2){
 		    		console.log("did not work");
@@ -595,14 +596,81 @@ function updateSideBar(clicked_id){
 		    dataType:"json"
 			});
 			
-			function handleResponseBChart(data) {
+			/*function handleResponseBChart(data) {
 				console.log("IN handle response for b chart");
 				console.log(data);
 				updateBarGraph(data);
 		
-			}//inner handler
+			}//inner handler */
 		}//close if
-	//}
+		
+		//ajax call for crime type bar chart
+		if(document.getElementById('barChartX').value =="crime_Type_barChart"){
+			console.log("Calling crime type from bar chart");
+			$.ajax({
+		    url:"db/getDescriptionData.php",
+		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
+		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
+		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
+		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
+		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
+		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
+		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
+		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
+		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern},
+		    type:"POST",
+		    success:function(msg){
+		    	console.log("should return here for bar chart - crime type");
+		    	//console.log(msg);
+		    	//var bCType = "crimeBC";
+		        handleResponseBChart(msg, "crimeBC");
+		    },
+		    /*failure:function(msg2){
+		    		console.log("did not work");
+		    }*/
+		    dataType:"json"
+			});
+			
+			
+		}//close if
+		
+		//ajax call for crime type bar chart
+		if(document.getElementById('barChartX').value =="district_Type_barChart"){
+			console.log("Calling crime type from bar chart");
+			$.ajax({
+		    url:"db/getDistrictData.php",
+		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
+		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
+		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
+		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
+		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
+		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
+		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
+		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
+		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern},
+		    type:"POST",
+		    success:function(msg){
+		    	console.log("should return here for bar chart - crime type");
+		    	//console.log(msg);
+		    	//var bCType = "crimeBC";
+		        handleResponseBChart(msg, "districtBC");
+		    },
+		    /*failure:function(msg2){
+		    		console.log("did not work");
+		    }*/
+		    dataType:"json"
+			});
+			
+			
+			
+			
+		}//close if
+	
+	//ajax call for location bar chart should be here
+	if(document.getElementById('barChartX').value =="location_Type_barChart"){
+		var msg= [];
+		handleResponseBChart(msg, "locationBC");
+	}
 	
 	
 	$.ajax({
@@ -626,20 +694,28 @@ function updateSideBar(clicked_id){
 	function handleResponse(data) {
     // do something with data here, pershaps render map
 
-    console.log("In handle response");
-    console.log(data);
-	console.log("In handle response markers type is");
-	console.log(typeof markers);
+    //console.log("In handle response");
+   // console.log(data);
+	//console.log("In handle response markers type is");
+	//console.log(typeof markers);
 	updateMap(data, markers);
 	
 	//display to the map the number of crimes with these filters
 	var crimesCount = data.length;
-	console.log(crimesCount);
+	//console.log(crimesCount);
 	var retStr = "<span style='color:#f00;'>["+crimesCount+"]</span>";
 	//document.getElementById('numCrimesPerFilter').innerHTML="<span style='color:#f00;'>[crimesCount]</span>";
 	document.getElementById('numCrimesPerFilter').innerHTML=retStr;
 	
 	}
+	
+	function handleResponseBChart(data, bCType) {
+				console.log("IN handle response for bar chart");
+				console.log(data);
+				console.log(bCType)
+				updateBarGraph(data, bCType);
+		
+			}//inner handler
 	
 
 	
@@ -873,7 +949,7 @@ function showEltBlank(eltId) {
         <div class="w3-half">
           <h5>Map</h5>
          
-  		<div id="map" class="w3-container" style="width:1200px;height:800px" alt="Crime map of Baltimore"</div>
+  		<div id="map" class="container" style="width:1000px;height:800px" alt="Crime map of Baltimore"</div>
   	 <!--	<div id="map" class="fill" alt="Crime map of Baltimore"</div> -->
   		</div>
   		</div>

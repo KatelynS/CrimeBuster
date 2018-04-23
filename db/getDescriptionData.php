@@ -45,7 +45,7 @@ $db = new SQLite3('mydb.db');
 
 if($none == "NONE"){
 $aggAssaultCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -63,7 +63,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$aggAssaultCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -80,11 +80,11 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
- 
+ $aggAssaultCnt =$aggAssaultCnt->fetchArray();
  
  if($none == "NONE"){
  $arsonCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -102,7 +102,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$arsonCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -119,11 +119,11 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
-
+$arsonCnt =$arsonCnt->fetchArray();
 
 if($none == "NONE"){ 
  $assaultByThreatCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -141,7 +141,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$assaultByThreatCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -159,11 +159,11 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 	
 }
-
+$assaultByThreatCnt =$assaultByThreatCnt->fetchArray();
 
 if($none == "NONE"){ 
  $autoTheftCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -181,7 +181,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$autoTheftCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -198,11 +198,11 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
-
+$autoTheftCnt =$autoTheftCnt->fetchArray();
 
 if($none == "NONE"){ 
  $burglaryCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -220,7 +220,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$burglaryCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -237,11 +237,11 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
- 
+ $burglaryCnt =$burglaryCnt->fetchArray();
  
  if($none == "NONE"){
  $commonAssaultCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -259,7 +259,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$commonAssaultCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -276,12 +276,12 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
- 
+ $commonAssaultCnt =$commonAssaultCnt->fetchArray();
  
  
  if($none == "NONE"){
  $homicideCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -299,7 +299,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$homicideCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -316,12 +316,12 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
-
+$homicideCnt =$homicideCnt->fetchArray();
 
 
 if($none == "NONE"){ 
  $larcenyCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -339,7 +339,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$larcenyCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -356,12 +356,12 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
-
+$larcenyCnt =$larcenyCnt->fetchArray();
 
 
 if($none == "NONE"){ 
  $larcenyAutoCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -379,7 +379,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$larcenyAutoCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -396,12 +396,12 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
-
+$larcenyAutoCnt =$larcenyAutoCnt->fetchArray();
 
 
 if($none == "NONE"){ 
  $rapeCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -419,7 +419,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$rapeCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -436,12 +436,12 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
-
+$rapeCnt =$rapeCnt->fetchArray();
 
 
 if($none == "NONE"){ 
  $robberyStreetCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -459,7 +459,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$robberyStreetCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -476,12 +476,12 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
-
+$robberyStreetCnt =$robberyStreetCnt->fetchArray();
 
 
 if($none == "NONE"){ 
  $robberyCarCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -499,7 +499,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$robberyCarCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -516,12 +516,12 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
-
+$robberyCarCnt =$robberyCarCnt->fetchArray();
 
 
 if($none == "NONE"){ 
  $robberyComCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -539,7 +539,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$robberyComCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -556,12 +556,12 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
- 
+ $robberyComCnt =$robberyComCnt->fetchArray();
  
  
  if($none == "NONE"){
  $robberyResCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -579,7 +579,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$robberyResCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -596,12 +596,12 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
-
+$robberyResCnt =$robberyResCnt->fetchArray();
 
 
 if($none == "NONE"){ 
  $shootingCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -619,7 +619,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }else{
 	$shootingCnt = $db->query("
-  SELECT COUNT(sub2.description) 
+  SELECT COUNT(sub2.description) AS total
   
   FROM ( SELECT sub.* 
   
@@ -636,68 +636,68 @@ WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
 }
- 
+ $shootingCnt =$shootingCnt->fetchArray();
  
  $myArray = array();
  for($x = 0; $x < 15; $x++){
  	if($x == 0){
- 		array_push($myArray, "AGG. Assault");
- 		array_push($myArray, $aggAssaultCnt);
+ 		//array_push($myArray, "AGG. Assault");
+ 		array_push($myArray, $aggAssaultCnt['total']);
  	}elseif($x == 1){
- 		array_push($myArray, "Arson");
- 		array_push($myArray, $arsonCnt);
+ 		//array_push($myArray, "Arson");
+ 		array_push($myArray, $arsonCnt['total']);
  		
  	}elseif($x == 2){
- 		array_push($myArray, "Assauly By Threat");
- 		array_push($myArray, $assaultByThreatCnt);
+ 		//array_push($myArray, "Assauly By Threat");
+ 		array_push($myArray, $assaultByThreatCnt['total']);
  		
  	}elseif($x == 3){
- 		array_push($myArray, "Auto Theft");
- 		array_push($myArray, $autoTheftCnt);
+ 		//array_push($myArray, "Auto Theft");
+ 		array_push($myArray, $autoTheftCnt['total']);
  		
  	}elseif($x == 4){
- 		array_push($myArray, "Burglary");
- 		array_push($myArray, $burglaryCnt);
+ 		//array_push($myArray, "Burglary");
+ 		array_push($myArray, $burglaryCnt['total']);
  		
  	}elseif($x == 5){
- 		array_push($myArray, "Common Assault");
- 		array_push($myArray, $commonAssaultCnt);
+ 		//array_push($myArray, "Common Assault");
+ 		array_push($myArray, $commonAssaultCnt['total']);
  		
  	}elseif($x == 6){
- 		array_push($myArray, "Homicide");
- 		array_push($myArray, $homicideCnt);
+ 		//array_push($myArray, "Homicide");
+ 		array_push($myArray, $homicideCnt['total']);
  		
  	}elseif($x == 7){
- 		array_push($myArray, "Larceny");
- 		array_push($myArray, $larcenyCnt);
+ 		//array_push($myArray, "Larceny");
+ 		array_push($myArray, $larcenyCnt['total']);
  		
  	}elseif($x == 8){
- 		array_push($myArray, "Larceny From Auto");
- 		array_push($myArray, $larcenyAutoCnt);
+ 		//array_push($myArray, "Larceny From Auto");
+ 		array_push($myArray, $larcenyAutoCnt['total']);
  		
  	}elseif($x == 9){
- 		array_push($myArray, "Rape");
- 		array_push($myArray, $rapeCnt);
+ 		//array_push($myArray, "Rape");
+ 		array_push($myArray, $rapeCnt['total']);
  		
  	}elseif($x == 10){
- 		array_push($myArray, "Robbery - Street");
- 		array_push($myArray, $robberyStreetCnt);
+ 		//array_push($myArray, "Robbery - Street");
+ 		array_push($myArray, $robberyStreetCnt['total']);
  		
  	}elseif($x == 11){
- 		array_push($myArray, "Robbery - Carjacking");
- 		array_push($myArray, $robberyCarCnt);
+ 		//array_push($myArray, "Robbery - Carjacking");
+ 		array_push($myArray, $robberyCarCnt['total']);
  		
  	}elseif($x == 12){
- 		array_push($myArray, "Robbery - Commercial");
- 		array_push($myArray, $robberyComCnt);
+ 		//array_push($myArray, "Robbery - Commercial");
+ 		array_push($myArray, $robberyComCnt['total']);
  		
  	}elseif($x == 13){
- 		array_push($myArray, "Robbery - Residence");
- 		array_push($myArray, $robberyResCnt);
+ 		//array_push($myArray, "Robbery - Residence");
+ 		array_push($myArray, $robberyResCnt['total']);
  		
  	}else{
- 		array_push($myArray, "Shooting");
- 		array_push($myArray, $shootingCnt);
+ 		//array_push($myArray, "Shooting");
+ 		array_push($myArray, $shootingCnt['total']);
  	}
 }
 
