@@ -32,9 +32,9 @@ while ($row = $results->fetchArray()) {
 <link href="styles/style2.css" rel="stylesheet" type="text/css">
 <link href="c3-0.5.3/c3.css" rel="stylesheet">
 
-<!-- javascript functions goes here -->
+<!-- javascript functions goes here
  <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
- <script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.ocean.js"></script>
+ <script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.ocean.js"></script>  -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyBxevA7di7Avo5vGKAgPPSkJa8ud4gnI&callback=initMap"></script>
@@ -100,6 +100,7 @@ function getLocations(){
 	console.log(myLocations);
 	return myLocations;
 }
+
 
 //KS update map
 function updateMap(crimes, myMarkers) {
@@ -186,11 +187,36 @@ function viewComments() {
 
 
 //control function based on user interaction
-
+//hide and displays visualizations on page
 function updateVisualizations(clicked_id){
 	
+		hideall();
+	//	hideElt('mapPanel');
+//	hideElt('heatMapPanel');
+	//hideElt('barChartPanel');
+	//hideElt('tablePanel');
+	console.log(clicked_id);
+		
+		if(document.getElementById('vis_map').checked){
+			showElt('mapPanel');
+			console.log("showing map");
+		}
+		if(document.getElementById('vis_chart').checked){
+			showElt('barChartPanel');
+			console.log("showing chart");
+		}
+		if(document.getElementById('vis_heatmap').checked){
+			showElt('heatMapPanel');
+			console.log("showing heat map");
+		}
+		if(document.getElementById('vis_table').checked){
+			showElt('tablePanel');
+			console.log("showing table");
+		}
+		
+	
 			//testing ajax
-				if (window.XMLHttpRequest) {
+			/*	if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -215,9 +241,11 @@ function updateVisualizations(clicked_id){
         }
        
         
-        
+        */
 	
 }
+
+//ignore this for now
 function updateFormControls() {
 
 		//testing ajax
@@ -537,6 +565,41 @@ function updateSideBar(clicked_id){
 	}//close if
 	*/
 	//ajax call here
+	//ajax call here
+	//if(clicked_id == "barChartX"){
+		if(document.getElementById('barChartX').value =="weapon_Type_barChart"){
+			console.log("Calling weapon type from bar chart");
+			$.ajax({
+		    url:"db/getWeaponChartData.php",
+		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
+		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
+		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
+		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
+		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
+		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
+		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
+		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
+		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern},
+		    type:"POST",
+		    success:function(msg){
+		    	console.log("should return here for bar chart");
+		    	console.log(msg);
+		        handleResponseBChart(msg);
+		    },
+		    /*failure:function(msg2){
+		    		console.log("did not work");
+		    }*/
+		    dataType:"json"
+			});
+			
+			function handleResponseBChart(data) {
+				console.log("IN handle response for b chart");
+				console.log(data);
+				updateBarGraph(data);
+		
+			}//inner handler
+		}//close if
+	//}
 	
 	
 	$.ajax({
@@ -567,11 +630,16 @@ function updateSideBar(clicked_id){
 	updateMap(data, markers);
 	}
 	
+
+	
 }//close function
 
 //hides all fields on page
 function hideall() {
-
+	hideElt('mapPanel');
+	hideElt('heatMapPanel');
+	hideElt('barChartPanel');
+	hideElt('tablePanel');
 }
 
 //remove an element/frame from form
@@ -765,54 +833,72 @@ function showEltBlank(eltId) {
     <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-quarter">
         <div class="w3-container w3-red w3-padding-16">
-          <label class=container>&nbsp  Map <input id ="vis_map" type = "checkbox" > <span class="checkmark"></span></label>
+          <label class=container>&nbsp  Map <input id ="vis_map" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
       <div class="w3-quarter">
         <div class="w3-container w3-blue w3-padding-16">
-         <label class=container>&nbsp Bar Chart <input id ="vis_chart" type = "checkbox" > <span class="checkmark"></span></label>
+         <label class=container>&nbsp Charts <input id ="vis_chart" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
       <div class="w3-quarter">
         <div class="w3-container w3-teal w3-padding-16">
-          <label class=container>&nbsp Heat Map <input id ="vis_heatmap" type = "checkbox" > <span class="checkmark"></span></label>
+          <label class=container>&nbsp Heat Map <input id ="vis_heatmap" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
       <div class="w3-quarter">
         <div class="w3-container w3-orange w3-text-white w3-padding-16">
-          <label class=container>&nbsp Data Table <input id ="vis_table" type = "checkbox" > <span class="checkmark"></span></label>
+          <label class=container>&nbsp Data Table <input id ="vis_table" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
     </div>
 
-    <div class="w3-panel">
+    <div class="w3-panel" id="mapPanel">
       <div class="w3-row-padding" style="margin:0 -16px">
         <div class="w3-half">
           <h5>Map</h5>
   		<div id="map" style="width:900px;height:500px" alt="Crime map of Baltimore"</div>
   		</div>
+  		</div>
+  		</div>
+  		</div>
 <hr>
 
-<div class="w3-panel">
+<div class="w3-panel" id="heatMapPanel">
   <div class="w3-row-padding" style="margin:0 -16px">
     <div class="w3-half">
       <h5>Charts</h5>
          <img src="images/heatmap_placeImg.png" alt="heatMap pic" >
          <!-- height="42" width="42" -->
   </div>
-<hr>
-
-<div class="w3-panel">
-  <div class="w3-row-padding" style="margin:0 -16px">
-    <div class="w3-half">
-      <h5>Graphs</h5>
-         <img src="images/barChart_placeImg.png" alt="heatMap pic" >
-         <!-- height="42" width="42" -->
   </div>
+  </div>
+  
+  
+<hr>
+<div class="w3-panel" id="barChartPanel">
+ <span id="barChart"></span>
+     <span style="text-align: center"> Category </span>
+     <select id='barChartX' name='barChartX' onchange="updateSideBar(id);">
+		      <option value="">Please select an option</option>
+		      <option value="crime_Type_barChart" >Crime Type</option>
+          <option value="weapon_Type_barChart" selected='selected'>Weapon Type</option>
+          <option value="district_Type_barChart">District</option>
+          <option value="location_Type_barChart">Location</option>
+		      
+		   </select>
+    
+    <div id="chart"></div>
+
+ 
+  </div>
+
+
+
 <hr>
 
 <!-- this part is hardcoder for the docs, we need to remove it -->
-<div class="w3-container">
+<div class="w3-container" id="tablePanel">
   <h5><b>Table</b></h5>
   <div class="w3-row">
     <div class="w3-container w3-third">
@@ -873,73 +959,8 @@ function showEltBlank(eltId) {
   </div>
   <button class="w3-button w3-dark-grey">Other Options  <i class="fa fa-arrow-right"></i></button>
 </div>
-<hr>
 
-      <!-- <iframe src="map.html" width="500px" height="500px">
-        <p>Your browser does not support iframes.</p>
-      </iframe> -->
-
-        <!-- <div class="w3-half">
-          <h5>Feeds</h5>
-          <table class="w3-table w3-striped w3-white">
-            <tr>
-              <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-              <td>New record, over 90 views.</td>
-              <td><i>10 mins</i></td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-              <td>Database error.</td>
-              <td><i>15 mins</i></td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-              <td>New record, over 40 users.</td>
-              <td><i>17 mins</i></td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-              <td>New comments.</td>
-              <td><i>25 mins</i></td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
-              <td>Check transactions.</td>
-              <td><i>28 mins</i></td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
-              <td>CPU overload.</td>
-              <td><i>35 mins</i></td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
-              <td>New shares.</td>
-              <td><i>39 mins</i></td>
-            </tr>
-          </table>
-        </div> -->
-      </div>
-    </div>
-    <!-- <hr>
-    <div class="w3-container">
-      <h5>General Stats</h5>
-      <p>New Visitors</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
-      </div>
-
-      <p>New Users</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding w3-orange" style="width:50%">50%</div>
-      </div>
-
-      <p>Bounce Rate</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
-      </div>
-    </div> -->
-    <hr>
+    
 
 
     <div class="w3-container" id="comments">
@@ -965,30 +986,9 @@ function showEltBlank(eltId) {
       </div>
     </div>
     <br>
-    <!-- <div class="w3-container w3-dark-grey w3-padding-32">
-      <div class="w3-row">
-        <div class="w3-container w3-third">
-          <h5 class="w3-bottombar w3-border-green">Demographic</h5>
-          <p>Language</p>
-          <p>Country</p>
-          <p>City</p>
-        </div>
-        <div class="w3-container w3-third">
-          <h5 class="w3-bottombar w3-border-red">System</h5>
-          <p>Browser</p>
-          <p>OS</p>
-          <p>More</p>
-        </div>
-        <div class="w3-container w3-third">
-          <h5 class="w3-bottombar w3-border-orange">Target</h5>
-          <p>Users</p>
-          <p>Active</p>
-          <p>Geo</p>
-          <p>Interests</p>
-        </div>
-      </div> -->
-    </div>
-
+   
+   <!--close page div-->
+</div>
     <!-- Footer -->
     <!-- <footer class="w3-container w3-padding-16 w3-light-grey">
       <h4>FOOTER</h4>
@@ -1001,19 +1001,7 @@ function showEltBlank(eltId) {
     <Button type='button' onClick='updateFormControls()'> ClickMe to get Locations!</Button>
     <p>Pulling Stuff: <span id="ajaxText"></span></p> -->
     
-    <span id="barChart"></span>
-    <span> X axis </span>
-     <select id='barChartX' name='barChartX' onchange="updateVisualizations(id);">
-		      <option value="">Please select an option</option>
-		      <option value="Crime_Type" selected='selected'>Crime Type</option>
-          <option value="Weapon_Type">Weapon Type</option>
-		      
-		   </select>
-    
-    
-   
-    <div id="chart"></div>
-  </div>
+  
   
   
   

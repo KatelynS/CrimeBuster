@@ -43,7 +43,7 @@ $db = new SQLite3('mydb.db');
 
 
 $otherCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -63,10 +63,10 @@ $otherCnt = $db->query("
 WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
- 
+ $otherCnt=$otherCnt->fetchArray();
  
 $handsCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -86,10 +86,10 @@ $handsCnt = $db->query("
 WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
- 
+ $handsCnt=$handsCnt->fetchArray();
  
  $knifeCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -109,10 +109,10 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
 WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
- 
+ $knifeCnt=$knifeCnt->fetchArray();
  
  $firearmCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -132,10 +132,10 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
 WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
- 
+ $firearmCnt=$firearmCnt->fetchArray();
  
  $noneCnt = $db->query("
-  SELECT COUNT(sub2.weapon) 
+  SELECT COUNT(sub2.weapon) AS total
   
   FROM ( SELECT sub.* 
   
@@ -155,27 +155,29 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
 WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
 sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
  or sub2.district = '$northWestern' or sub2.district IS NULL);");
+ $noneCnt=$noneCnt->fetchArray();
  
+
  $myArray = array();
  for($x = 0; $x < 5; $x++){
  	if($x == 0){
- 		array_push($myArray, "Firearm");
- 		array_push($myArray, firearmCnt);
+ 		//array_push($myArray, "Firearm".",".$firearmCnt['total']);
+ 		array_push($myArray, $firearmCnt['total']);
  	}elseif($x == 1){
- 		array_push($myArray, "Hands");
- 		array_push($myArray, handsCnt);
+ 		//array_push($myArray, "Hands".",".$handsCnt['total']);
+ 		array_push($myArray, $handsCnt['total']);
  		
  	}elseif($x == 2){
- 		array_push($myArray, "Knife");
- 		array_push($myArray, knifeCnt);
+ 		//array_push($myArray, "Knife".",".$knifeCnt['total']);
+ 		array_push($myArray, $knifeCnt['total']);
  		
  	}elseif($x == 3){
- 		array_push($myArray, "Other");
- 		array_push($myArray, otherCnt);
+ 		//array_push($myArray, "Other".",".$otherCnt['total']);
+ 		array_push($myArray, $otherCnt['total']);
  		
  	}else{
- 		array_push($myArray, "No Weapon");
- 		array_push($myArray, noneCnt);
+ 		//array_push($myArray, "No Weapon".",".$noneCnt['total']);
+ 		array_push($myArray, $noneCnt['total']);
  	}
 }
 
