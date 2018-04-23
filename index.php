@@ -48,8 +48,10 @@ while ($row = $results->fetchArray()) {
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
+
 <script type="text/javascript">
 
+/*
     // Get the Sidebar
     var mySidebar = document.getElementById("mySidebar");
 
@@ -71,7 +73,7 @@ while ($row = $results->fetchArray()) {
     function w3_close() {
         mySidebar.style.display = "none";
         overlayBg.style.display = "none";
-    }
+    } */
 
 
 //KS
@@ -199,7 +201,8 @@ function updateVisualizations(clicked_id){
 		
 		if(document.getElementById('vis_map').checked){
 			showElt('mapPanel');
-			console.log("showing map");
+			showElt('commentsPanel');
+			console.log("showing map - showing comments");
 		}
 		if(document.getElementById('vis_chart').checked){
 			showElt('barChartPanel');
@@ -648,6 +651,7 @@ function hideall() {
 	hideElt('heatMapPanel');
 	hideElt('barChartPanel');
 	hideElt('tablePanel');
+	hideElt('commentsPanel');
 }
 
 //remove an element/frame from form
@@ -868,7 +872,9 @@ function showEltBlank(eltId) {
       <div class="w3-row-padding" style="margin:0 -16px">
         <div class="w3-half">
           <h5>Map</h5>
-  		<div id="map" style="width:900px;height:500px" alt="Crime map of Baltimore"</div>
+         
+  		<div id="map" class="w3-container" style="width:1200px;height:800px" alt="Crime map of Baltimore"</div>
+  	 <!--	<div id="map" class="fill" alt="Crime map of Baltimore"</div> -->
   		</div>
   		</div>
   		</div>
@@ -974,7 +980,7 @@ function showEltBlank(eltId) {
     
 
 
-    <div class="w3-container" id="comments">
+    <div class="w3-container" id="commentsPanel">
       <h5>Recent Comments</h5>
       <div class="w3-row">
         <div class="w3-col m2 text-center">
@@ -1020,6 +1026,33 @@ function showEltBlank(eltId) {
 
 </body>
 
+
+<script type="text/javascript">
+		////this was brought down as my sidebar had not been declare when the code load
+		   // Get the Sidebar
+    var mySidebar = document.getElementById("mySidebar");
+
+    // Get the DIV with overlay effect
+    var overlayBg = document.getElementById("myOverlay");
+
+    // Toggle between showing and hiding the sidebar, and add overlay effect
+    function w3_open() {
+        if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+        } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+        }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+        overlayBg.style.display = "none";
+    }
+    
+ </script>
   <!-- Load d3.js and c3.js 
 <script src="/path/to/d3.v4.min.js" charset="utf-8"></script> -->
 <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
