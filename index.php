@@ -628,6 +628,14 @@ function updateSideBar(clicked_id){
 	console.log("In handle response markers type is");
 	console.log(typeof markers);
 	updateMap(data, markers);
+	
+	//display to the map the number of crimes with these filters
+	var crimesCount = data.length;
+	console.log(crimesCount);
+	var retStr = "<span style='color:#f00;'>["+crimesCount+"]</span>";
+	//document.getElementById('numCrimesPerFilter').innerHTML="<span style='color:#f00;'>[crimesCount]</span>";
+	document.getElementById('numCrimesPerFilter').innerHTML=retStr;
+	
 	}
 	
 
@@ -679,6 +687,9 @@ function showEltBlank(eltId) {
    }
 }
 
+
+
+
 </script>
 
 <body class="w3-light-grey">
@@ -713,7 +724,7 @@ function showEltBlank(eltId) {
     <hr> -->
     <div class="w3-container">
       <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a> -->
-      <h4>Filters</h4>
+      <h3>Filters <span style='color:#f00;font-size:24px' id='numCrimesPerFilter'>[0]</span> </h3>
     </div>
     <div class="w3-bar-block">
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
