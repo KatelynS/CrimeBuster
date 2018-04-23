@@ -135,7 +135,7 @@ sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district 
  $firearmCnt=$firearmCnt->fetchArray();
  
  $noneCnt = $db->query("
-  SELECT COUNT(sub2.weapon) AS total
+  SELECT COUNT(CASE WHEN weapon IS NULL THEN 1 END) AS total
   
   FROM ( SELECT sub.* 
   
