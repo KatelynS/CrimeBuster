@@ -946,14 +946,14 @@ function showEltBlank(eltId) {
 
     <div class="w3-panel" id="mapPanel">
       <div class="w3-row-padding" style="margin:0 -16px">
-        <div class="w3-half">
+       <!--	 <div class="w3-half"> -->
           <h5>Map</h5>
          
-  		<div id="map" class="container" style="width:1000px;height:800px" alt="Crime map of Baltimore"</div>
+  		<div id="map" class="container" style="width:100%;height:800px" alt="Crime map of Baltimore"</div>
   	 <!--	<div id="map" class="fill" alt="Crime map of Baltimore"</div> -->
   		</div>
   		</div>
-  		</div>
+  	<!--		</div> -->
   		</div>
 <hr>
 
