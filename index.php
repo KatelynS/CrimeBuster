@@ -897,7 +897,7 @@ function showEltBlank(eltId) {
      <hr>
      
      <label class = container> Time Picker </label>
-     <input type="text" id="daterange" name="daterange" size = "50" onchange="updateSideBar(id);" value="01/01/2018 1:30 PM - 01/01/2018 2:00 PM" />
+     <input type="text" id="daterange" name="daterange" size = "50" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 01/01/2018 1:30 PM" />
  
 	<script type="text/javascript">
 		$(function() {
