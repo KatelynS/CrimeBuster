@@ -47,7 +47,11 @@ while ($row = $results->fetchArray()) {
 <!-- Include Date Range Picker -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+<!--<script src="scripts/heatMap.js"></script> -->
 
 <script type="text/javascript">
 
@@ -170,6 +174,72 @@ function viewComments() {
 	$('#commentsPanel').goTo();
 }
 
+//SM
+function heatMapData(Data){
+	
+	console.log("In heat Map function - data is in dataSet variable");
+	dataSet = Data;
+	tempStart=1;
+	console.log(dataSet);
+	
+	Highcharts.chart('heatMapVisualization', {
+
+  chart: {
+    type: 'heatmap',
+    marginTop: 40,
+    marginBottom: 80,
+    plotBorderWidth: 1
+  },
+
+
+  title: {
+    text: 'Sales per employee per weekday'
+  },
+
+  xAxis: {
+    categories: ['Alexander', 'Marie', 'Maximilian', 'Sophia', 'Lukas', 'Maria', 'Leon', 'Anna', 'Tim', 'Laura']
+  },
+
+  yAxis: {
+    categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    title: null
+  },
+
+  colorAxis: {
+    min: 0,
+    minColor: '#FFFFFF',
+    maxColor: Highcharts.getOptions().colors[0]
+  },
+
+  legend: {
+    align: 'right',
+    layout: 'vertical',
+    margin: 0,
+    verticalAlign: 'top',
+    y: 25,
+    symbolHeight: 280
+  },
+
+  tooltip: {
+    formatter: function () {
+      return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
+        this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+    }
+  },
+
+  series: [{
+    name: 'Sales per employee',
+    borderWidth: 1,
+    data: [[0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67], [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48], [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52], [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16], [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115], [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120], [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96], [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30], [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84], [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]],
+    dataLabels: {
+      enabled: true,
+      color: '#000000'
+    }
+  }]
+
+});
+}
+
 //KS
 // Jumps to specific element
 (function($) {
@@ -289,9 +359,9 @@ function getTwentyFourHourTime(amPmString) {
 function updateSideBar(clicked_id){
 	
 	//if(clicked_id=="daterange"){
-		console.log("Date picker calls function");
+	//	console.log("Date picker calls function");
 		var dateSelect = 	document.getElementById("daterange").value;
-		console.log(dateSelect);
+	//	console.log(dateSelect);
 		
 		var initSplit = dateSelect.split(' ');
 		for(var x=0; x<initSplit.length; x++){
@@ -299,8 +369,8 @@ function updateSideBar(clicked_id){
 		}
 		var correctStartDate = formatDate(initSplit[0]);
 		var correctEndDate = formatDate(initSplit[4]);
-		console.log(correctStartDate);
-		console.log(correctEndDate);
+	//	console.log(correctStartDate);
+	//	console.log(correctEndDate);
 		
 		var sTime = initSplit[1]+' '+initSplit[2]
 		var eTime = initSplit[5]+' '+initSplit[6]
@@ -328,8 +398,8 @@ function updateSideBar(clicked_id){
 		correctEndTime = correctEndTime +':00';
 		*/
 		
-		console.log(correctStartTime);
-		console.log(correctEndTime);
+	//	console.log(correctStartTime);
+	//	console.log(correctEndTime);
 		
 	//}
 	
@@ -768,6 +838,8 @@ function updateSideBar(clicked_id){
 	//console.log("In handle response markers type is");
 	//console.log(typeof markers);
 	updateMap(data, markers);
+	console.log("Before call heatMap ");
+	heatMapData(data);
 	
 	//display to the map the number of crimes with these filters
 	var crimesCount = data.length;
@@ -1028,11 +1100,12 @@ function showEltBlank(eltId) {
 
 <div class="w3-panel" id="heatMapPanel">
   <div class="w3-row-padding" style="margin:0 -16px">
-    <div class="w3-half">
+   
       <h5>Charts</h5>
-         <img src="images/heatmap_placeImg.png" alt="heatMap pic" >
+      <!--  <img src="images/heatmap_placeImg.png" alt="heatMap pic"  -->
+        <div id="heatMapVisualization" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>
          <!-- height="42" width="42" -->
-  </div>
+  
   </div>
   </div>
   
@@ -1042,9 +1115,9 @@ function showEltBlank(eltId) {
  <span id="barChart"></span>
      <span style="text-align: center"> Category </span>
      <select id='barChartX' name='barChartX' onchange="updateSideBar(id);">
-		      <option value="">Please select an option</option>
+		      <option value="" selected='selected'>Please select an option</option>
 		      <option value="crime_Type_barChart" >Crime Type</option>
-          <option value="weapon_Type_barChart" selected='selected'>Weapon Type</option>
+          <option value="weapon_Type_barChart" >Weapon Type</option>
           <option value="district_Type_barChart">District</option>
           <option value="location_Type_barChart">Location</option>
 		      
@@ -1203,4 +1276,12 @@ function showEltBlank(eltId) {
 <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
 <script src="c3-0.5.3/c3.min.js"></script>
 <script src="scripts/chartVis.js"></script>
+
+
+<!--
+<script src="scripts/heatMap.js"></script> -->
+<!--
+<div id="heatMapVisualization" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>
+-->
+
 </html>
