@@ -175,12 +175,88 @@ function viewComments() {
 }
 
 //SM
+
+// Accepts a Date object or date string that is recognized by the Date.parse() method
+function getDayOfWeek(date) {
+var dayOfWeek = new Date(date).getDay(); 
+return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+}
+
 function heatMapData(Data){
 	
 	console.log("In heat Map function - data is in dataSet variable");
 	dataSet = Data;
 	tempStart=1;
-	console.log(dataSet);
+	//console.log(dataSet);
+	var heatdata = [[0, 0, 0], [0, 1, 0], [0, 2, 0], [0, 3, 0], [0, 4, 0], [0, 5, 0], [0, 6, 0], 
+	[1, 0, 0], [1, 1, 0], [1, 2, 0], [1, 3, 0], [1, 4, 0], [1, 5, 0], [1, 6, 0], 
+	[2, 0, 0], [2, 1, 0], [2, 2, 0], [2, 3, 0], [2, 4, 0], [2, 5, 0], [2, 6, 0], 
+	[3, 0, 0], [3, 1, 0], [3, 2, 0], [3, 3, 0], [3, 4, 0], [3, 5, 0], [3, 6, 0], 
+	[4, 0, 0], [4, 1, 0], [4, 2, 0], [4, 3, 0], [4, 4, 0], [4, 5, 0], [4, 6, 0],
+	[5, 0, 0], [5, 1, 0], [5, 2, 0], [5, 3, 0], [5, 4, 0], [5, 5, 0], [5, 6, 0], 
+	[6, 0, 0], [6, 1, 0], [6, 2, 0], [6, 3, 0], [6, 4, 0], [6, 5, 0], [6, 6, 0], 
+	[7, 0, 0], [7, 1, 0], [7, 2, 0], [7, 3, 0], [7, 4, 0], [7, 5, 0], [7, 6, 0]]
+    
+	for(var i = 0; i < dataSet.length; i++){
+		var loc = dataSet[i].split(",");
+		var fulltime = loc[3];
+		var timeloc = fulltime.split(":");
+		var hour = timeloc[0];
+		var date = loc[4].substring(0, 10);
+		var weekday = getDayOfWeek(date);
+		//console.log(hour);
+		var weeknum ;
+		if (weekday == "Monday"){
+			weeknum = 0;
+		}
+		if (weekday == "Tuesday"){
+			weeknum = 1;
+		}
+		if (weekday == "Wednesday"){
+			weeknum = 2;
+		}
+		if (weekday == "Thursday"){
+			weeknum = 3;
+		}
+		if (weekday == "Friday"){
+			weeknum = 4;
+		}
+		if (weekday == "Saturday"){
+			weeknum = 5;
+		}
+		if (weekday == "Sunday"){
+			weeknum = 6;
+		}
+		var hounum;
+		if (hour >= 0 && hour < 3){
+			hournum = 0;
+		}
+		if (hour >= 3 && hour < 6){
+			hournum = 1;
+		}
+		if (hour >= 6 && hour < 9){
+			hournum = 2;
+		}
+		if (hour >= 9 && hour < 12){
+			hournum = 3;
+		}
+		if (hour >= 12 && hour < 15){
+			hournum = 4;
+		}
+		if (hour >= 15 && hour < 18){
+			hournum = 5;
+		}
+		if (hour >= 18 && hour < 21){
+			hournum = 6;
+		}
+		if (hour >= 21 && hour < 24){
+			hournum = 7;
+		}
+		var indexnum = hournum*7 + weeknum;
+		//console.log(heatdata[indexnum][2]);
+		heatdata[indexnum][2]++;
+	}
+	console.log(heatdata);
 	
 	Highcharts.chart('heatMapVisualization', {
 
@@ -197,11 +273,11 @@ function heatMapData(Data){
   },
 
   xAxis: {
-    categories: ['Alexander', 'Marie', 'Maximilian', 'Sophia', 'Lukas', 'Maria', 'Leon', 'Anna', 'Tim', 'Laura']
+    categories: ['12AM-3AM', '3AM-6AM', '6AM-9AM', '9AM-12PM', '12PM-3PM', '3PM-6PM', '6PM-9PM', '9PM-12AM']
   },
 
   yAxis: {
-    categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     title: null
   },
 
@@ -230,7 +306,7 @@ function heatMapData(Data){
   series: [{
     name: 'Sales per employee',
     borderWidth: 1,
-    data: [[0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67], [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48], [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52], [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16], [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115], [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120], [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96], [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30], [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84], [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]],
+    data: heatdata,
     dataLabels: {
       enabled: true,
       color: '#000000'
