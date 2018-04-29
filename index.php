@@ -206,8 +206,10 @@ function updateMap(crimes, myMarkers) {
 }
 
 //KS--add in code
-function addComment(crimeID) {
-    var user = "USERNAME";
+function addComment(crime) {
+    var user = 12345;
+    //ID = get max ID from existing comments
+    var ID = 00000;
     var comment = prompt("Enter comment:", "");
     if (comment != null && comment != "") {
         //<user> added comment to <crime entry>
