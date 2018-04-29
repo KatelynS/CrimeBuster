@@ -256,7 +256,7 @@ function heatMapData(Data){
 		//console.log(heatdata[indexnum][2]);
 		heatdata[indexnum][2]++;
 	}
-	console.log(heatdata);
+	//console.log(heatdata);
 	
 	Highcharts.chart('heatMapVisualization', {
 
@@ -269,7 +269,7 @@ function heatMapData(Data){
 
 
   title: {
-    text: 'Sales per employee per weekday'
+    text: 'Crimes every three hours per weekday'
   },
 
   xAxis: {
@@ -298,8 +298,7 @@ function heatMapData(Data){
 
   tooltip: {
     formatter: function () {
-      return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
-        this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+      return '<b>' + this.point.value + '</b> crimes happened at <br><b>'+ this.series.xAxis.categories[this.point.x] +  '</b> on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
     }
   },
 
@@ -1060,7 +1059,7 @@ function showEltBlank(eltId) {
 	</script>
 
 	<hr>
-      <label class=container>  &nbsp Crime Type <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+      <label class=container>  &nbsp Crime Type <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id)";> <span class="checkmark"></span></label>
       <div id="crimeTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Arson <input id ="arson" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
