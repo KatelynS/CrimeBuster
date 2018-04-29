@@ -51,10 +51,55 @@ while ($row = $results->fetchArray()) {
 <script src="https://code.highcharts.com/modules/heatmap.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
 <!--<script src="scripts/heatMap.js"></script> -->
 
 <script type="text/javascript">
 
+$(document).ready(function() {
+	/*
+    $('#table_id').dataTable( {
+        "ajax": "db/getTableData.php"
+    } );*/
+    
+    document.getElementById("crime_type").checked = true;
+    document.getElementById("weapon_type").checked = true;
+    document.getElementById("district").checked = true;
+    document.getElementById("location_Premise").checked = true;
+    
+    updateSideBar("crime_type");
+    updateSideBar("weapon_type");
+    updateSideBar("district");
+    updateSideBar("location_Premise");
+    
+} ); 
+
+$(document).ready(function() {
+	
+	 $('#table_id').dataTable( {
+        "ajax": "db/getTableData.php"
+    } );
+    
+    /* $('#table_id').DataTable();
+   
+   
+    
+   $('#table_id').DataTable( {
+   ajax:({
+        url: 'db/getTableData.php',
+        type: 'POST',
+        //dataType:"json",
+        success:function(msg){
+        	console.log("success on ajax call for table");
+        	console.log(msg);
+        },
+    })  */
+
+} ); 	
+	
 /*
     // Get the Sidebar
     var mySidebar = document.getElementById("mySidebar");
@@ -1045,7 +1090,7 @@ function showEltBlank(eltId) {
      <hr>
      
      <label class = container> Time Picker </label>
-     <input type="text" id="daterange" name="daterange" size = "50" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 01/01/2018 1:30 PM" />
+     <input type="text" id="daterange" name="daterange" size = "50" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
  
 	<script type="text/javascript">
 		$(function() {
@@ -1191,8 +1236,8 @@ function showEltBlank(eltId) {
  <span id="barChart"></span>
      <span style="text-align: center"> Category </span>
      <select id='barChartX' name='barChartX' onchange="updateSideBar(id);">
-		      <option value="" selected='selected'>Please select an option</option>
-		      <option value="crime_Type_barChart" >Crime Type</option>
+		      <option value="" >Please select an option</option>
+		      <option value="crime_Type_barChart" selected='selected'>Crime Type</option>
           <option value="weapon_Type_barChart" >Weapon Type</option>
           <option value="district_Type_barChart">District</option>
           <option value="location_Type_barChart">Location</option>
@@ -1212,66 +1257,49 @@ function showEltBlank(eltId) {
 <div class="w3-container" id="tablePanel">
   <h5><b>Table</b></h5>
   <div class="w3-row">
-    <div class="w3-container w3-third">
-      <h6>Crime Type Ratio</h6>
-      <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-        <tr>
-          <td>Robbery</td>
-          <td>65%</td>
-        </tr>
-        <tr>
-          <td>Burglary</td>
-          <td>15.7%</td>
-        </tr>
-        <tr>
-          <td>Shooting</td>
-          <td>5.6%</td>
-        </tr>
-        <tr>
-          <td>Arson</td>
-          <td>2.1%</td>
-        </tr>
-        <tr>
-          <td>Homicide</td>
-          <td>1.9%</td>
-        </tr>
-        <tr>
-          <td>Other</td>
-          <td>1.5%</td>
-        </tr>
-      </table><br>
-    </div>
+   
 
-    <div class="w3-container w3-third" style="margin-left:50px">
-      <h6>District Crime Ratio</h6>
-      <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+     <table id="table_id" class="display">
+    <thead>
         <tr>
-          <td>North Baltimore</td>
-          <td>19%</td>
+        		<th>CrimeCode</th>
+            <th>Crime Type</th>
+            <th>District</th>
+            <th>Weapon Type</th> <!--
+            <th>Premise</th>
+            <th>Neighborhood</th>
+            <th>Inside/Out</th>
+            <th>Date</th>
+            <th>Time</th> -->
+        </tr>
+    </thead>
+    
+    
+    <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+            <td>Row 1 Data 2</td>
+            <td>Row 1 Data 2</td>
+           
         </tr>
         <tr>
-          <td>South Baltimore</td>
-          <td>22.1%</td>
+            <td>Row 2 Data 1</td>
+            <td>Row 2 Data 2</td>
+            <td>Row 1 Data 2</td>
+            <td>Row 1 Data 2</td>
+          
         </tr>
-        <tr>
-          <td>East</td>
-          <td>33%</td>
-        </tr>
-        <tr>
-          <td>West</td>
-          <td>25.9%</td>
-        </tr>
-
-      </table><br>
-    </div>
+    </tbody> 
+</table> 
 
 
 
   </div>
-  <button class="w3-button w3-dark-grey">Other Options  <i class="fa fa-arrow-right"></i></button>
+  
 </div>
 
-    
+    <br> <br>
 
 
     <div class="w3-container" id="commentsPanel">
