@@ -183,8 +183,8 @@ function updateMap(crimes, myMarkers) {
 			'<p>'+crime+' was commited here at '+time+' on '+date+'.</p>'+
 			'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
 			'here</a></p> '+
-			'<p><button onclick="addComment(crimeID)">Add comment</button>' +
-			'<button onclick="viewComments(crimeID)">View comments</button></p>' +
+			'<p><button onclick="addComment()">Add comment</button>' +
+			'<button onclick="viewComments()">View comments</button></p>' +
 			'</div>'+
 			'</div>');
 	}
@@ -206,18 +206,37 @@ function updateMap(crimes, myMarkers) {
 }
 
 //KS--add in code
-function addComment(crime) {
-    var user = 12345;
+function addComment() {
+   var wt_userID = 12345;
     //ID = get max ID from existing comments
-    var ID = 00000;
-    var comment = prompt("Enter comment:", "");
-    if (comment != null && comment != "") {
+    var wt_commentsID = 11111;
+    var wt_crimeID = "heythere";
+    var wt_actualComment = prompt("Enter comment:", "");
+    if (wt_actualComment != null && wt_actualComment != "") {
         //<user> added comment to <crime entry>
+        $.ajax({
+		    url:"db/insertComment.php",
+		    data: {wt_commentsID1: wt_commentsID, wt_crimeID1: wt_crimeID, wt_userID1: wt_userID, 
+		    	wt_actualComment1: wt_actualComment},
+		    type:"POST",
+		    success:function(msg){
+		    	console.log("should return here for comment insert");
+		    	console.log(msg);
+		    	//var bCType = "crimeBC";
+		        //handleResponseBChart(msg, "weaponBC");
+		    },
+		    /*failure:function(msg2){
+		    		console.log("did not work");
+		    }*/
+		    dataType:"json"
+			});
+    console.log(wt_actualComment);
     }
+    
 }
 
 //KS--load comments
-function viewComments(crimeID) {
+function viewComments() {
 	//load comments and jump to comment section
 	$('#commentsPanel').goTo();
 }
@@ -1067,16 +1086,16 @@ function showEltBlank(eltId) {
     </div>
     <hr> -->
     <div class="w3-container">
-      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a> -->
+      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂ  Geo</a> -->
       <h3>Filters <span style='color:#f00;font-size:24px' id='numCrimesPerFilter'>[0]</span> </h3>
     </div>
     <div class="w3-bar-block">
-      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>ÃÂ  Close Menu</a>
  
       
-      <!-- <label class=container> <b>Weapon Filter</b> </label> -->
+      <!-- <label class=container>ÃÂ <b>Weapon Filter</b> </label> -->
       <!--
-      <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>  Weapon Filter</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>ÃÂ  Weapon Filter</a>
       <div id="weaponFilterDiv" class ="w3-padding-large">
         <label class=container> One<input type = "checkbox" ><span class="checkmark"></span></label> <!-- <input type = "checkbox" checked="checked"> -->
         <!--
@@ -1087,7 +1106,7 @@ function showEltBlank(eltId) {
     -->
 
   <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
-     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>  Crime Type</a>-->
+     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂ  Crime Type</a>-->
 
      <hr>
      
@@ -1130,7 +1149,7 @@ function showEltBlank(eltId) {
     <hr>
   <!-- side panel for options of weapon type -->
 
-      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Weapon Type</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>ÃÂ  Weapon Type</a>-->
       <label class=container> &nbsp Weapon Type <input id ="weapon_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       <div id="weaponTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Firearm <input id ="weapon_firearm" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1141,7 +1160,7 @@ function showEltBlank(eltId) {
       </div>
       <hr>
       <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
-      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  District</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂ  District</a>-->
       <label class=container> &nbsp District <input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Northern <input id ="district_north" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1157,7 +1176,7 @@ function showEltBlank(eltId) {
       </div>
       <hr>
       <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
-        <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Location/Premise</a>-->
+        <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂ  Location/Premise</a>-->
         <label class=container> &nbsp Location/Premise <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <div id="locationTypeDiv" class ="w3-padding-large">
           <label class=container> &nbsp Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1166,10 +1185,10 @@ function showEltBlank(eltId) {
           <label class=container> &nbsp Gas Station <input id ="premise_gasStation" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         </div>
         <hr>
-      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a> -->
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
+      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>ÃÂ  News</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>ÃÂ  General</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>ÃÂ  History</a> -->
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>ÃÂ  Settings</a><br><br>
     </div>
   </nav>
 

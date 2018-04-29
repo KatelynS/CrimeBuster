@@ -25,7 +25,7 @@ CREATE TABLE mydb (
 
 CREATE TABLE comments (
     `commentsID` INT,
-    `crimeID` INT,
+    `crimeID` VARCHAR(50) CHARACTER SET utf8,
     `userID` INT,
     `summary` VARCHAR(1000) CHARACTER SET utf8
 );
