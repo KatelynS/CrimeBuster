@@ -128,6 +128,7 @@ function updateMap(crimes, myMarkers) {
 		var crime = loc[2];
 		var time = loc[3];
 		var date = loc[4].substring(0, 10);
+		var crimeID = loc[0]+':'+loc[1];
 		locs.push({lat: lat, lng: lng});
 		tips.push('<div id="content">'+
 			'<div id="siteNotice">'+
@@ -137,8 +138,8 @@ function updateMap(crimes, myMarkers) {
 			'<p>'+crime+' was commited here at '+time+' on '+date+'.</p>'+
 			'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
 			'here</a></p> '+
-			'<p><button onclick="addComment()">Add comment</button>' +
-			'<button onclick="viewComments()">View comments</button></p>' +
+			'<p><button onclick="addComment(crimeID)">Add comment</button>' +
+			'<button onclick="viewComments(crimeID)">View comments</button></p>' +
 			'</div>'+
 			'</div>');
 	}
@@ -160,7 +161,7 @@ function updateMap(crimes, myMarkers) {
 }
 
 //KS--add in code
-function addComment() {
+function addComment(crimeID) {
     var user = "USERNAME";
     var comment = prompt("Enter comment:", "");
     if (comment != null && comment != "") {
@@ -169,7 +170,7 @@ function addComment() {
 }
 
 //KS--load comments
-function viewComments() {
+function viewComments(crimeID) {
 	//load comments and jump to comment section
 	$('#commentsPanel').goTo();
 }
