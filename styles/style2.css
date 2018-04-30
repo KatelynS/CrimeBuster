@@ -78,3 +78,18 @@ html, body, h1, h2, h3, h4, h5 {
     min-width: 100%;
     min-height: 100%
 }
+
+.clearButton123{
+	 padding-left:60px;
+	 width:10px;
+	 height:10px;
+	 margin-left:70px;
+	 border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	
+}
