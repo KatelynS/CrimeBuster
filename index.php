@@ -1004,6 +1004,29 @@ function updateSideBar(clicked_id){
 	
 }//close function
 
+function clearSideBar(clicked_id){
+	
+	if(clicked_id=="crime_type"){
+		document.getElementById('crime_type').checked=false;
+	}
+	else if(clicked_id == "district"){
+		document.getElementById('district').checked=false;
+	}
+	else if(clicked_id == "weapon_type"){
+		document.getElementById('weapon_type').checked=false;
+	}
+	else if(clicked_id == "location_Premise"){
+		document.getElementById('location_Premise').checked=false;
+	}
+	else if(clicked_id == "timePicker"){
+		document.getElementById("daterange").value = "00/00/0000 0:00 AM - 00/00/0000 0:00 PM";
+		//"01/01/2010 1:30 PM - 01/01/2018 1:30 PM";
+	}
+	
+	updateSideBar(clicked_id);
+	
+	
+}
 //hides all fields on page
 function hideall() {
 	hideElt('mapPanel');
@@ -1111,7 +1134,7 @@ function showEltBlank(eltId) {
 
      <hr>
      
-     <label class = container> Time Picker </label>
+     <label class = container> Time Picker&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <button type="button" name="clearButton" class="clearButton" id ="timePicker" onclick="clearSideBar(id)";>Clear</button></label>
      <input type="text" id="daterange" name="daterange" size = "50" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
  
 	<script type="text/javascript">
@@ -1127,7 +1150,7 @@ function showEltBlank(eltId) {
 	</script>
 
 	<hr>
-      <label class=container>  &nbsp Crime Type <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id)";> <span class="checkmark"></span></label>
+      <label class=container>  &nbsp Crime Type&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id)";> <span class="checkmark"></span> <button type="button" name="clearButton" class="clearButton" id ="crime_type" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="crimeTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Arson <input id ="arson" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1151,7 +1174,7 @@ function showEltBlank(eltId) {
   <!-- side panel for options of weapon type -->
 
       <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>ÃÂ  Weapon Type</a>-->
-      <label class=container> &nbsp Weapon Type <input id ="weapon_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+      <label class=container> &nbsp Weapon Type &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="weapon_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="weapon_type" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="weaponTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Firearm <input id ="weapon_firearm" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Hands <input id ="weapon_hands" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1162,7 +1185,7 @@ function showEltBlank(eltId) {
       <hr>
       <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
       <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂ  District</a>-->
-      <label class=container> &nbsp District <input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+      <label class=container> &nbsp District &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="district" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Northern <input id ="district_north" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Southern <input id ="district_south" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1178,7 +1201,7 @@ function showEltBlank(eltId) {
       <hr>
       <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
         <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂ  Location/Premise</a>-->
-        <label class=container> &nbsp Location/Premise <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Location/Premise &nbsp&nbsp&nbsp&nbsp&nbsp <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="location_Premise" onclick="clearSideBar(id)";>Clear</button></label>
         <div id="locationTypeDiv" class ="w3-padding-large">
           <label class=container> &nbsp Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Bus/Auto <input id ="premise_bus/auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
