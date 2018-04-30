@@ -500,6 +500,12 @@ function getTwentyFourHourTime(amPmString) {
 //manipilation of side bar
 function updateSideBar(clicked_id){
 	
+	//this is not needed - will probably set some global var to handle this
+	/*if(clicked_id=="timePickerCall"){
+		document.getElementById("daterange").value = "01/01/2010 1:30 PM - 05/01/2018 1:30 PM";
+
+	}*/
+	
 	//if(clicked_id=="daterange"){
 	//	console.log("Date picker calls function");
 		var dateSelect = 	document.getElementById("daterange").value;
@@ -1027,6 +1033,15 @@ function clearSideBar(clicked_id){
 	
 	
 }
+
+function openTimeLinePopUp(){
+	//var myPopup = window.open("Blab blab", "Display Message", "width=200, height=100");
+	window.alert("Note: times picked are applied to every day in the selected time frame.");
+	
+	//<area width=200, height=100> something here </area>
+	//document.getElementById("daterange").value = "01/01/2010 1:30 PM - 05/01/2018 1:30 PM";
+	//updateSideBar("timePickerCall");
+}
 //hides all fields on page
 function hideall() {
 	hideElt('mapPanel');
@@ -1133,8 +1148,8 @@ function showEltBlank(eltId) {
      <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂ  Crime Type</a>-->
 
      <hr>
-     
-     <label class = container> Time Picker&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <button type="button" name="clearButton" class="clearButton" id ="timePicker" onclick="clearSideBar(id)";>Clear</button></label>
+    
+     <label class = container> <img src="images/qBlueSmaller.png" width='16' height='16' onClick="openTimeLinePopUp();" /> Time Picker&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <button type="button" name="clearButton" class="clearButton" id ="timePicker" onclick="clearSideBar(id)";>Clear</button></label>
      <input type="text" id="daterange" name="daterange" size = "50" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
  
 	<script type="text/javascript">
