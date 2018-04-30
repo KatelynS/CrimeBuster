@@ -4,33 +4,36 @@
 $db = new SQLite3('mydb.db');
 $results = $db->query("SELECT * FROM mydb;");
 
-$myArray = array();
+$dataArray = array();
 while ($row = $results->fetchArray()) {
-	array_push($myArray, $row[9].",". $row[16].",".$row[6].",".$row[5].",".$row[4]);
+	$innerArray = array();
+ array_push($innerArray, $row[3]);
+ array_push($innerArray, $row[6]);
+ array_push($innerArray, $row[7]);
+ array_push($innerArray, $row[21]);
+ array_push($innerArray, $row[19]);
+ array_push($innerArray, $row[17]);
+ array_push($innerArray, $row[8]);
+ array_push($innerArray, $row[4]);
+ array_push($innerArray, $row[5]);
+  
+  array_push($dataArray, $innerArray);
 }
 
+$jsonArray = array("data" =>$dataArray);
 
-echo json_encode($myArray);
+echo json_encode($jsonArray);
 
 /*
-$outArray = array();
-$myArray = array();
-
-while ($row = $results->fetchArray()) {
-	array_push($myArray, $row[9].",". $row[16].",".$row[6].",".$row[5].",".$row[4]);
-}
-
-
-//array_push($myArray, "Crime Code".": "."7A".","."Crime Type".": "."BURGLARY".","."District".": "."NORTHEASTERN".","."Weapon Type".": "."HANDS");
-//array_push($myArray,  "7A".","."BURGLARY".","."NORTHEASTERN".","."HANDS");
-
-
-//array_push($myArray, "crimecode".': '."7A");
-array_push($myArray, "7A");
-
-
-array_push($outArray, $myArray);
-echo json_encode($outArray);
+						<th>CrimeCode</th>
+            <th>Crime Type</th>
+            <th>District</th>
+            <th>Weapon Type</th> 
+            <th>Premise</th>
+            <th>Neighborhood</th>
+            <th>Inside/Out</th>
+            <th>Date</th>
+            <th>Time</th>
 
 */
 

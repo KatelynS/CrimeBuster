@@ -986,8 +986,8 @@ function updateSideBar(clicked_id){
 	//display to the map the number of crimes with these filters
 	var crimesCount = data.length;
 	//console.log(crimesCount);
-	var retStr = "<span style='color:#f00;'>["+crimesCount+"]</span>";
-	//document.getElementById('numCrimesPerFilter').innerHTML="<span style='color:#f00;'>[crimesCount]</span>";
+	var retStr = "<span style='color:##000000;'>["+crimesCount+"]</span>";
+	//document.getElementById('numCrimesPerFilter').innerHTML="<span style='color:#000000;'>[crimesCount]</span>";
 	document.getElementById('numCrimesPerFilter').innerHTML=retStr;
 	
 	}
@@ -1087,10 +1087,11 @@ function showEltBlank(eltId) {
     <hr> -->
     <div class="w3-container">
       <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂ  Geo</a> -->
-      <h3>Filters <span style='color:#f00;font-size:24px' id='numCrimesPerFilter'>[0]</span> </h3>
+      <h3>Filters </h3>
+      <h4><span style='color:#000000;font-size:24px' id='numCrimesPerFilter'>[0]</span> Resulting Crimes</h4>
     </div>
     <div class="w3-bar-block">
-      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>ÃÂ  Close Menu</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>Close Menu</a>
  
       
       <!-- <label class=container>ÃÂ <b>Weapon Filter</b> </label> -->
@@ -1188,7 +1189,7 @@ function showEltBlank(eltId) {
       <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>ÃÂ  News</a>
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>ÃÂ  General</a>
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>ÃÂ  History</a> -->
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>ÃÂ  Settings</a><br><br>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>Settings</a><br><br>
     </div>
   </nav>
 
@@ -1286,32 +1287,31 @@ function showEltBlank(eltId) {
         		<th>CrimeCode</th>
             <th>Crime Type</th>
             <th>District</th>
-            <th>Weapon Type</th> <!--
+            <th>Weapon Type</th> 
             <th>Premise</th>
             <th>Neighborhood</th>
             <th>Inside/Out</th>
             <th>Date</th>
-            <th>Time</th> -->
+            <th>Time</th>
         </tr>
     </thead>
     
+    <tfoot>
+        <tr>
+        		<th>CrimeCode</th>
+            <th>Crime Type</th>
+            <th>District</th>
+            <th>Weapon Type</th> 
+            <th>Premise</th>
+            <th>Neighborhood</th>
+            <th>Inside/Out</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+    </tfoot>
     
-    <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-            <td>Row 1 Data 2</td>
-            <td>Row 1 Data 2</td>
-           
-        </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-            <td>Row 1 Data 2</td>
-            <td>Row 1 Data 2</td>
-          
-        </tr>
-    </tbody> 
+    
+    
 </table> 
 
 
