@@ -360,7 +360,7 @@ function heatMapData(Data){
     margin: 0,
     verticalAlign: 'top',
     y: 25,
-    symbolHeight: 280
+    symbolHeight: 380
   },
 
   tooltip: {
@@ -397,7 +397,7 @@ function heatMapData(Data){
 
 
 
-<!-- additional scripts that interactive with page -->
+//additional scripts that interactive with page 
 
 
 //control function based on user interaction
@@ -1290,7 +1290,7 @@ function showEltBlank(eltId) {
    
       <h5>Charts</h5>
       <!--  <img src="images/heatmap_placeImg.png" alt="heatMap pic"  -->
-        <div id="heatMapVisualization" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>
+        <div id="heatMapVisualization" style="height: 500px; min-width: 610px; max-width: 1000px; margin: 0 auto"></div>
          <!-- height="42" width="42" -->
   
   </div>
