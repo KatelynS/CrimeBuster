@@ -11,8 +11,8 @@ $actualComment=($_POST['wt_actualComment1']);
 $db = new SQLite3('mydb.db');
 
 
-$db->exec("INSERT INTO comments 
-	VALUES ('$commentsID', '$crimeID', '$userID','$actualComment')");
+$db->exec("INSERT INTO comments (commentsID, crimeID, userID, summary) 
+    VALUES ('$commentsID', '$crimeID', '$userID','$actualComment')");
     
 $results = $db->query("SELECT * FROM comments");
 
