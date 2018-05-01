@@ -1110,7 +1110,7 @@ function showEltBlank(eltId) {
   </div>
 
   <!-- Sidebar/menu -->
-  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:305px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
     <!--  <div class="w3-col s4">
         <img src="images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
@@ -1150,7 +1150,7 @@ function showEltBlank(eltId) {
      <hr>
     
      <label class = container> <img src="images/qBlueSmaller.png" width='16' height='16' onClick="openTimeLinePopUp();" /> Time Picker&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <button type="button" name="clearButton" class="clearButton" id ="timePicker" onclick="clearSideBar(id)";>Clear</button></label>
-     <input type="text" id="daterange" name="daterange" size = "50" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
+     <input type="text" id="daterange" name="daterange" size = "31" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
  
 	<script type="text/javascript">
 		$(function() {
@@ -1163,6 +1163,12 @@ function showEltBlank(eltId) {
     		});
 		});
 	</script>
+
+	<hr>
+	<label class = container> Time Range out of each day</label>
+	<div style = "margin-bottom: 5px"> &nbsp&nbsp&nbsp Start time: &nbsp&nbsp <input type="time" id="StartTime" value="08:00:00"></div>
+	<div> &nbsp&nbsp&nbsp End time:  &nbsp&nbsp&nbsp&nbsp<input type="time" id="EndTime" value="20:00:00"></div>
+	
 
 	<hr>
       <label class=container>  &nbsp Crime Type&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id)";> <span class="checkmark"></span> <button type="button" name="clearButton" class="clearButton" id ="crime_type" onclick="clearSideBar(id)";>Clear</button></label>
