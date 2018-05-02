@@ -388,7 +388,7 @@ function heatMapData(Data){
   colorAxis: {
     min: 0,
     minColor: '#FFFFFF',
-    maxColor: Highcharts.getOptions().colors[0]
+    maxColor: Highcharts.getOptions().colors[8]
   },
 
   legend: {
@@ -1376,7 +1376,7 @@ function showEltBlank(eltId) {
       </div>
       <div class="w3-quarter">
         <div class="w3-container w3-teal w3-padding-16">
-          <label class=container>&nbsp Heat Map <input id ="vis_heatmap" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
+          <label class=container>&nbsp Heat Map Chart <input id ="vis_heatmap" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
       <div class="w3-quarter">
@@ -1402,7 +1402,7 @@ function showEltBlank(eltId) {
 <div class="w3-panel" id="heatMapPanel">
   <div class="w3-row-padding" style="margin:0 -16px">
    
-      <h5>Charts</h5>
+      <h5>Heat Map Chart</h5>
       <!--  <img src="images/heatmap_placeImg.png" alt="heatMap pic"  -->
         <div id="heatMapVisualization" style="height: 500px; min-width: 610px; max-width: 1000px; margin: 0 auto"></div>
          <!-- height="42" width="42" -->
