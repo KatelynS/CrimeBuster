@@ -64,10 +64,8 @@ $otherCounts = array();
 $noneCounts = array();
 
 
-$startDate2 = date_create("01-01-2012");
-
-
-$endDate2 = date_create("$12-31-2012");
+$startDate2 = date("01-01-2012");
+$endDate2 = date("$12-31-2012");
 
 //for firearm
 for($x = 0; $x < 7; $x++){ 
@@ -259,8 +257,31 @@ for($x = 0; $x < 7; $x++){
 	array_push($firearmCounts, $results['total']);
 	
 	//increment the date
-	date_add($startDate2, date_interval_create_from_date_string("1 year"));
-	date_add($endDate2, date_interval_create_from_date_string("1 year"));
+	if($startDate2 == date("01-01-2012") and $endDate2 == date("$12-31-2012")){
+			$startDate2 = date("01-01-2013");
+			$endDate2 = date("$12-31-2013");
+	}else if($startDate2 == date("01-01-2013") and $endDate2 == date("$12-31-2013")){
+			$startDate2 = date("01-01-2014");
+			$endDate2 = date("$12-31-2014");
+	}else if($startDate2 == date("01-01-2014") and $endDate2 == date("$12-31-2014")){
+			$startDate2 = date("01-01-2015");
+			$endDate2 = date("$12-31-2015");
+	}else if($startDate2 == date("01-01-2015") and $endDate2 == date("$12-31-2015")){
+			$startDate2 = date("01-01-2016");
+			$endDate2 = date("$12-31-2016");
+	}else if($startDate2 == date("01-01-2016") and $endDate2 == date("$12-31-2016")){
+			$startDate2 = date("01-01-2017");
+			$endDate2 = date("$12-31-2017");
+	}else if($startDate2 == date("01-01-2017") and $endDate2 == date("$12-31-2017")){
+			$startDate2 = date("01-01-2018");
+			$endDate2 = date("$12-31-2018");
+	}else{
+		//shouldnt get here
+		
+	}
+	
+	//date_add($startDate2, date_interval_create_from_date_string("1 year"));
+	//date_add($endDate2, date_interval_create_from_date_string("1 year"));
 }
 
 
@@ -274,10 +295,8 @@ for($x = 0; $x < 7; $x++){
 
 
 
-$startDate2 = date_create("01-01-2012");
-
-
-$endDate2 = date_create("$12-31-2012");
+$startDate2 = date("01-01-2012");
+$endDate2 = date("$12-31-2012");
 
 //for firearm
 for($x = 0; $x < 7; $x++){ 
@@ -469,8 +488,33 @@ for($x = 0; $x < 7; $x++){
 	array_push($handsCounts, $results['total']);
 	
 	//increment the date
-	date_add($startDate2, date_interval_create_from_date_string("1 year"));
-	date_add($endDate2, date_interval_create_from_date_string("1 year"));
+	
+	if($startDate2 == date("01-01-2012") and $endDate2 == date("$12-31-2012")){
+			$startDate2 = date("01-01-2013");
+			$endDate2 = date("$12-31-2013");
+	}else if($startDate2 == date("01-01-2013") and $endDate2 == date("$12-31-2013")){
+			$startDate2 = date("01-01-2014");
+			$endDate2 = date("$12-31-2014");
+	}else if($startDate2 == date("01-01-2014") and $endDate2 == date("$12-31-2014")){
+			$startDate2 = date("01-01-2015");
+			$endDate2 = date("$12-31-2015");
+	}else if($startDate2 == date("01-01-2015") and $endDate2 == date("$12-31-2015")){
+			$startDate2 = date("01-01-2016");
+			$endDate2 = date("$12-31-2016");
+	}else if($startDate2 == date("01-01-2016") and $endDate2 == date("$12-31-2016")){
+			$startDate2 = date("01-01-2017");
+			$endDate2 = date("$12-31-2017");
+	}else if($startDate2 == date("01-01-2017") and $endDate2 == date("$12-31-2017")){
+			$startDate2 = date("01-01-2018");
+			$endDate2 = date("$12-31-2018");
+	}else{
+		//shouldnt get here
+		
+	}
+	
+	
+	//date_add($startDate2, date_interval_create_from_date_string("1 year"));
+	//date_add($endDate2, date_interval_create_from_date_string("1 year"));
 }
 
 
@@ -484,10 +528,8 @@ for($x = 0; $x < 7; $x++){
 
 
 
-$startDate2 = date_create("01-01-2012");
-
-
-$endDate2 = date_create("$12-31-2012");
+$startDate2 = date("01-01-2012");
+$endDate2 = date("$12-31-2012");
 
 //for firearm
 for($x = 0; $x < 7; $x++){ 
@@ -679,8 +721,31 @@ for($x = 0; $x < 7; $x++){
 	array_push($knifeCounts, $results['total']);
 	
 	//increment the date
-	date_add($startDate2, date_interval_create_from_date_string("1 year"));
-	date_add($endDate2, date_interval_create_from_date_string("1 year"));
+	if($startDate2 == date("01-01-2012") and $endDate2 == date("$12-31-2012")){
+			$startDate2 = date("01-01-2013");
+			$endDate2 = date("$12-31-2013");
+	}else if($startDate2 == date("01-01-2013") and $endDate2 == date("$12-31-2013")){
+			$startDate2 = date("01-01-2014");
+			$endDate2 = date("$12-31-2014");
+	}else if($startDate2 == date("01-01-2014") and $endDate2 == date("$12-31-2014")){
+			$startDate2 = date("01-01-2015");
+			$endDate2 = date("$12-31-2015");
+	}else if($startDate2 == date("01-01-2015") and $endDate2 == date("$12-31-2015")){
+			$startDate2 = date("01-01-2016");
+			$endDate2 = date("$12-31-2016");
+	}else if($startDate2 == date("01-01-2016") and $endDate2 == date("$12-31-2016")){
+			$startDate2 = date("01-01-2017");
+			$endDate2 = date("$12-31-2017");
+	}else if($startDate2 == date("01-01-2017") and $endDate2 == date("$12-31-2017")){
+			$startDate2 = date("01-01-2018");
+			$endDate2 = date("$12-31-2018");
+	}else{
+		//shouldnt get here
+		
+	}
+	
+	//date_add($startDate2, date_interval_create_from_date_string("1 year"));
+	//date_add($endDate2, date_interval_create_from_date_string("1 year"));
 }
 
 
@@ -696,10 +761,8 @@ for($x = 0; $x < 7; $x++){
 
 
 
-$startDate2 = date_create("01-01-2012");
-
-
-$endDate2 = date_create("$12-31-2012");
+$startDate2 = date("01-01-2012");
+$endDate2 = date("$12-31-2012");
 
 //for firearm
 for($x = 0; $x < 7; $x++){ 
@@ -891,8 +954,30 @@ for($x = 0; $x < 7; $x++){
 	array_push($otherCounts, $results['total']);
 	
 	//increment the date
-	date_add($startDate2, date_interval_create_from_date_string("1 year"));
-	date_add($endDate2, date_interval_create_from_date_string("1 year"));
+	if($startDate2 == date("01-01-2012") and $endDate2 == date("$12-31-2012")){
+			$startDate2 = date("01-01-2013");
+			$endDate2 = date("$12-31-2013");
+	}else if($startDate2 == date("01-01-2013") and $endDate2 == date("$12-31-2013")){
+			$startDate2 = date("01-01-2014");
+			$endDate2 = date("$12-31-2014");
+	}else if($startDate2 == date("01-01-2014") and $endDate2 == date("$12-31-2014")){
+			$startDate2 = date("01-01-2015");
+			$endDate2 = date("$12-31-2015");
+	}else if($startDate2 == date("01-01-2015") and $endDate2 == date("$12-31-2015")){
+			$startDate2 = date("01-01-2016");
+			$endDate2 = date("$12-31-2016");
+	}else if($startDate2 == date("01-01-2016") and $endDate2 == date("$12-31-2016")){
+			$startDate2 = date("01-01-2017");
+			$endDate2 = date("$12-31-2017");
+	}else if($startDate2 == date("01-01-2017") and $endDate2 == date("$12-31-2017")){
+			$startDate2 = date("01-01-2018");
+			$endDate2 = date("$12-31-2018");
+	}else{
+		//shouldnt get here
+		
+	}
+	//date_add($startDate2, date_interval_create_from_date_string("1 year"));
+	//date_add($endDate2, date_interval_create_from_date_string("1 year"));
 }
 
 
@@ -906,10 +991,8 @@ for($x = 0; $x < 7; $x++){
 
 
 
-$startDate2 = date_create("01-01-2012");
-
-
-$endDate2 = date_create("$12-31-2012");
+$startDate2 = date("01-01-2012");
+$endDate2 = date("$12-31-2012");
 
 //for firearm
 for($x = 0; $x < 7; $x++){ 
@@ -1101,8 +1184,31 @@ for($x = 0; $x < 7; $x++){
 	array_push($noneCounts, $results['total']);
 	
 	//increment the date
-	date_add($startDate2, date_interval_create_from_date_string("1 year"));
-	date_add($endDate2, date_interval_create_from_date_string("1 year"));
+	if($startDate2 == date("01-01-2012") and $endDate2 == date("$12-31-2012")){
+			$startDate2 = date("01-01-2013");
+			$endDate2 = date("$12-31-2013");
+	}else if($startDate2 == date("01-01-2013") and $endDate2 == date("$12-31-2013")){
+			$startDate2 = date("01-01-2014");
+			$endDate2 = date("$12-31-2014");
+	}else if($startDate2 == date("01-01-2014") and $endDate2 == date("$12-31-2014")){
+			$startDate2 = date("01-01-2015");
+			$endDate2 = date("$12-31-2015");
+	}else if($startDate2 == date("01-01-2015") and $endDate2 == date("$12-31-2015")){
+			$startDate2 = date("01-01-2016");
+			$endDate2 = date("$12-31-2016");
+	}else if($startDate2 == date("01-01-2016") and $endDate2 == date("$12-31-2016")){
+			$startDate2 = date("01-01-2017");
+			$endDate2 = date("$12-31-2017");
+	}else if($startDate2 == date("01-01-2017") and $endDate2 == date("$12-31-2017")){
+			$startDate2 = date("01-01-2018");
+			$endDate2 = date("$12-31-2018");
+	}else{
+		//shouldnt get here
+		
+	}
+	
+	//date_add($startDate2, date_interval_create_from_date_string("1 year"));
+	//date_add($endDate2, date_interval_create_from_date_string("1 year"));
 }
  
 
