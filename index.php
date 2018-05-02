@@ -15,6 +15,17 @@ while ($row = $results->fetchArray()) {
 }
 
 
+include "sso/UMBCUtils.php";
+
+   $shibArr=UMBCUtils::getShibbolethInfo();
+
+   $reqFirstName = $shibArr['FirstName'];
+   $reqLastName = $shibArr['LastName'];
+   $reqEmail = $shibArr['Email'];
+   $reqCampusID = $shibArr['CampusID'];
+   $reqUserName=$shibArr['UserName'];
+   $reqAffiliation=$shibArr['Affiliation'];
+   $reqRTEmail=$shibArr['RTEmail'];
 
 //echo json_encode($myArray);
 
@@ -58,6 +69,15 @@ while ($row = $results->fetchArray()) {
 <!--<script src="scripts/heatMap.js"></script> -->
 
 <script type="text/javascript">
+	
+	function getAuthenticatedUsername(){
+		var userName = <?php echo json_encode($reqFirstName) ?>;
+		console.log("User name");
+		console.log(userName);
+		
+		document.getElementById('authenticatedUsername').innerHTML=userName;
+		
+	}
 
 $(document).ready(function() {
 	/*
@@ -75,13 +95,30 @@ $(document).ready(function() {
     updateSideBar("district");
     updateSideBar("location_Premise");
     
+    getAuthenticatedUsername();
+    
 } ); 
+
 
 $(document).ready(function() {
 	
+	/*
 	 $('#table_id').dataTable( {
         "ajax": "db/getTableData.php"
+    } );  */
+    $("#table_id").dataTable().fnDestroy();
+    $('#table_id').dataTable( {
+        
+        ajax:({
+        	url: 'db/getTableStartData.php',
+        	type: 'POST',
+        	
+        	}),
+        	"scrollX": true
+        	
     } );
+    
+    
     
     /* $('#table_id').DataTable();
    
@@ -98,7 +135,7 @@ $(document).ready(function() {
         },
     })  */
 
-} ); 	
+}); 	//close function
 	
 /*
     // Get the Sidebar
@@ -336,7 +373,7 @@ function heatMapData(Data){
 
 
   title: {
-    text: 'Crimes every three hours per weekday'
+    text: 'Crimes every three hours per day of the week'
   },
 
   xAxis: {
@@ -409,11 +446,13 @@ function updateVisualizations(clicked_id){
 //	hideElt('heatMapPanel');
 	//hideElt('barChartPanel');
 	//hideElt('tablePanel');
+	
+	hideElt('commentsPanel_old');
 	console.log(clicked_id);
 		
 		if(document.getElementById('vis_map').checked){
 			showElt('mapPanel');
-			showElt('commentsPanel');
+			//showElt('commentsPanel');
 			console.log("showing map - showing comments");
 		}
 		if(document.getElementById('vis_chart').checked){
@@ -833,28 +872,8 @@ function updateSideBar(clicked_id){
   //}
   
   
-  /*
-  if(clicked_id=="agg_assault"){
-    console.log(clicked_id);
-    if (document.getElementById('agg_assault').checked) {
- 
-			$.ajax({
-		    url:"db/getMapLocations.php",
-		    data: {wt_Other: wt_Other, wt_Hands: wt_Hands, wt_Knife: wt_Knife, wt_Firearm: wt_Firearm},
-		    type:"POST",
-		    success:function(msg){
-		        //id_numbers = msg;
-		       // returnD=$(msg);
-		        //console.log(id_numbers);
-		        handleResponse(msg);
-		    },
-		    dataType:"json"
-			});
-			
-  	}//close second if
-	}//close if
-	*/
-	//ajax call here
+
+	//ajax calls here
 
 	//ajax call for  bar chart
 		if(document.getElementById('barChartX').value =="weapon_Type_barChart"){
@@ -884,12 +903,39 @@ function updateSideBar(clicked_id){
 		    dataType:"json"
 			});
 			
-			/*function handleResponseBChart(data) {
-				console.log("IN handle response for b chart");
-				console.log(data);
-				updateBarGraph(data);
 		
-			}//inner handler */
+		}//close if
+		
+		//testing for updated weapon bar chart
+			//ajax call for  bar chart
+		if(document.getElementById('barChartX').value =="weapon_Type_barChart"){
+			console.log("Calling weapon type from bar chart");
+			$.ajax({
+		    url:"db/getActualWeaponChartData.php",
+		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
+		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
+		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
+		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
+		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
+		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
+		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
+		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
+		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
+		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
+		    type:"POST",
+		    success:function(msg){
+		    	console.log("should return here Highchart bar charts and such");
+		    	console.log(msg);
+		    	//var bCType = "crimeBC";
+		        //handleResponseBChart(msg, "weaponBC");
+		    },
+		    /*failure:function(msg2){
+		    		console.log("did not work");
+		    }*/
+		    dataType:"json"
+			});
+			
+		
 		}//close if
 		
 		//ajax call for crime type bar chart
@@ -914,9 +960,7 @@ function updateSideBar(clicked_id){
 		    	//var bCType = "crimeBC";
 		        handleResponseBChart(msg, "crimeBC");
 		    },
-		    /*failure:function(msg2){
-		    		console.log("did not work");
-		    }*/
+		    
 		    dataType:"json"
 			});
 			
@@ -945,9 +989,7 @@ function updateSideBar(clicked_id){
 		    	//var bCType = "crimeBC";
 		        handleResponseBChart(msg, "districtBC");
 		    },
-		    /*failure:function(msg2){
-		    		console.log("did not work");
-		    }*/
+		  
 		    dataType:"json"
 			});
 			
@@ -981,7 +1023,33 @@ function updateSideBar(clicked_id){
 		    },
 		    dataType:"json"
 			});
-	
+			
+			if(document.readyState === "complete") {
+			
+			 $("#table_id").dataTable().fnDestroy();
+			//ajax for table
+			 $('#table_id').dataTable( {
+        
+        ajax:({
+        	url: 'db/getTableData.php',
+        	data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
+		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
+		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
+		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
+		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
+		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
+		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
+		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
+		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
+		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
+        	type: 'POST',
+        	
+        	}),
+        	"scrollX": true
+        	
+   		 } );
+    
+	}//ends if statement
 	function handleResponse(data) {
     // do something with data here, pershaps render map
 
@@ -989,12 +1057,12 @@ function updateSideBar(clicked_id){
    // console.log(data);
 	//console.log("In handle response markers type is");
 	//console.log(typeof markers);
-	updateMap(data, markers);
+	updateMap(data[0], markers);
 	console.log("Before call heatMap ");
-	heatMapData(data);
+	heatMapData(data[0]);
 	
 	//display to the map the number of crimes with these filters
-	var crimesCount = data.length;
+	var crimesCount = data[0].length;
 	//console.log(crimesCount);
 	var retStr = "<span style='color:##000000;'>["+crimesCount+"]</span>";
 	//document.getElementById('numCrimesPerFilter').innerHTML="<span style='color:#000000;'>[crimesCount]</span>";
@@ -1105,7 +1173,7 @@ function showEltBlank(eltId) {
     <span class="w3-bar-item w3-animate-left"> CrimeBuster</span>
     <div style="float: right;">
       <div class="w3-col s8 w3-bar" style = "width:150px;">
-          <span>Welcome, <strong>John</strong></span><br>
+          <span>Welcome, <strong id='authenticatedUsername'>John</strong></span><br>
           <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
           <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
           <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
@@ -1379,7 +1447,9 @@ function showEltBlank(eltId) {
             <th>District</th>
             <th>Weapon Type</th> 
             <th>Premise</th>
+            <th>Address</th>
             <th>Neighborhood</th>
+            
             <th>Inside/Out</th>
             <th>Date</th>
             <th>Time</th>
@@ -1393,7 +1463,9 @@ function showEltBlank(eltId) {
             <th>District</th>
             <th>Weapon Type</th> 
             <th>Premise</th>
+            <th>Address</th>
             <th>Neighborhood</th>
+            
             <th>Inside/Out</th>
             <th>Date</th>
             <th>Time</th>
@@ -1412,8 +1484,8 @@ function showEltBlank(eltId) {
 
     <br> <br>
 
-
-    <div class="w3-container" id="commentsPanel">
+<!--
+    <div class="w3-container" id="commentsPanel_old">
       <h5>Recent Comments</h5>
       <div class="w3-row">
         <div class="w3-col m2 text-center">
@@ -1435,6 +1507,7 @@ function showEltBlank(eltId) {
         </div>
       </div>
     </div>
+    -->
     <br>
    
    <!--close page div-->

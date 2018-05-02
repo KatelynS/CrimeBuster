@@ -363,14 +363,22 @@ district = '$southEastern' or district = '$southern' or district = '$northern' o
 //just testing weapon type
 //$results = $db->query("SELECT * FROM mydb WHERE weapon ='$other'or  weapon = '$hands' or weapon ='$knife' or weapon ='$firearm'");
 
+$aggAssVar =10;
 
 $myArray = array();
 while ($row = $results->fetchArray()) {
 	array_push($myArray, $row[9].",". $row[16].",".$row[6].",".$row[5].",".$row[4]);
 }
 
+$countsArray = array();
+array_push($countsArray, $aggAssVar);
 
-echo json_encode($myArray);
+$dataArray = array();
+array_push($dataArray, $myArray);
+array_push($dataArray, $countsArray);
+
+
+echo json_encode($dataArray);
 
 
 ?>
