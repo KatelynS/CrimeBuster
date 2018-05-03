@@ -165,6 +165,7 @@ $(document).ready(function() {
 //KS
 var markers = [];
 var map;
+var markerCluster = null;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 11,
@@ -173,7 +174,7 @@ function initMap() {
 }
 
 
-
+/*
 function getLocations(){
 	
 	var myLocations = new Array();
@@ -190,14 +191,14 @@ function getLocations(){
 	console.log(myLocations);
 	return myLocations;
 }
-
+*/
 
 //KS update map
 function updateMap(crimes, myMarkers) {
 	// Create tooltip that will appear when marker is clicked
 	initMap();
 	var info = new google.maps.InfoWindow();
-	var markers = myMarkers;
+	markers = myMarkers;
 	console.log("In update map Marker Type is");
 	//console.log(typeof markers);
 	var locs = new Array();
@@ -239,21 +240,26 @@ function updateMap(crimes, myMarkers) {
 		return marker
 		});
 	// Add a marker clusterer to manage the markers.
-	var markerCluster = new MarkerClusterer(map, markers,
-		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
+	updateMarkers("cluster");
 }
 
+//KS
 function updateMarkers(clicked_id){
 	//check to see if button is clicked
 	//if clicked, display clusters,
 	//if not, do not cluster
 	if(document.getElementById(clicked_id).checked){
-		
+		markerCluster = new MarkerClusterer(map, markers,
+		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
 	}else{
-		
+		var mrks = markerCluster.getMarkers();
+		markerCluster.clearMarkers();
+		//put mrks back on map
+		for(var i = 0; i < mrks.length; i++){
+			mrks[i].setMap(map);
+		}
 	}
-	
 }
 
 //KS--add in code
@@ -1544,7 +1550,7 @@ function showEltBlank(eltId) {
     <div class="w3-panel" id="mapPanel">
       <div class="w3-row-padding" style="margin:0 -16px">
        <!--	 <div class="w3-half"> -->
-          <h5>Map</h5> <label class=container> &nbsp Cluster Map Markers <input style="background:#000000"  id ="cluster" type = "checkbox" onchange="updateMarkers(id);"> <span class="checkmark"></span></label>
+          <h5>Map</h5> <label class=container> &nbsp Cluster Map Markers <input style="background:#000000"  id ="cluster" type = "checkbox" onchange="updateMarkers(id);" checked> <span class="checkmark"></span></label>
          
   		<div id="map" class="container" style="width:100%;height:800px" alt="Crime map of Baltimore"</div>
   	 <!--	<div id="map" class="fill" alt="Crime map of Baltimore"</div> -->
