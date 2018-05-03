@@ -62,7 +62,7 @@ $results = $db->query("SELECT * FROM mydb WHERE latitude > '$startingLat' and la
 
 //above tests all the different filters, now combine them to one SQL statement
 $results = $db->query("SELECT * FROM mydb WHERE (latitude > '$startingLat' and latitude < '$endingLat' and longitude > '$startingLong' and longitude < '$endingLong' and crimetime > '$startTime') and (crimetime < '$endTime' and crimedate > '$startDate' and crimedate < '$endDate') and (district = '$central' or district = '$western' or district = '$northEastern' or district = '$southWestern' or district = '$southEastern' or district = '$southern' or district = '$northern' or district = '$eastern' or district = '$northWestern') and (description = '$aggAssault' or description = '$arson' or description = '$assaultByThreat' or description = '$autoTheft' or description = '$burglary' or description = '$commonAssault' or description = '$homicide' or description = '$larceny' or description = '$larcenyAuto' or description = '$rape' or description = '$robberyStreet' or description = '$robberyCar' or description = '$robberyCom' or description = '$robberyRes' or description = '$shooting') and (weapon ='$other'or  weapon = '$hands' or weapon ='$knife' or weapon ='$firearm')");
-
+/*
 
 $cnt = $db->query("SELECT count description FROM mydb WHERE (latitude > 
 '$startingLat' and latitude < '$endingLat' and longitude > '$startingLong' and 
@@ -371,7 +371,7 @@ district = '$southEastern' or district = '$southern' or district = '$northern' o
 '$larceny' or description = '$larcenyAuto' or description = '$rape' or description = '$robberyStreet' 
 or description = '$robberyCar' or description = '$robberyCom' or description = '$robberyRes' or 
 description = '$shooting') and (weapon ='$firearm')");
-
+*/
 /*
 for($x=0; $x=row.length; x++){
 
@@ -379,10 +379,13 @@ for($x=0; $x=row.length; x++){
 
 */
 
+$results = $db->query("SELECT DISTINCT inside_outside FROM mydb ");
+
 while ($row = $results->fetchArray()) {
   // var_dump($row);
-  print($row[9]);
-  print($row[16]);
+  print($row[0]);
+  //print($row[9]);
+  //print($row[16]);
   echo "<br>";
 // print("\n");
 }

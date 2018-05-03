@@ -165,6 +165,7 @@ $(document).ready(function() {
 //KS
 var markers = [];
 var map;
+var markerCluster = null;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 11,
@@ -172,6 +173,8 @@ function initMap() {
 	});
 }
 
+
+/*
 function getLocations(){
 	
 	var myLocations = new Array();
@@ -188,14 +191,14 @@ function getLocations(){
 	console.log(myLocations);
 	return myLocations;
 }
-
+*/
 
 //KS update map
 function updateMap(crimes, myMarkers) {
 	// Create tooltip that will appear when marker is clicked
 	initMap();
 	var info = new google.maps.InfoWindow();
-	var markers = myMarkers;
+	markers = myMarkers;
 	console.log("In update map Marker Type is");
 	//console.log(typeof markers);
 	var locs = new Array();
@@ -237,9 +240,25 @@ function updateMap(crimes, myMarkers) {
 		return marker
 		});
 	// Add a marker clusterer to manage the markers.
-	var markerCluster = new MarkerClusterer(map, markers,
+	updateMarkers("cluster");
+}
+
+function updateMarkers(clicked_id){
+	//check to see if button is clicked
+	//if clicked, display clusters,
+	//if not, do not cluster
+	if(document.getElementById(clicked_id).checked){
+		markerCluster = new MarkerClusterer(map, markers,
 		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
+	}else{
+		var mrks = markerCluster.getMarkers();
+		markerCluster.clearMarkers();
+		//put mrks back on map
+		for(var i = 0; i < mrks.length; i++){
+			mrks[i].setMap(map);
+		}
+	}
 }
 
 //KS--add in code
@@ -675,12 +694,22 @@ function updateSideBar(clicked_id){
 		}
 	}
 	
+	
 	if(clicked_id == "location_Premise"){
 		if (document.getElementById('location_Premise').checked) {
 			document.getElementById("premise_home").checked = true;
 			document.getElementById("premise_bus/auto").checked = true;
 			document.getElementById("premise_hotel").checked = true;
 			document.getElementById("premise_gasStation").checked = true;
+			document.getElementById("premise_Street").checked = true;
+			document.getElementById("premise_gasStation").checked = true;
+			document.getElementById("premise_School").checked = true;
+			document.getElementById("premise_Alley").checked = true;
+			document.getElementById("premise_lightRail").checked = true;
+			document.getElementById("premise_drugStore").checked = true;
+			document.getElementById("premise_bar").checked = true;
+			document.getElementById("premise_stadium").checked = true;
+			document.getElementById("premise_other").checked = true;
 			//console.log("location_premise is now check");
 		}
 		else{
@@ -688,6 +717,61 @@ function updateSideBar(clicked_id){
 			document.getElementById("premise_bus/auto").checked = false;
 			document.getElementById("premise_hotel").checked = false;
 			document.getElementById("premise_gasStation").checked = false;
+			document.getElementById("premise_Street").checked = false;
+			document.getElementById("premise_gasStation").checked = false;
+			document.getElementById("premise_School").checked = false;
+			document.getElementById("premise_Alley").checked = false;
+			document.getElementById("premise_lightRail").checked = false;
+			document.getElementById("premise_drugStore").checked = false;
+			document.getElementById("premise_bar").checked = false;
+			document.getElementById("premise_stadium").checked = false;
+			document.getElementById("premise_other").checked = false;
+			
+		}
+	}
+	
+   if(clicked_id == "I_O"){
+		if (document.getElementById('I_O').checked) {
+			document.getElementById("inside").checked = true;
+			document.getElementById("outside").checked = true;
+			document.getElementById("unspecified").checked = true;
+			
+		}
+		else{
+			document.getElementById("inside").checked = false;
+			document.getElementById("outside").checked = false;
+			document.getElementById("unspecified").checked = false;
+			
+		}
+	}
+	
+  if(clicked_id == "neighborhood"){
+		if (document.getElementById('neighborhood').checked) {
+			document.getElementById("fairfield").checked = true;
+			document.getElementById("monument").checked = true;
+			document.getElementById("orangeville").checked = true;
+			document.getElementById("greenmountWest").checked = true;
+			document.getElementById("cherryHill").checked = true;
+			document.getElementById("rosemont").checked = true;
+			document.getElementById("pulaski").checked = true;
+			document.getElementById("madisonEastend").checked = true;
+			document.getElementById("burea").checked = true;
+			document.getElementById("dorchester").checked = true;
+			document.getElementById("neigh_other").checked = true;
+			
+		}
+		else{
+			document.getElementById("fairfield").checked = false;
+			document.getElementById("monument").checked = false;
+			document.getElementById("orangeville").checked = false;
+			document.getElementById("greenmountWest").checked = false;
+			document.getElementById("cherryHill").checked = false;
+			document.getElementById("rosemont").checked = false;
+			document.getElementById("pulaski").checked = false;
+			document.getElementById("madisonEastend").checked = false;
+			document.getElementById("burea").checked = false;
+			document.getElementById("dorchester").checked = false;
+			document.getElementById("neigh_other").checked = false;
 			
 		}
 	}
@@ -729,6 +813,12 @@ function updateSideBar(clicked_id){
 	var wt_SouthEastern = "n/a";
 	var wt_SouthWestern = "n/a";
 	
+	var wt_inside = "n/a";
+	var wt_inside2 = "n/a";
+	var wt_outside = "n/a";
+	var wt_outside2 = "n/a";
+	var wt_unspecified = "n/a";
+	
 	//date / time
 	var wt_StartDate = correctStartDate;
 	var wt_EndDate = correctEndDate;
@@ -740,6 +830,23 @@ function updateSideBar(clicked_id){
 	
 	wt_StartTime = startTime;
 	wt_EndTime = endTime;
+  
+  
+     
+    if(document.getElementById('inside').checked) {
+  		wt_inside = "I";
+  		wt_inside2 = "Inside";
+  		//console.log("FIREARM");
+  	}
+  	if(document.getElementById('outside').checked) {
+  		wt_outside="O";
+  		wt_outside2 = "Outside";
+  		//console.log("FIREARM");
+  	}
+  	if(document.getElementById('unspecified').checked) {
+  		unspecified="NONE";
+  		//console.log("FIREARM");
+  	}
   
   //firearm
   
@@ -1016,7 +1123,9 @@ function updateSideBar(clicked_id){
 		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
 		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
 		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
-		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
+		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime, 
+		    	wt_inside1:wt_inside, wt_inside21:wt_inside2, wt_outside1: wt_outside, wt_outside21:wt_outside2,
+		    	wt_unspecified1: wt_unspecified },
 		    type:"POST",
 		    success:function(msg){
 		        handleResponse(msg);
@@ -1099,11 +1208,75 @@ function clearSideBar(clicked_id){
 	else if(clicked_id == "timePicker"){
 		document.getElementById("daterange").value = "00/00/0000 0:00 AM - 00/00/0000 0:00 PM";
 		//"01/01/2010 1:30 PM - 01/01/2018 1:30 PM";
+	}else if(clicked_id == "I_O"){
+		document.getElementById('I_O').checked=false;
+	}else if(clicked_id == "neighborhood"){
+		document.getElementById('neighborhood').checked=false;
 	}
 	
 	updateSideBar(clicked_id);
 	
 	
+}
+
+function selectAllSideBar(clicked_id){
+	
+		document.getElementById('crime_type').checked=true;
+		updateSideBar('crime_type');
+	
+		document.getElementById('district').checked=true;
+		updateSideBar('district');
+	
+		document.getElementById('weapon_type').checked=true;
+		updateSideBar('weapon_type');
+	
+		document.getElementById('location_Premise').checked=true;
+		updateSideBar('location_Premise');
+	
+		document.getElementById("daterange").value = "01/01/2010 0:00 AM - 12/31/2018 0:00 PM";
+		
+
+		document.getElementById('I_O').checked=true;
+		updateSideBar('I_O');
+		
+		document.getElementById('StartTime').value = "00:00:00";
+		document.getElementById('EndTime').value = "00:00:00";
+		
+
+		document.getElementById('neighborhood').checked=true;
+		updateSideBar('neighborhood');
+	
+	updateSideBar(clicked_id);
+}
+
+function clearAllSideBar(clicked_id){
+	
+		document.getElementById('crime_type').checked=false;
+		updateSideBar('crime_type');
+	
+		document.getElementById('district').checked=false;
+		updateSideBar('district');
+	
+		document.getElementById('weapon_type').checked=false;
+		updateSideBar('weapon_type');
+	
+		document.getElementById('location_Premise').checked=false;
+		updateSideBar('location_Premise');
+	
+		document.getElementById("daterange").value = "00/00/0000 0:00 AM - 00/00/0000 0:00 PM";
+		
+
+		document.getElementById('I_O').checked=false;
+		updateSideBar('I_O');
+		
+		document.getElementById('StartTime').value = "00:00:00";
+		document.getElementById('EndTime').value = "00:00:00";
+		
+
+		document.getElementById('neighborhood').checked=false;
+		updateSideBar('neighborhood');
+	
+	updateSideBar(clicked_id);
 }
 
 function openTimeLinePopUp(){
@@ -1196,7 +1369,7 @@ function showEltBlank(eltId) {
     </div>
     <hr> -->
     <div class="w3-container">
-      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂ  Geo</a> -->
+      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Geo</a> -->
       <h3>Filters </h3>
       <h4><span style='color:#000000;font-size:24px' id='numCrimesPerFilter'>[0]</span> Resulting Crimes</h4>
     </div>
@@ -1204,9 +1377,9 @@ function showEltBlank(eltId) {
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>Close Menu</a>
  
       
-      <!-- <label class=container>ÃÂÃÂÃÂÃÂ <b>Weapon Filter</b> </label> -->
+      <!-- <label class=container>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ <b>Weapon Filter</b> </label> -->
       <!--
-      <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>ÃÂÃÂÃÂÃÂ  Weapon Filter</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Filter</a>
       <div id="weaponFilterDiv" class ="w3-padding-large">
         <label class=container> One<input type = "checkbox" ><span class="checkmark"></span></label> <!-- <input type = "checkbox" checked="checked"> -->
         <!--
@@ -1217,9 +1390,14 @@ function showEltBlank(eltId) {
     -->
 
   <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
-     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂÃÂÃÂÃÂ  Crime Type</a>-->
+     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Crime Type</a>-->
 
      <hr>
+     
+     <label class=container>  &nbsp </span> <button type="button" name="selectAllButton" class="selectButton" id ="selectAll" onclick="selectAllSideBar(id)";>Select All</button>  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </span> <button type="button" name="clearAllButton" class="clearAllButton" id ="clearAll" onclick="clearAllSideBar(id)";>Clear All</button></label>
+    
+      </div>
+    <hr>
     
      <label class = container> <img src="images/qBlueSmaller.png" width='16' height='16' onClick="openTimeLinePopUp();" /> Time Picker&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <button type="button" name="clearButton" class="clearButton" id ="timePicker" onclick="clearSideBar(id)";>Clear</button></label>
      <input type="text" id="daterange" name="daterange" size = "31" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
@@ -1243,6 +1421,13 @@ function showEltBlank(eltId) {
 	
 
 	<hr>
+	<!--
+	<label class=container>  &nbsp </span> <button type="button" name="clearButton" class="clearButton" id ="selectAll" onclick="selectAllSideBar(id)";>Select All</button></label>
+    
+      </div>
+    <hr>-->
+	
+	
       <label class=container>  &nbsp Crime Type&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id)";> <span class="checkmark"></span> <button type="button" name="clearButton" class="clearButton" id ="crime_type" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="crimeTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1254,7 +1439,7 @@ function showEltBlank(eltId) {
         <label class=container> &nbsp Homicide <input id ="homicide" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Larceny <input id ="larceny" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Larceny From Auto <input id ="larceny_auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp  Rape <input id ="rape" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Rape <input id ="rape" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Robbery - Street <input id ="robbery_street" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Robbery - Carjacking <input id ="robbery_carjacking" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Robbery - Commercial <input id ="robbery_commercial" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1266,7 +1451,7 @@ function showEltBlank(eltId) {
     <hr>
   <!-- side panel for options of weapon type -->
 
-      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>ÃÂÃÂÃÂÃÂ  Weapon Type</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Type</a>-->
       <label class=container> &nbsp Weapon Type &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="weapon_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="weapon_type" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="weaponTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Firearm <input id ="weapon_firearm" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1277,7 +1462,7 @@ function showEltBlank(eltId) {
       </div>
       <hr>
       <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
-      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂ  District</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  District</a>-->
       <label class=container> &nbsp District &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="district" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Northern <input id ="district_north" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1305,18 +1490,18 @@ function showEltBlank(eltId) {
       <hr>
       
       
-       <label class=container> &nbsp Neighborhood &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="I_O" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="I_O" onclick="clearSideBar(id)";>Clear</button></label>
+       <label class=container> &nbsp Neighborhood &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="neighborhood" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="neighborhood" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
-        <label class=container> &nbsp Fairfield Area <input id ="fairfield" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Ellwood Park/Monument <input id ="monument" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Orangeville <input id ="orangeville" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-       	<label class=container> &nbsp Greenmount West <input id ="greenmountWest" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Cherry Hill <input id ="cherryHill" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Eastern <input id ="district_east" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Pulaski <input id ="pulaski" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Madison-Eastend <input id ="madisonEastend" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Burea <input id ="burea" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+      	<label class=container> &nbsp Burea <input id ="burea" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       	<label class=container> &nbsp Cherry Hill <input id ="cherryHill" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Dorchester <input id ="dorchester" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Ellwood Park/Monument <input id ="monument" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Fairfield Area <input id ="fairfield" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Greenmount West <input id ="greenmountWest" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Orangeville <input id ="orangeville" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       	<label class=container> &nbsp Madison-Eastend <input id ="madisonEastend" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Pulaski <input id ="pulaski" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Rosemont <input id ="rosemont" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Other <input id ="neigh_other" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         
         
@@ -1324,29 +1509,29 @@ function showEltBlank(eltId) {
       <hr>
       
       <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
-        <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂÃÂÃÂÃÂ  Location/Premise</a>-->
+        <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Location/Premise</a>-->
         <label class=container> &nbsp Location/Premise &nbsp&nbsp&nbsp&nbsp&nbsp <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="location_Premise" onclick="clearSideBar(id)";>Clear</button></label>
         <div id="locationTypeDiv" class ="w3-padding-large">
-          <label class=container> &nbsp Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container> &nbsp Alley <input id ="premise_Alley" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Bar <input id ="premise_bar" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Bus/Auto <input id ="premise_bus/auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-          <label class=container>&nbsp  Hotel <input id ="premise_hotel" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Drug Store <input id ="premise_drugStore" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Gas Station <input id ="premise_gasStation" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        	<label class=container> &nbsp Street <input id ="premise_Street" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-          <label class=container>&nbsp  School <input id ="premise_School" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-          <label class=container> &nbsp Alley <input id ="premise_Alley" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        	<label class=container> &nbsp Light Rail <input id ="premise_lightRail" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        	<label class=container> &nbsp Drug Store <input id ="premise_drugStore" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-       	 	<label class=container> &nbsp Bar <input id ="premise_bar" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-       	 	<label class=container> &nbsp Stadium <input id ="premise_stadium" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container>&nbsp  Hotel <input id ="premise_hotel" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Light Rail <input id ="premise_lightRail" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container>&nbsp  School <input id ="premise_School" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container> &nbsp Stadium <input id ="premise_stadium" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container> &nbsp Street <input id ="premise_Street" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label> 	 	 
       	 	<label class=container> &nbsp Other <input id ="premise_other" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         
         
         
         </div>
         <hr>
-      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>ÃÂÃÂÃÂÃÂ  News</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>ÃÂÃÂÃÂÃÂ  General</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>ÃÂÃÂÃÂÃÂ  History</a> -->
+      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  News</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  General</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  History</a> -->
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>Settings</a><br><br>
     </div>
   </nav>
@@ -1389,7 +1574,7 @@ function showEltBlank(eltId) {
     <div class="w3-panel" id="mapPanel">
       <div class="w3-row-padding" style="margin:0 -16px">
        <!--	 <div class="w3-half"> -->
-          <h5>Map</h5>
+          <h5>Map</h5> <label class=container> &nbsp Cluster Map Markers <input style="background:#000000"  id ="cluster" type = "checkbox" onchange="updateMarkers(id);"> <span class="checkmark"></span></label>
          
   		<div id="map" class="container" style="width:100%;height:800px" alt="Crime map of Baltimore"</div>
   	 <!--	<div id="map" class="fill" alt="Crime map of Baltimore"</div> -->

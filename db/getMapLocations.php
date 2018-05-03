@@ -54,6 +54,11 @@ $startTime = date("$startTime");
 $endTime = ($_POST['wt_EndTime1']);
 $endTime = date("$endTime");
 
+$insideOne = ($_POST['wt_inside1']);
+$inside = ($_POST['wt_inside21']);
+$outsideOne = ($_POST['wt_outside1']);
+$outside = ($_POST['wt_outside21']);
+$unspecified = ($_POST['wt_unspecified1']);
 
 $db = new SQLite3('mydb.db');
 $myStreet="STREET";
