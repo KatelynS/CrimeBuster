@@ -172,6 +172,8 @@ function initMap() {
 	});
 }
 
+
+
 function getLocations(){
 	
 	var myLocations = new Array();
@@ -240,6 +242,18 @@ function updateMap(crimes, myMarkers) {
 	var markerCluster = new MarkerClusterer(map, markers,
 		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
+}
+
+function updateMarkers(clicked_id){
+	//check to see if button is clicked
+	//if clicked, display clusters,
+	//if not, do not cluster
+	if(document.getElementById(clicked_id).checked){
+		
+	}else{
+		
+	}
+	
 }
 
 //KS--add in code
@@ -1530,7 +1544,7 @@ function showEltBlank(eltId) {
     <div class="w3-panel" id="mapPanel">
       <div class="w3-row-padding" style="margin:0 -16px">
        <!--	 <div class="w3-half"> -->
-          <h5>Map</h5>
+          <h5>Map</h5> <label class=container> &nbsp Cluster Map Markers <input style="background:#000000"  id ="cluster" type = "checkbox" onchange="updateMarkers(id);"> <span class="checkmark"></span></label>
          
   		<div id="map" class="container" style="width:100%;height:800px" alt="Crime map of Baltimore"</div>
   	 <!--	<div id="map" class="fill" alt="Crime map of Baltimore"</div> -->
