@@ -1175,6 +1175,66 @@ function clearSideBar(clicked_id){
 	
 }
 
+function selectAllSideBar(clicked_id){
+	
+		document.getElementById('crime_type').checked=true;
+		updateSideBar('crime_type');
+	
+		document.getElementById('district').checked=true;
+		updateSideBar('district');
+	
+		document.getElementById('weapon_type').checked=true;
+		updateSideBar('weapon_type');
+	
+		document.getElementById('location_Premise').checked=true;
+		updateSideBar('location_Premise');
+	
+		document.getElementById("daterange").value = "01/01/2010 0:00 AM - 12/31/2018 0:00 PM";
+		
+
+		document.getElementById('I_O').checked=true;
+		updateSideBar('I_O');
+		
+		document.getElementById('StartTime').value = "00:00:00";
+		document.getElementById('EndTime').value = "00:00:00";
+		
+
+		document.getElementById('neighborhood').checked=true;
+		updateSideBar('neighborhood');
+	
+	updateSideBar(clicked_id);
+}
+
+function clearAllSideBar(clicked_id){
+	
+		document.getElementById('crime_type').checked=false;
+		updateSideBar('crime_type');
+	
+		document.getElementById('district').checked=false;
+		updateSideBar('district');
+	
+		document.getElementById('weapon_type').checked=false;
+		updateSideBar('weapon_type');
+	
+		document.getElementById('location_Premise').checked=false;
+		updateSideBar('location_Premise');
+	
+		document.getElementById("daterange").value = "00/00/0000 0:00 AM - 00/00/0000 0:00 PM";
+		
+
+		document.getElementById('I_O').checked=false;
+		updateSideBar('I_O');
+		
+		document.getElementById('StartTime').value = "00:00:00";
+		document.getElementById('EndTime').value = "00:00:00";
+		
+
+		document.getElementById('neighborhood').checked=false;
+		updateSideBar('neighborhood');
+	
+	updateSideBar(clicked_id);
+}
+
 function openTimeLinePopUp(){
 	//var myPopup = window.open("Blab blab", "Display Message", "width=200, height=100");
 	window.alert("Note: times picked are applied to every day in the selected time frame.");
@@ -1289,6 +1349,11 @@ function showEltBlank(eltId) {
      <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Crime Type</a>-->
 
      <hr>
+     
+     <label class=container>  &nbsp </span> <button type="button" name="selectAllButton" class="selectButton" id ="selectAll" onclick="selectAllSideBar(id)";>Select All</button>  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </span> <button type="button" name="clearAllButton" class="clearAllButton" id ="clearAll" onclick="clearAllSideBar(id)";>Clear All</button></label>
+    
+      </div>
+    <hr>
     
      <label class = container> <img src="images/qBlueSmaller.png" width='16' height='16' onClick="openTimeLinePopUp();" /> Time Picker&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <button type="button" name="clearButton" class="clearButton" id ="timePicker" onclick="clearSideBar(id)";>Clear</button></label>
      <input type="text" id="daterange" name="daterange" size = "31" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
@@ -1312,6 +1377,13 @@ function showEltBlank(eltId) {
 	
 
 	<hr>
+	<!--
+	<label class=container>  &nbsp </span> <button type="button" name="clearButton" class="clearButton" id ="selectAll" onclick="selectAllSideBar(id)";>Select All</button></label>
+    
+      </div>
+    <hr>-->
+	
+	
       <label class=container>  &nbsp Crime Type&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id ="crime_type" type = "checkbox" onchange="updateSideBar(id)";> <span class="checkmark"></span> <button type="button" name="clearButton" class="clearButton" id ="crime_type" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="crimeTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp AGG. Assault <input id ="agg_assault" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
