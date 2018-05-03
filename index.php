@@ -243,7 +243,6 @@ function updateMap(crimes, myMarkers) {
 	updateMarkers("cluster");
 }
 
-//KS
 function updateMarkers(clicked_id){
 	//check to see if button is clicked
 	//if clicked, display clusters,
@@ -814,6 +813,12 @@ function updateSideBar(clicked_id){
 	var wt_SouthEastern = "n/a";
 	var wt_SouthWestern = "n/a";
 	
+	var wt_inside = "n/a";
+	var wt_inside2 = "n/a";
+	var wt_outside = "n/a";
+	var wt_outside2 = "n/a";
+	var wt_unspecified = "n/a";
+	
 	//date / time
 	var wt_StartDate = correctStartDate;
 	var wt_EndDate = correctEndDate;
@@ -825,6 +830,23 @@ function updateSideBar(clicked_id){
 	
 	wt_StartTime = startTime;
 	wt_EndTime = endTime;
+  
+  
+     
+    if(document.getElementById('inside').checked) {
+  		wt_inside = "I";
+  		wt_inside2 = "Inside";
+  		//console.log("FIREARM");
+  	}
+  	if(document.getElementById('outside').checked) {
+  		wt_outside="O";
+  		wt_outside2 = "Outside";
+  		//console.log("FIREARM");
+  	}
+  	if(document.getElementById('unspecified').checked) {
+  		unspecified="NONE";
+  		//console.log("FIREARM");
+  	}
   
   //firearm
   
@@ -1101,7 +1123,9 @@ function updateSideBar(clicked_id){
 		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
 		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
 		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
-		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
+		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime, 
+		    	wt_inside1:wt_inside, wt_inside21:wt_inside2, wt_outside1: wt_outside, wt_outside21:wt_outside2,
+		    	wt_unspecified1: wt_unspecified },
 		    type:"POST",
 		    success:function(msg){
 		        handleResponse(msg);
@@ -1415,7 +1439,7 @@ function showEltBlank(eltId) {
         <label class=container> &nbsp Homicide <input id ="homicide" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Larceny <input id ="larceny" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Larceny From Auto <input id ="larceny_auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp  Rape <input id ="rape" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Rape <input id ="rape" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Robbery - Street <input id ="robbery_street" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Robbery - Carjacking <input id ="robbery_carjacking" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Robbery - Commercial <input id ="robbery_commercial" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1468,16 +1492,16 @@ function showEltBlank(eltId) {
       
        <label class=container> &nbsp Neighborhood &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="neighborhood" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="neighborhood" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
-        <label class=container> &nbsp Fairfield Area <input id ="fairfield" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Ellwood Park/Monument <input id ="monument" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Orangeville <input id ="orangeville" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-       	<label class=container> &nbsp Greenmount West <input id ="greenmountWest" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Cherry Hill <input id ="cherryHill" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Rosemont <input id ="rosemont" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Pulaski <input id ="pulaski" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Madison-Eastend <input id ="madisonEastend" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        <label class=container> &nbsp Burea <input id ="burea" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+      	<label class=container> &nbsp Burea <input id ="burea" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       	<label class=container> &nbsp Cherry Hill <input id ="cherryHill" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Dorchester <input id ="dorchester" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Ellwood Park/Monument <input id ="monument" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Fairfield Area <input id ="fairfield" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Greenmount West <input id ="greenmountWest" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Orangeville <input id ="orangeville" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       	<label class=container> &nbsp Madison-Eastend <input id ="madisonEastend" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Pulaski <input id ="pulaski" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        <label class=container> &nbsp Rosemont <input id ="rosemont" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Other <input id ="neigh_other" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         
         
@@ -1488,17 +1512,17 @@ function showEltBlank(eltId) {
         <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Location/Premise</a>-->
         <label class=container> &nbsp Location/Premise &nbsp&nbsp&nbsp&nbsp&nbsp <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="location_Premise" onclick="clearSideBar(id)";>Clear</button></label>
         <div id="locationTypeDiv" class ="w3-padding-large">
-          <label class=container> &nbsp Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container> &nbsp Alley <input id ="premise_Alley" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Bar <input id ="premise_bar" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Bus/Auto <input id ="premise_bus/auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-          <label class=container>&nbsp  Hotel <input id ="premise_hotel" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Drug Store <input id ="premise_drugStore" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Gas Station <input id ="premise_gasStation" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        	<label class=container> &nbsp Street <input id ="premise_Street" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-          <label class=container>&nbsp  School <input id ="premise_School" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-          <label class=container> &nbsp Alley <input id ="premise_Alley" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        	<label class=container> &nbsp Light Rail <input id ="premise_lightRail" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        	<label class=container> &nbsp Drug Store <input id ="premise_drugStore" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-       	 	<label class=container> &nbsp Bar <input id ="premise_bar" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-       	 	<label class=container> &nbsp Stadium <input id ="premise_stadium" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container>&nbsp  Hotel <input id ="premise_hotel" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Light Rail <input id ="premise_lightRail" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container>&nbsp  School <input id ="premise_School" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container> &nbsp Stadium <input id ="premise_stadium" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container> &nbsp Street <input id ="premise_Street" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label> 	 	 
       	 	<label class=container> &nbsp Other <input id ="premise_other" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         
         
@@ -1550,7 +1574,7 @@ function showEltBlank(eltId) {
     <div class="w3-panel" id="mapPanel">
       <div class="w3-row-padding" style="margin:0 -16px">
        <!--	 <div class="w3-half"> -->
-          <h5>Map</h5> <label class=container> &nbsp Cluster Map Markers <input style="background:#000000"  id ="cluster" type = "checkbox" onchange="updateMarkers(id);" checked> <span class="checkmark"></span></label>
+          <h5>Map</h5> <label class=container> &nbsp Cluster Map Markers <input style="background:#000000"  id ="cluster" type = "checkbox" onchange="updateMarkers(id);"> <span class="checkmark"></span></label>
          
   		<div id="map" class="container" style="width:100%;height:800px" alt="Crime map of Baltimore"</div>
   	 <!--	<div id="map" class="fill" alt="Crime map of Baltimore"</div> -->
