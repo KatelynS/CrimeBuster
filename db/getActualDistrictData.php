@@ -1852,19 +1852,7 @@ for($x = 0; $x < 7; $x++){
 	$southWesternCnt=$results->fetchArray();
 	
 	
-	
-	
-	$cnt2012 = array();
-$cnt2013 = array();
-$cnt2014 = array();
-$cnt2015 = array();
-$cnt2016 = array();
-$cnt2017 = array();
-$cnt2018 = array();
-	
-	
 	//increment the date
-	
 	if($startDate2 == date("2012-01-01") and $endDate2 == date("2012-12-31")){
 			$startDate2 = date("2013-01-01");
 			$endDate2 = date("2013-12-31");
