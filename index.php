@@ -697,34 +697,105 @@ function updateSideBar(clicked_id){
 	
 	if(clicked_id == "location_Premise"){
 		if (document.getElementById('location_Premise').checked) {
-			document.getElementById("premise_home").checked = true;
-			document.getElementById("premise_bus/auto").checked = true;
-			document.getElementById("premise_hotel").checked = true;
-			document.getElementById("premise_gasStation").checked = true;
-			document.getElementById("premise_Street").checked = true;
-			document.getElementById("premise_gasStation").checked = true;
-			document.getElementById("premise_School").checked = true;
 			document.getElementById("premise_Alley").checked = true;
-			document.getElementById("premise_lightRail").checked = true;
-			document.getElementById("premise_drugStore").checked = true;
+			document.getElementById("premise_apt").checked = true;
+			document.getElementById("premise_atm").checked = true;
+			document.getElementById("premise_bank").checked = true;
 			document.getElementById("premise_bar").checked = true;
+			document.getElementById("premise_barb").checked = true;
+			document.getElementById("premise_bridge").checked = true;
+			document.getElementById("premise_bus/auto").checked = true;
+			document.getElementById("premise_carry").checked = true;
+			document.getElementById("premise_conv").checked = true;
+			document.getElementById("premise_court").checked = true;
+			document.getElementById("premise_dept").checked = true;
+			document.getElementById("premise_driveway").checked = true;
+			document.getElementById("premise_drugStore").checked = true;
+			document.getElementById("premise_dwelling").checked = true;
+			document.getElementById("premise_fast").checked = true;
+			document.getElementById("premise_fire").checked = true;
+			document.getElementById("premise_garage").checked = true;
+			document.getElementById("premise_gasStation").checked = true;
+			document.getElementById("premise_grocery").checked = true;
+			document.getElementById("premise_home").checked = true;
+			document.getElementById("premise_hosp").checked = true;
+			document.getElementById("premise_hotel").checked = true;
+			document.getElementById("premise_laund").checked = true;
+			document.getElementById("premise_lightRail").checked = true;
+			document.getElementById("premise_liq").checked = true;
+			document.getElementById("premise_mark").checked = true;
+			document.getElementById("premise_office").checked = true;
+			document.getElementById("premise_rec").checked = true;
+			document.getElementById("premise_rel").checked = true;
+			document.getElementById("premise_retail").checked = true;
+			document.getElementById("premise_rest").checked = true;
+			document.getElementById("premise_row").checked = true;
+			document.getElementById("premise_park").checked = true;
+			document.getElementById("premise_parking").checked = true;
+			document.getElementById("premise_play").checked = true;
+			document.getElementById("premise_porch").checked = true;
+			document.getElementById("premise_publ").checked = true;
+			document.getElementById("premise_School").checked = true;
+			document.getElementById("premise_spec").checked = true;
 			document.getElementById("premise_stadium").checked = true;
+			document.getElementById("premise_Street").checked = true;
+			document.getElementById("premise_sub").checked = true;
+			document.getElementById("premise_vac").checked = true;
+			document.getElementById("premise_war").checked = true;
+			document.getElementById("premise_wholesale").checked = true;
+			document.getElementById("premise_yard").checked = true;
 			document.getElementById("premise_other").checked = true;
+			
 			//console.log("location_premise is now check");
 		}
 		else{
-			document.getElementById("premise_home").checked = false;
-			document.getElementById("premise_bus/auto").checked = false;
-			document.getElementById("premise_hotel").checked = false;
-			document.getElementById("premise_gasStation").checked = false;
-			document.getElementById("premise_Street").checked = false;
-			document.getElementById("premise_gasStation").checked = false;
-			document.getElementById("premise_School").checked = false;
 			document.getElementById("premise_Alley").checked = false;
-			document.getElementById("premise_lightRail").checked = false;
-			document.getElementById("premise_drugStore").checked = false;
+			document.getElementById("premise_apt").checked = false;
+			document.getElementById("premise_atm").checked = false;
+			document.getElementById("premise_bank").checked = false;
 			document.getElementById("premise_bar").checked = false;
+			document.getElementById("premise_barb").checked = false;
+			document.getElementById("premise_bridge").checked = false;
+			document.getElementById("premise_bus/auto").checked = false;
+			document.getElementById("premise_carry").checked = false;
+			document.getElementById("premise_conv").checked = false;
+			document.getElementById("premise_court").checked = false;
+			document.getElementById("premise_dept").checked = false;
+			document.getElementById("premise_driveway").checked = false;
+			document.getElementById("premise_drugStore").checked = false;
+			document.getElementById("premise_dwelling").checked = false;
+			document.getElementById("premise_fast").checked = false;
+			document.getElementById("premise_fire").checked = false;
+			document.getElementById("premise_garage").checked = false;
+			document.getElementById("premise_gasStation").checked = false;
+			document.getElementById("premise_grocery").checked = false;
+			document.getElementById("premise_home").checked = false;
+			document.getElementById("premise_hosp").checked = false;
+			document.getElementById("premise_hotel").checked = false;
+			document.getElementById("premise_laund").checked = false;
+			document.getElementById("premise_lightRail").checked = false;
+			document.getElementById("premise_liq").checked = false;
+			document.getElementById("premise_mark").checked = false;
+			document.getElementById("premise_office").checked = false;
+			document.getElementById("premise_rec").checked = false;
+			document.getElementById("premise_rel").checked = false;
+			document.getElementById("premise_retail").checked = false;
+			document.getElementById("premise_rest").checked = false;
+			document.getElementById("premise_row").checked = false;
+			document.getElementById("premise_park").checked = false;
+			document.getElementById("premise_parking").checked = false;
+			document.getElementById("premise_play").checked = false;
+			document.getElementById("premise_porch").checked = false;
+			document.getElementById("premise_publ").checked = false;
+			document.getElementById("premise_School").checked = false;
+			document.getElementById("premise_spec").checked = false;
 			document.getElementById("premise_stadium").checked = false;
+			document.getElementById("premise_Street").checked = false;
+			document.getElementById("premise_sub").checked = false;
+			document.getElementById("premise_vac").checked = false;
+			document.getElementById("premise_war").checked = false;
+			document.getElementById("premise_wholesale").checked = false;
+			document.getElementById("premise_yard").checked = false;
 			document.getElementById("premise_other").checked = false;
 			
 		}
@@ -755,7 +826,7 @@ function updateSideBar(clicked_id){
 			document.getElementById("rosemont").checked = true;
 			document.getElementById("pulaski").checked = true;
 			document.getElementById("madisonEastend").checked = true;
-			document.getElementById("burea").checked = true;
+			document.getElementById("berea").checked = true;
 			document.getElementById("dorchester").checked = true;
 			document.getElementById("neigh_other").checked = true;
 			
@@ -769,7 +840,7 @@ function updateSideBar(clicked_id){
 			document.getElementById("rosemont").checked = false;
 			document.getElementById("pulaski").checked = false;
 			document.getElementById("madisonEastend").checked = false;
-			document.getElementById("burea").checked = false;
+			document.getElementById("berea").checked = false;
 			document.getElementById("dorchester").checked = false;
 			document.getElementById("neigh_other").checked = false;
 			
@@ -819,19 +890,275 @@ function updateSideBar(clicked_id){
 	var wt_outside2 = "n/a";
 	var wt_unspecified = "n/a";
 	
+	
+	//neighborhoods
+	var wt_berea = "n/a";
+	var wt_cherryHill = "n/a";
+	var wt_dorchester = "n/a";
+	var wt_ellwoodPark = "n/a";
+	var wt_fairfield = "n/a";
+	var wt_greenmont = "n/a";
+	var wt_orangeville = "n/a";
+	var wt_madison = "n/a";
+	var wt_pulaski = "n/a";
+	var wt_rosemont = "n/a";
+	var wt_neighOther = "n/a";
+	
+	var wt_drugStore = "n/a";
+	var wt_autoParts = "n/a";
+	var wt_subway = "n/a";
+	var wt_drugStore = "n/a";
+	var wt_drugStore = "n/a";
+	var wt_drugStore = "n/a";
+	
+	
+	
+  	var	wt_alley = "n/a";
+  	var	wt_apt = "n/a";
+  	var	wt_aptTwo = "n/a";
+  	var	wt_atm = "n/a";
+  	var	wt_bank = "n/a";
+  	var	wt_bar = "n/a";
+  	var	wt_barber = "n/a";
+  	var	wt_bridge = "n/a";
+  	var	wt_bus = "n/a";
+  	var	wt_busTwo = "n/a";
+  	var	wt_auto = "n/a";
+  	var	wt_busThree = "n/a";
+  	var	wt_busFour = "n/a";
+  	var	wt_carry = "n/a";
+  	var	wt_conv = "n/a";
+  	var	wt_cloth = "n/a";
+  	var	wt_shop = "n/a";
+  	var	wt_court = "n/a";
+  	var	wt_dept = "n/a";
+  	var	wt_driveway = "n/a";
+  	var	wt_drug = "n/a";
+  	var	wt_dwelling = "n/a";
+  	var	wt_fast = "n/a";
+  	var	wt_fire = "n/a";
+  	var	wt_garage = "n/a";
+  	var	wt_garageTwo = "n/a";
+  	var	wt_gas = "n/a";
+  	var	wt_grocery = "n/a";
+  	var	wt_home = "n/a";
+  	var	wt_hosp = "n/a";
+  	var	wt_hotel = "n/a";
+  	var	wt_laundry = "n/a";
+  	var	wt_lightRail = "n/a";
+  	var	wt_liquor = "n/a";
+  	var	wt_market = "n/a";
+  	var	wt_office = "n/a";
+  	var	wt_rec = "n/a";
+  	var	wt_religious = "n/a";
+ 		var	wt_retail = "n/a";
+		var	wt_rest = "n/a";
+ 		var	wt_row = "n/a";
+ 		var	wt_park = "n/a";
+ 		var	wt_parking = "n/a";
+ 		var	wt_parkingTwo = "n/a";
+ 		var	wt_play = "n/a";
+ 	 	var	wt_porch = "n/a";
+  	var	wt_publ = "n/a";
+  	var	wt_publTwo = "n/a";
+  	var	wt_school = "n/a";
+  	var	wt_specialty = "n/a";
+  	var	wt_stadium = "n/a";
+  	var	wt_streetCap = "n/a";
+  	var	wt_street = "n/a";
+  	var	wt_subway = "n/a";
+  	var	wt_vac = "n/a";
+  	var	wt_war = "n/a";
+  	var	wt_whole = "n/a";
+  	var	wt_yard = "n/a";
+  	var	wt_yardTwo = "n/a";
+  	var	wt_otherOne = "n/a";
+  	var	wt_otherTwo = "n/a";
+  	var	wt_otherThree = "n/a";
+  	var	wt_otherFour = "n/a";
+  	var	wt_rent = "n/a";
+	
+	
+	
 	//date / time
 	var wt_StartDate = correctStartDate;
 	var wt_EndDate = correctEndDate;
 	var wt_StartTime = correctStartTime;
 	var wt_EndTime = correctEndTime;
 	
-	var startTime = 	document.getElementById("StartTime").value;
-  var endTime = 	document.getElementById("EndTime").value;
+	var startTime = document.getElementById("StartTime").value;
+  var endTime = document.getElementById("EndTime").value;
 	
 	wt_StartTime = startTime;
 	wt_EndTime = endTime;
   
   
+  
+  if(document.getElementById('premise_Alley').checked) {
+  		wt_alley = "ALLEY";
+  	}
+  	if(document.getElementById('premise_apt').checked) {
+  		wt_apt = "APT/CONDO";
+  		wt_aptTwo = "APT. LOCKE";
+  	}
+  	if(document.getElementById('premise_atm').checked) {
+  		wt_atm = "ATM MACHIN";
+  	}
+  	if(document.getElementById('premise_bank').checked) {
+  		wt_bank = "BANK/FINAN";
+  	}
+  	if(document.getElementById('premise_bar').checked) {
+  		wt_bar = "BAR";
+  	}
+  	if(document.getElementById('premise_barb').checked) {
+  		wt_barber = "BARBER/BEA";
+  	}
+  	if(document.getElementById('premise_bridge').checked) {
+  		wt_bridge = "BRIDGE-PIE";
+  	}
+  	if(document.getElementById('premise_bus/auto').checked) {
+  		wt_bus = "BUS/AUTO";
+  		wt_busTwo = "BUS/RAILRO";
+  		wt_auto = "AUTO PARTS";
+  		wt_busThree = "BUS. PARK";
+  		wt_busFour = "Common Bus";
+  	}
+  	if(document.getElementById('premise_carry').checked) {
+  		wt_carry = "CARRY OUT";
+  	}
+  	if(document.getElementById('premise_conv').checked) {
+  		wt_conv = "CONVENIENC";
+  		wt_cloth = "CLOTHING/S";
+  		wt_shop = "SHOPPING M";
+  	}
+  	if(document.getElementById('premise_court').checked) {
+  		wt_court = "COURT HOUS";
+  	}
+  	if(document.getElementById('premise_dept').checked) {
+  		wt_dept = "DEPARTMENT";
+  	}
+  	if(document.getElementById('premise_driveway').checked) {
+  		wt_driveway = "DRIVEWAY";
+  	}
+  	if(document.getElementById('premise_drugStore').checked) {
+  		wt_drug = "DRUG STORE";
+  	}
+  	if(document.getElementById('premise_dwelling').checked) {
+  		wt_dwelling = "Dwelling";
+  	}
+  	if(document.getElementById('premise_fast').checked) {
+  		wt_fast = "FAST FOOD";
+  	}
+  	if(document.getElementById('premise_fire').checked) {
+  		wt_fire = "FIRE DEPAR";
+  	}
+  	if(document.getElementById('premise_garage').checked) {
+  		wt_garage = "GARAGE ON";
+  		wt_garageTwo = "SHED/GARAG";
+  	}
+  	if(document.getElementById('premise_gasStation').checked) {
+  		wt_gas = "GAS STATIO";
+  	}
+  	if(document.getElementById('premise_grocery').checked) {
+  		wt_grocery = "GROCERY/CO";
+  	}
+  	if(document.getElementById('premise_home').checked) {
+  		wt_home = "SINGLE HOU";
+  	}
+  	if(document.getElementById('premise_hosp').checked) {
+  		wt_hosp = "HOSP/NURS.";
+  	}
+  	if(document.getElementById('premise_hotel').checked) {
+  		wt_hotel = "HOTEL/MOTE";
+  	}
+  	if(document.getElementById('premise_laund').checked) {
+  		wt_laundry = "LAUNDRY/CL";
+  	}
+  	if(document.getElementById('premise_lightRail').checked) {
+  		wt_lightRail = "LIGHT RAIL";
+  	}
+  	if(document.getElementById('premise_liq').checked) {
+  		wt_liquor = "LIQUOR STO";
+  	}
+  	if(document.getElementById('premise_mark').checked) {
+  		wt_market = "MARKET STA";
+  	}
+  	if(document.getElementById('premise_office').checked) {
+  		wt_office = "OFFICE BUI";
+  	}
+  	if(document.getElementById('premise_rec').checked) {
+  		wt_rec = "RECREATION";
+  	}
+  	if(document.getElementById('premise_rel').checked) {
+  		wt_religious = "RELIGIOUS";
+  	}
+  	if(document.getElementById('premise_retail').checked) {
+  		wt_retail = "RETAIL/SMA";
+  	}
+  	if(document.getElementById('premise_rest').checked) {
+  		wt_rest = "RESTAURANT";
+  	}
+  	if(document.getElementById('premise_row').checked) {
+  		wt_row = "ROW/TOWNHO";
+  	}
+  	if(document.getElementById('premise_park').checked) {
+  		wt_park = "PARK";
+  	}
+  	if(document.getElementById('premise_parking').checked) {
+  		wt_parking = "PARKING LO";
+  		wt_parkingTwo = "CAR LOT-NE";
+  	}
+  	if(document.getElementById('premise_play').checked) {
+  		wt_play = "PLAYGROUND";
+  	}
+  	if(document.getElementById('premise_porch').checked) {
+  		wt_porch = "PORCH/DECK";
+  	}
+  	if(document.getElementById('premise_publ').checked) {
+  		wt_publ = "Public Are";
+  		wt_publTwo = "PUBLIC HOU";
+  	}
+  	if(document.getElementById('premise_School').checked) {
+  		wt_school = "SCHOOL";
+  	}
+  	if(document.getElementById('premise_spec').checked) {
+  		wt_specialty = "SPECIALTY";
+  	}
+  	if(document.getElementById('premise_stadium').checked) {
+  		wt_stadium = "STADIUM";
+  	}
+  	if(document.getElementById('premise_Street').checked) {
+  		wt_streetCap = "STREET";
+  		wt_street = "Street";
+  	}
+  	if(document.getElementById('premise_sub').checked) {
+  		wt_subway = "SUBWAY";
+  	}
+  	if(document.getElementById('premise_vac').checked) {
+  		wt_vac = "VACANT BUI";
+  	}
+  	if(document.getElementById('premise_war').checked) {
+  		wt_war = "WAREHOUSE";
+  	}
+  	if(document.getElementById('premise_wholesale').checked) {
+  		wt_whole = "WHOLESALE/";
+  	}
+  	if(document.getElementById('premise_yard').checked) {
+  		wt_yard = "YARD";
+  		wt_yardTwo = "YARD/BUSIN";
+  	}
+  	if(document.getElementById('premise_other').checked) {
+  		wt_otherOne = "OTHER/RESI";
+  		wt_otherTwo = "OTHER - IN";
+  		wt_otherThree = "OTHER - OU";
+  		wt_otherFour = "UNKNOWN";
+  		wt_rent = "RENTAL/VID";
+  	}
+  	
+  	
+  	
+  	
+  	
      
     if(document.getElementById('inside').checked) {
   		wt_inside = "I";
@@ -844,8 +1171,43 @@ function updateSideBar(clicked_id){
   		//console.log("FIREARM");
   	}
   	if(document.getElementById('unspecified').checked) {
-  		unspecified="NONE";
+  		wt_unspecified="NONE";
   		//console.log("FIREARM");
+  	}
+  	
+	
+	if(document.getElementById('berea').checked) {
+  		wt_berea = "Berea";
+  	}
+  	if(document.getElementById('cherryHill').checked) {
+  		wt_cherryHill="Cherry Hill";
+  	}
+  	if(document.getElementById('dorchester').checked) {
+  		wt_dorchester="Dorchester";
+  	}
+  	if(document.getElementById('monument').checked) {
+  		wt_ellwoodPark="Ellwood Park/Monument";
+  	}
+  	if(document.getElementById('fairfield').checked) {
+  		wt_fairfield="Fairfield Area";
+  	}
+  	if(document.getElementById('greenmountWest').checked) {
+  		wt_greenmont="Greenmount West";
+  	}
+  	if(document.getElementById('orangeville').checked) {
+  		wt_orangeville="Orangeville";
+  	}
+  	if(document.getElementById('madisonEastend').checked) {
+  		wt_madison="Madison-Eastend";
+  	}
+  	if(document.getElementById('pulaski').checked) {
+  		wt_pulaski="Pulaski Industrial Area";
+  	}
+  	if(document.getElementById('rosemont').checked) {
+  		wt_rosemont="Rosemont";
+  	}
+  	if(document.getElementById('neigh_other').checked) {
+  		wt_neighOther="NONE";
   	}
   
   //firearm
@@ -1125,7 +1487,28 @@ function updateSideBar(clicked_id){
 		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
 		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime, 
 		    	wt_inside1:wt_inside, wt_inside21:wt_inside2, wt_outside1: wt_outside, wt_outside21:wt_outside2,
-		    	wt_unspecified1: wt_unspecified },
+		    	wt_unspecified1: wt_unspecified, wt_berea1:wt_berea, wt_cherryHill1:wt_cherryHill,
+		    	wt_dorchester1:wt_dorchester,  wt_ellwoodPark1:wt_ellwoodPark, wt_fairfield1:wt_fairfield,
+		    	wt_greenmont1:wt_greenmont, wt_orangeville1:wt_orangeville, wt_madison1:wt_madison,
+		    	wt_pulaski1:wt_pulaski, wt_rosemont1:wt_rosemont, wt_neighOther1:wt_neighOther,
+		    	wt_alley:wt_alley,wt_apt:wt_apt,wt_aptTwo:wt_aptTwo,wt_atm:wt_atm,wt_bank:wt_bank,
+		    	wt_bar:wt_bar,wt_barber:wt_barber,wt_bridge:wt_bridge,wt_bus:wt_bus,wt_busTwo:wt_busTwo,
+		    	wt_auto:wt_auto,wt_busThree:wt_busThree,wt_busFour:wt_busFour,wt_carry:wt_carry,wt_conv:wt_conv,
+		    	wt_cloth:wt_cloth,wt_shop:wt_shop,wt_court:wt_court,wt_dept:wt_dept,wt_driveway:wt_driveway,
+		    	wt_drug:wt_drug,wt_dwelling:wt_dwelling,wt_fast:wt_fast,wt_fire:wt_fire,wt_garage:wt_garage,
+		    	wt_garageTwo:wt_garageTwo,wt_gas:wt_gas,wt_grocery:wt_grocery,wt_home:wt_home,wt_hosp:wt_hosp,
+		    	wt_hotel:wt_hotel,wt_laundry:wt_laundry,wt_lightRail:wt_lightRail,wt_liquor:wt_liquor,
+		    	wt_market:wt_market,wt_office:wt_office,wt_rec:wt_rec,wt_religious:wt_religious,
+		    	wt_retail:wt_retail,wt_rest:wt_rest,wt_row:wt_row,wt_park:wt_park,wt_parking:wt_parking,
+		    	wt_parkingTwo:wt_parkingTwo,wt_play:wt_play,wt_porch:wt_porch,wt_publ:wt_publ,
+		    	wt_publTwo:wt_publTwo,wt_school:wt_school,wt_specialty:wt_specialty,wt_stadium:wt_stadium,
+		    	wt_streetCap:wt_streetCap,wt_street:wt_street,wt_subway:wt_subway,wt_vac:wt_vac,wt_war:wt_war,
+		    	wt_whole:wt_whole,wt_yard:wt_yard,wt_yardTwo:wt_yardTwo,wt_otherOne:wt_otherOne,
+		    	wt_otherTwo:wt_otherTwo,wt_otherThree:wt_otherThree,wt_otherFour:wt_otherFour,
+		    	wt_rent:wt_rent
+		    	},
+		    	
+		    	
 		    type:"POST",
 		    success:function(msg){
 		        handleResponse(msg);
@@ -1369,7 +1752,7 @@ function showEltBlank(eltId) {
     </div>
     <hr> -->
     <div class="w3-container">
-      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Geo</a> -->
+      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Geo</a> -->
       <h3>Filters </h3>
       <h4><span style='color:#000000;font-size:24px' id='numCrimesPerFilter'>[0]</span> Resulting Crimes</h4>
     </div>
@@ -1377,9 +1760,9 @@ function showEltBlank(eltId) {
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>Close Menu</a>
  
       
-      <!-- <label class=container>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ <b>Weapon Filter</b> </label> -->
+      <!-- <label class=container>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ <b>Weapon Filter</b> </label> -->
       <!--
-      <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Filter</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Filter</a>
       <div id="weaponFilterDiv" class ="w3-padding-large">
         <label class=container> One<input type = "checkbox" ><span class="checkmark"></span></label> <!-- <input type = "checkbox" checked="checked"> -->
         <!--
@@ -1390,7 +1773,7 @@ function showEltBlank(eltId) {
     -->
 
   <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
-     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Crime Type</a>-->
+     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Crime Type</a>-->
 
      <hr>
      
@@ -1451,7 +1834,7 @@ function showEltBlank(eltId) {
     <hr>
   <!-- side panel for options of weapon type -->
 
-      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Type</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Type</a>-->
       <label class=container> &nbsp Weapon Type &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="weapon_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="weapon_type" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="weaponTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Firearm <input id ="weapon_firearm" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1462,7 +1845,7 @@ function showEltBlank(eltId) {
       </div>
       <hr>
       <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
-      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  District</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  District</a>-->
       <label class=container> &nbsp District &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="district" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Northern <input id ="district_north" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1492,7 +1875,7 @@ function showEltBlank(eltId) {
       
        <label class=container> &nbsp Neighborhood &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="neighborhood" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="neighborhood" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
-      	<label class=container> &nbsp Burea <input id ="burea" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+      	<label class=container> &nbsp Berea <input id ="berea" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
        	<label class=container> &nbsp Cherry Hill <input id ="cherryHill" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Dorchester <input id ="dorchester" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         <label class=container> &nbsp Ellwood Park/Monument <input id ="monument" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1509,29 +1892,65 @@ function showEltBlank(eltId) {
       <hr>
       
       <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
-        <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Location/Premise</a>-->
-        <label class=container> &nbsp Location/Premise &nbsp&nbsp&nbsp&nbsp&nbsp <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="location_Premise" onclick="clearSideBar(id)";>Clear</button></label>
+        <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Location/Premise</a>-->
+        <label class=container> &nbsp Premise &nbsp&nbsp&nbsp&nbsp&nbsp <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="location_Premise" onclick="clearSideBar(id);">Clear</button></label>
         <div id="locationTypeDiv" class ="w3-padding-large">
         	<label class=container> &nbsp Alley <input id ="premise_Alley" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Apartment <input id ="premise_apt" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp ATM Machine <input id ="premise_atm" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Bank <input id ="premise_bank" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Bar <input id ="premise_bar" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-          <label class=container> &nbsp Bus/Auto <input id ="premise_bus/auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Barber Shop <input id ="premise_barb" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Bridge <input id ="premise_bridge" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+					<label class=container> &nbsp Bus/Auto <input id ="premise_bus/auto" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Carry Out <input id ="premise_carry" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Convenience Store <input id ="premise_conv" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Court House <input id ="premise_court" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Department <input id ="premise_dept" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Driveway <input id ="premise_driveway" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Drug Store <input id ="premise_drugStore" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Dwelling <input id ="premise_dwelling" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Fast Food <input id ="premise_fast" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Fire Dept <input id ="premise_fire" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Garage <input id ="premise_garage" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Gas Station <input id ="premise_gasStation" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Grocery <input id ="premise_grocery" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Home <input id ="premise_home" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-          <label class=container>&nbsp  Hotel <input id ="premise_hotel" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Hospital <input id ="premise_hosp" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Hotel <input id ="premise_hotel" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Laundry <input id ="premise_laund" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
           <label class=container> &nbsp Light Rail <input id ="premise_lightRail" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
-        	<label class=container>&nbsp  School <input id ="premise_School" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       		<label class=container> &nbsp Liquor Store <input id ="premise_liq" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Market Station <input id ="premise_mark" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       		<label class=container> &nbsp Office <input id ="premise_office" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       		<label class=container> &nbsp Recreation <input id ="premise_rec" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Religious <input id ="premise_rel" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       		<label class=container> &nbsp Retail <input id ="premise_retail" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       		<label class=container> &nbsp Restaurant <input id ="premise_rest" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+       		<label class=container> &nbsp Row/Townhome <input id ="premise_row" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+					<label class=container> &nbsp Park <input id ="premise_park" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+				  <label class=container> &nbsp Parking Lot <input id ="premise_parking" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Playground <input id ="premise_play" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Porch <input id ="premise_porch" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Public Area <input id ="premise_publ" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container> &nbsp School <input id ="premise_School" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+        	<label class=container> &nbsp Specialty <input id ="premise_spec" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         	<label class=container> &nbsp Stadium <input id ="premise_stadium" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         	<label class=container> &nbsp Street <input id ="premise_Street" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label> 	 	 
+      	 	<label class=container> &nbsp Subway <input id ="premise_sub" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+      	 	<label class=container> &nbsp Vacant Building <input id ="premise_vac" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+         	<label class=container> &nbsp Warehouse <input id ="premise_war" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+          <label class=container> &nbsp Wholesale <input id ="premise_wholesale" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
+      	 	<label class=container> &nbsp Yard <input id ="premise_yard" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label> 
       	 	<label class=container> &nbsp Other <input id ="premise_other" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
         
         
         
         </div>
         <hr>
-      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  News</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  General</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  History</a> -->
+      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  News</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  General</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  History</a> -->
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>Settings</a><br><br>
     </div>
   </nav>
