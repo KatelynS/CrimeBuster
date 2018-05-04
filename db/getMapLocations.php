@@ -121,7 +121,7 @@ $wt_porch = ($_POST['wt_porch']);
 $wt_publ = ($_POST['wt_publ']);
 $wt_publTwo = ($_POST['wt_publTwo']);
 $wt_school = ($_POST['wt_school']);
-$wt_specialty = ($_POST['wt_specialty']);;
+$wt_specialty = ($_POST['wt_specialty']);
 $wt_stadium = ($_POST['wt_stadium']);
 $wt_streetCap = ($_POST['wt_streetCap']);
 $wt_street = ($_POST['wt_street']);
@@ -150,8 +150,14 @@ if($none == "NONE"){
  		if($startTime < $endTime){
  	
  						if($unspecified == "NONE"){
+ 							
+ 								if($wt_otherOne == "OTHER/RESI"){
  									
  									$results = $db->query("
+ 
+ 									SELECT sub6.*
+ 		
+ 										FROM( 
  									
  									 SELECT sub5.*
 	
@@ -195,14 +201,119 @@ if($none == "NONE"){
 										WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
 										or inside_outside = '$outside' or inside_outside IS NULL)
 										
+										)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											or premise IS NULL)
 										
 	
  										;");
+ 									}else{
+ 										$results = $db->query("
+ 
+ 									SELECT sub6.*
+ 		
+ 										FROM( 
+ 									
+ 									 SELECT sub5.*
+	
+ 										FROM( SELECT sub4.*
+ 
+ 										FROM (SELECT sub3.*
+  
+  
+  									FROM (SELECT sub2.* 
+  
+  									FROM ( SELECT sub.* 
+  
+  									FROM (
+  			 										SELECT * 
+  			 										FROM mydb 
+  			 										WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
+  					 								='$knife' or weapon ='$firearm' or weapon IS NULL)
+  													)sub
+  					
+  											WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
+  											= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
+  											'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
+  											'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
+  											'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
+  											'$shooting' or sub.description IS NULL)
+  									)sub2
+										WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
+										sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
+ 										or sub2.district = '$northWestern' or sub2.district IS NULL)
+ 			
+ 										)sub3
+ 			
+										WHERE(crimedate >= '$startDate' and crimedate <= '$endDate' )
+			
+										)sub4
+				
+										WHERE(crimetime >= '$startTime' and crimetime <= '$endTime')
+				
+										)sub5
+			
+										WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
+										or inside_outside = '$outside' or inside_outside IS NULL)
+										
+										)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											)
+										
+	
+ 										;");
+ 									}
  										
  										
  								}else{
  				
+ 									if($wt_otherOne == "OTHER/RESI"){
  											$results = $db->query("
+ 											SELECT sub6.*
+ 		
+ 										FROM( 
  											SELECT sub5.*
 	
  											FROM( SELECT sub4.*
@@ -245,70 +356,124 @@ if($none == "NONE"){
 										WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
 										or inside_outside = '$outside')
 										
+										)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											or premise IS NULL)
+										
 										
 					
  									;");
+ 									
+ 								}else{
+ 									$results = $db->query("
+ 											SELECT sub6.*
+ 		
+ 										FROM( 
+ 											SELECT sub5.*
+	
+ 											FROM( SELECT sub4.*
+ 
+ 											FROM (SELECT sub3.*
+  
+  
+  										FROM (SELECT sub2.* 
+  
+  										FROM ( SELECT sub.* 
+  
+  										FROM (
+  			 												SELECT * 
+  			 												FROM mydb 
+  			 												WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
+  					 										='$knife' or weapon ='$firearm' or weapon IS NULL)
+  															)sub
+  					
+  													WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
+  													= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
+  													'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
+  													'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
+  														'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
+  															'$shooting' or sub.description IS NULL)
+  											)sub2
+												WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
+												sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
+ 												or sub2.district = '$northWestern' or sub2.district IS NULL)
+ 			
+ 											)sub3
+ 					
+										WHERE(crimedate >= '$startDate' and crimedate <= '$endDate' )
+			
+										)sub4
+		
+										WHERE(crimetime >= '$startTime' and crimetime <= '$endTime')
+			
+										)sub5
+			
+										WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
+										or inside_outside = '$outside')
+										
+										)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											)
+										
+										
+					
+ 									;");
+ 								}
  							}
  					
  		}else{
  	
  				if($unspecified == "NONE"){
+ 					
+ 						if($wt_otherOne == "OTHER/RESI"){
  
  										$results = $db->query("
  		
- 										
+ 										SELECT sub6.*
  		
- 										SELECT sub5.*
-	
- 										FROM( SELECT sub4.*
- 
- 										FROM (SELECT sub3.*
-  
-  
-  									FROM (SELECT sub2.* 
-  
-  									FROM ( SELECT sub.* 
-  	
-  										FROM (
-  			 										SELECT * 
-  			 										FROM mydb 
-  			 										WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
-  							 						='$knife' or weapon ='$firearm' or weapon IS NULL)
-  													)sub
-  			
-  											WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
-  											= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
-  											'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
-  											'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
-  											'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
-  											'$shooting' or sub.description IS NULL)
-  											)sub2
-											WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
-											sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
- 											or sub2.district = '$northWestern' or sub2.district IS NULL)
- 			
- 											)sub3
- 			
-											WHERE(crimedate >= '$startDate' and crimedate <= '$endDate' )
-			
-											)sub4
-		
-											WHERE(crimetime >= '$startTime' or crimetime <= '$endTime')
-			
-											)sub5
-			
-											WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
-											or inside_outside = '$outside' or inside_outside IS NULL)
- 												;");
- 												
- 												/*
- 										$results = $db->query("
- 										
- 										SELECT sub7.*
- 		
- 										FROM( SELECT sub6.*
-
-										FROM( SELECT sub5.*
+ 										FROM( SELECT sub5.*
 	
  										FROM( SELECT sub4.*
  
@@ -351,26 +516,115 @@ if($none == "NONE"){
 											or inside_outside = '$outside' or inside_outside IS NULL)
 											
 											)sub6
-										
-										WHERE(neighborhood = '$berea' or neighborhood = '$cherryHill' or neighborhood = '$dorchester' or
-										neighborhood = '$ellwoodPark' or neighborhood = '$fairfield' or neighborhood = '$greenmont' or
-										neighborhood = '$orangeville' or neighborhood = '$madison' or neighborhood = '$pulaski' or
-										neighborhood = '$rosemont') 
-										
-										)sub7
-										
-										WHERE(neighborhood <> '$berea' and neighborhood <> '$cherryHill' and neighborhood <> '$dorchester' and
-										neighborhood <> '$ellwoodPark' and neighborhood <> '$fairfield' and neighborhood <> '$greenmont' and
-										neighborhood <> '$orangeville' and neighborhood <> '$madison' and neighborhood <> '$pulaski' and
-										neighborhood <> '$rosemont')
-										
-										
-										
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											or premise IS NULL)
  												;");
- 							*/
+ 												
+ 											}else{
+ 												
+ 												$results = $db->query("
+ 		
+ 										SELECT sub6.*
+ 		
+ 										FROM( SELECT sub5.*
+	
+ 										FROM( SELECT sub4.*
+ 
+ 										FROM (SELECT sub3.*
+  
+  
+  									FROM (SELECT sub2.* 
+  
+  									FROM ( SELECT sub.* 
+  	
+  										FROM (
+  			 										SELECT * 
+  			 										FROM mydb 
+  			 										WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
+  							 						='$knife' or weapon ='$firearm' or weapon IS NULL)
+  													)sub
+  			
+  											WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
+  											= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
+  											'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
+  											'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
+  											'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
+  											'$shooting' or sub.description IS NULL)
+  											)sub2
+											WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
+											sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
+ 											or sub2.district = '$northWestern' or sub2.district IS NULL)
+ 			
+ 											)sub3
+ 			
+											WHERE(crimedate >= '$startDate' and crimedate <= '$endDate' )
+			
+											)sub4
+		
+											WHERE(crimetime >= '$startTime' or crimetime <= '$endTime')
+			
+											)sub5
+			
+											WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
+											or inside_outside = '$outside' or inside_outside IS NULL)
+											
+											)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent')
+ 												;");
+ 												
+ 											}
+ 												
+ 											
  							}else{
  							
+ 							
+ 									if($wt_otherOne == "OTHER/RESI"){
  											$results = $db->query("
+ 											SELECT sub6.*
+ 		
+ 										FROM( 
  		
  											SELECT sub5.*
 	
@@ -413,7 +667,107 @@ if($none == "NONE"){
 			
 										WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
 										or inside_outside = '$outside')
+										
+										)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											or premise IS NULL)
  										;");
+ 										
+ 									}else{
+ 										$results = $db->query("
+ 											SELECT sub6.*
+ 		
+ 										FROM( 
+ 		
+ 											SELECT sub5.*
+	
+ 											FROM( SELECT sub4.*
+ 
+ 											FROM (SELECT sub3.*
+  
+  
+  										FROM (SELECT sub2.* 
+  
+  										FROM ( SELECT sub.* 
+  
+  										FROM (
+  			 										SELECT * 
+  			 										FROM mydb 
+  			 										WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
+  							 						='$knife' or weapon ='$firearm' or weapon IS NULL)
+  													)sub
+  			
+  											WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
+  											= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
+  											'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
+  											'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
+  											'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
+  											'$shooting' or sub.description IS NULL)
+  									)sub2
+										WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
+										sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
+ 										or sub2.district = '$northWestern' or sub2.district IS NULL)
+ 			
+ 										)sub3
+ 			
+										WHERE(crimedate >= '$startDate' and crimedate <= '$endDate' )
+			
+										)sub4
+		
+										WHERE(crimetime >= '$startTime' or crimetime <= '$endTime')
+			
+										)sub5
+			
+										WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
+										or inside_outside = '$outside')
+										
+										)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											)
+ 										;");
+ 									}
  						}
 			}
  //$results = $db->query("SELECT * FROM mydb;");
@@ -422,7 +776,12 @@ if($none == "NONE"){
 	if($startTime < $endTime){
 		
 		if($unspecified == "NONE"){
+			
+			if($wt_otherOne == "OTHER/RESI"){
  		$results = $db->query("
+ 		SELECT sub6.*
+ 		
+ 										FROM( 
  		
  		SELECT sub5.*
 	
@@ -464,10 +823,115 @@ if($none == "NONE"){
 			
 			WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
 						or inside_outside = '$outside' or inside_outside IS NULL)
+						
+						)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											or premise IS NULL)
  							;");
  							
  						}else{
  							$results = $db->query("
+ 		SELECT sub6.*
+ 		
+ 										FROM( 
+ 		
+ 		SELECT sub5.*
+	
+ 		FROM( SELECT sub4.*
+ 
+ 		FROM (SELECT sub3.*
+  
+  
+  		FROM (SELECT sub2.* 
+  
+ 				 FROM ( SELECT sub.* 
+  
+  						FROM (
+  			 						SELECT * 
+  			 						FROM mydb 
+  			 						WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
+  									 ='$knife' or weapon ='$firearm')
+  							)sub
+  			
+  							WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
+  							= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
+  							'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
+  							'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
+  							'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
+  							'$shooting' or sub.description IS NULL)
+ 				 )sub2
+				WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
+				sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
+				 or sub2.district = '$northWestern' or sub2.district IS NULL)
+				 
+				 )sub3
+ 			
+			WHERE(crimedate >= '$startDate' and crimedate <= '$endDate' )
+			)sub4
+		
+			WHERE(crimetime >= '$startTime' and crimetime <= '$endTime')
+			
+			)sub5
+			
+			WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
+						or inside_outside = '$outside' or inside_outside IS NULL)
+						
+						)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											)
+ 							;");
+ 						}
+ 							
+ 						}else{
+ 							
+ 							if($wt_otherOne == "OTHER/RESI"){
+ 								
+ 							$results = $db->query("
+ 							SELECT sub6.*
+ 		
+ 										FROM( 
  							SELECT sub5.*
 	
  		FROM( SELECT sub4.*
@@ -508,14 +972,117 @@ if($none == "NONE"){
 			
 			WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
 						or inside_outside = '$outside')
+						
+						)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											or premise IS NULL)
  							;");
+ 							
+ 						}else{
+ 							$results = $db->query("
+ 							SELECT sub6.*
+ 		
+ 										FROM( 
+ 							SELECT sub5.*
+	
+ 		FROM( SELECT sub4.*
+ 
+ 		FROM (SELECT sub3.*
+  
+  
+  		FROM (SELECT sub2.* 
+  
+ 				 FROM ( SELECT sub.* 
+  
+  						FROM (
+  			 						SELECT * 
+  			 						FROM mydb 
+  			 						WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
+  									 ='$knife' or weapon ='$firearm')
+  							)sub
+  			
+  							WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
+  							= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
+  							'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
+  							'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
+  							'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
+  							'$shooting' or sub.description IS NULL)
+ 				 )sub2
+				WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
+				sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
+				 or sub2.district = '$northWestern' or sub2.district IS NULL)
+				 
+				 )sub3
+ 			
+			WHERE(crimedate >= '$startDate' and crimedate <= '$endDate' )
+			)sub4
+		
+			WHERE(crimetime >= '$startTime' and crimetime <= '$endTime')
+			
+			)sub5
+			
+			WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
+						or inside_outside = '$outside')
+						
+						)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											)
+ 							;");
+ 						}
  						}
  							
  	}else{
  		
  		if($unspecified == "NONE"){
  			
+ 			if($wt_otherOne == "OTHER/RESI"){
+ 			
  		$results = $db->query("
+ 		SELECT sub6.*
+ 		
+ 										FROM( 
  		
  		SELECT sub5.*
 	
@@ -557,10 +1124,116 @@ if($none == "NONE"){
 			
 			WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
 						or inside_outside = '$outside' or inside_outside IS NULL)
+						
+						)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											or premise IS NULL)
  							;");
  							
  						}else{
  							$results = $db->query("
+ 		SELECT sub6.*
+ 		
+ 										FROM( 
+ 		
+ 		SELECT sub5.*
+	
+ 		FROM( SELECT sub4.*
+ 
+ 		FROM (SELECT sub3.*
+  
+  
+ 	 		FROM (SELECT sub2.* 
+  
+ 				 FROM ( SELECT sub.* 
+  
+  						FROM (
+  			 						SELECT * 
+  			 						FROM mydb 
+  			 						WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
+  									 ='$knife' or weapon ='$firearm')
+  							)sub
+  			
+  							WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
+  							= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
+  							'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
+  							'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
+  							'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
+  							'$shooting' or sub.description IS NULL)
+ 				 )sub2
+				WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
+				sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
+				 or sub2.district = '$northWestern' or sub2.district IS NULL)
+				 
+				 )sub3
+ 			
+			WHERE(crimedate >= '$startDate' and crimedate <= '$endDate' )
+			)sub4
+		
+			WHERE(crimetime >= '$startTime' or crimetime <= '$endTime')
+			
+			)sub5
+			
+			WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
+						or inside_outside = '$outside' or inside_outside IS NULL)
+						
+						)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											)
+ 							;");
+ 							
+ 						}
+ 							
+ 						}else{
+ 							
+ 							if($wt_otherOne == "OTHER/RESI"){
+ 								
+ 							$results = $db->query("
+ 							SELECT sub6.*
+ 		
+ 										FROM( 
  		
  		SELECT sub5.*
 	
@@ -602,7 +1275,106 @@ if($none == "NONE"){
 			
 			WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
 						or inside_outside = '$outside')
+						
+						)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											or premise IS NULL)
  							;");
+ 							
+ 						}else{
+ 							$results = $db->query("
+ 							SELECT sub6.*
+ 		
+ 										FROM( 
+ 		
+ 		SELECT sub5.*
+	
+ 		FROM( SELECT sub4.*
+ 
+ 		FROM (SELECT sub3.*
+  
+  
+ 	 		FROM (SELECT sub2.* 
+  
+ 				 FROM ( SELECT sub.* 
+  
+  						FROM (
+  			 						SELECT * 
+  			 						FROM mydb 
+  			 						WHERE(weapon ='$other'or  weapon = '$hands' or weapon 
+  									 ='$knife' or weapon ='$firearm')
+  							)sub
+  			
+  							WHERE (sub.description = '$aggAssault' or sub.description = '$arson' or sub.description
+  							= '$assaultByThreat' or sub.description = '$autoTheft' or sub.description = '$burglary' or sub.description = 
+  							'$commonAssault' or sub.description = '$homicide' or sub.description = '$larceny' or sub.description = 
+  							'$larcenyAuto' or sub.description = '$rape' or sub.description = '$robberyStreet' or sub.description = 
+  							'$robberyCar' or sub.description = '$robberyCom' or sub.description = '$robberyRes' or sub.description = 
+  							'$shooting' or sub.description IS NULL)
+ 				 )sub2
+				WHERE (sub2.district ='$central' or sub2.district = '$western' or sub2.district = '$northEastern' or sub2.district = '$southWestern' or 
+				sub2.district = '$southEastern' or sub2.district = '$southern' or sub2.district = '$northern' or sub2.district = '$eastern'
+				 or sub2.district = '$northWestern' or sub2.district IS NULL)
+				 
+				 )sub3
+ 			
+			WHERE(crimedate >= '$startDate' and crimedate <= '$endDate' )
+			)sub4
+		
+			WHERE(crimetime >= '$startTime' or crimetime <= '$endTime')
+			
+			)sub5
+			
+			WHERE(inside_outside = '$insideOne' or inside_outside = '$inside' or inside_outside = '$outsideOne'
+						or inside_outside = '$outside')
+						
+						)sub6
+											
+											WHERE( premise = '$wt_alley' or premise = '$wt_apt' or premise = '$wt_aptTwo' or
+											premise = '$wt_atm' or premise = '$wt_bank' or premise ='$wt_bar' or premise =
+											'$wt_barber' or premise = '$wt_bridge' or premise = '$wt_bus' or premise ='$wt_busTwo'
+											or premise = '$wt_auto' or premise = '$wt_busThree' or premise = '$wt_busFour' or
+											premise = '$wt_carry' or premise = '$wt_conv' or premise = '$wt_cloth' or
+											premise = '$wt_shop' or premise = '$wt_court' or premise = '$wt_dept' or
+											premise = '$wt_driveway' or premise = '$wt_drug' or premise = '$wt_dwelling'
+											or premise = '$wt_fast' or premise = '$wt_fire' or premise = '$wt_garage' or
+											premise = '$wt_garageTwo' or premise = '$wt_gas' or premise = '$wt_grocery' or
+											premise = '$wt_home' or premise = '$wt_hosp' or premise = '$wt_hotel' or premise =
+											'$wt_laundry' or premise = '$wt_lightRail' or premise = '$wt_liquor' or premise =
+											'$wt_market' or premise = '$wt_office' or premise = '$wt_rec' or premise = 
+											'$wt_religious' or premise = '$wt_retail' or premise = '$wt_rest' or premise =
+											'$wt_row' or premise = '$wt_park' or premise = '$wt_parking' or premise = 
+											'$wt_parkingTwo' or premise = '$wt_play' or premise = '$wt_porch' or premise =
+											'$wt_publ' or premise = '$wt_publTwo' or premise = '$wt_school' or premise = 
+											'$wt_specialty' or premise = '$wt_stadium' or premise = '$wt_streetCap' or 
+											premise = '$wt_street' or premise = '$wt_subway' or premise = '$wt_vac' or premise =
+											'$wt_war' or premise = '$wt_whole' or premise = '$wt_yard' or premise = '$wt_yardTwo' 
+											or premise = '$wt_otherOne' or premise = '$wt_otherTwo' or premise = 
+											'$wt_otherThree'  or premise = '$wt_otherFour' or premise = '$wt_rent'
+											)
+ 							;");
+ 						}
  						}
  		
 	}
