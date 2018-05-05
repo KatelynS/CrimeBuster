@@ -203,6 +203,7 @@ function updateMap(crimes, myMarkers) {
 	//console.log(typeof markers);
 	var locs = new Array();
 	var tips = new Array();
+	var dot = new Array();
 	for(var i = 0; i < crimes.length; i++)
 	{
 		//console.log(crimes[i]);
@@ -214,6 +215,66 @@ function updateMap(crimes, myMarkers) {
 		var time = loc[3];
 		var date = loc[4].substring(0, 10);
 		var crimeID = loc[0]+':'+loc[1];
+		
+		/*
+		if(crime.includes("BURGLARY")) {
+				console.log("I WISH TO REPORT A BURGLARY!!!");
+				dot.push("images/blue.png");
+		}
+		else {
+			
+		}
+		*/
+		switch (crime) {
+			case "AGG. ASSAULT":
+				 console.log("Agg. Assault");
+				 dot.push("images/black.png");
+			break;
+			case "ARSON":
+				 dot.push("images/orange.png");
+			break;
+			case "ASSAULT BY THREAT":
+				 dot.push("images/white.png");
+			break;
+			case "AUTO THEFT":
+				 dot.push("images/yellow.png");
+			break;
+			case "BURGLARY":
+				 dot.push("images/blue.png");
+			break;
+			case "COMMON ASSAULT":
+				 dot.push("images/gray.png");
+			break;
+			case "HOMICIDE":
+				 dot.push("images/red.png");
+			break;
+			case "LARCENY":
+				 dot.push("images/pink.png");
+			break;
+			case "LARCENY FROM AUTO":
+				 dot.push("images/magenta.png");
+			break;
+			case "RAPE":
+				 dot.push("images/brown.png");
+			break;
+			case "ROBBERY - STREET":
+				 dot.push("images/lime.png");
+			break;
+			case "ROBBERY - CARJACKING":
+				 dot.push("images/green.png");
+			break;
+			case "ROBBERY - COMMERCIAL":
+				 dot.push("images/teal.png");
+			break;
+			case "ROBBERY - RESIDENCE":
+				 dot.push("images/cyan.png");
+			break;
+			case "SHOOTING":
+				 dot.push("images/purple.png");
+			break;
+			default:
+				dot.push("images/null.png");
+		}
 		locs.push({lat: lat, lng: lng});
 		tips.push('<div id="content">'+
 			'<div id="siteNotice">'+
@@ -227,11 +288,13 @@ function updateMap(crimes, myMarkers) {
 			'<button onclick="viewComments()">View comments</button></p>' +
 			'</div>'+
 			'</div>');
+
 	}
 	markers = locs.map(function(loc, i) {
 		var marker = new google.maps.Marker({
 			position: loc,
-			map: map
+			map: map,
+			icon: dot[i]
 			});
 		marker.addListener('click', function() {
 			info.setContent(tips[i]);
