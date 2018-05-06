@@ -1,4 +1,5 @@
 <?PHP
+//index.php
 //php code stuff as setting up db and stuff goes here
 
 $db = new SQLite3('db/mydb.db');
