@@ -1674,6 +1674,9 @@ function clearSideBar(clicked_id){
 		document.getElementById('I_O').checked=false;
 	}else if(clicked_id == "neighborhood"){
 		document.getElementById('neighborhood').checked=false;
+	}else if(clicked_id == "timePicker"){
+		document.getElementById("StartDate").value = "0000-00-00";
+		document.getElementById("EndDate").value = "0000-00-00";	
 	}
 	
 	updateSideBar(clicked_id);
@@ -1695,8 +1698,9 @@ function selectAllSideBar(clicked_id){
 		document.getElementById('location_Premise').checked=true;
 		updateSideBar('location_Premise');
 	
-		document.getElementById("daterange").value = "01/01/2010 0:00 AM - 12/31/2018 0:00 PM";
-		
+		//document.getElementById("daterange").value = "01/01/2010 0:00 AM - 12/31/2018 0:00 PM";
+		document.getElementById("StartDate").value = "2010-01-01";
+		document.getElementById("EndDate").value = "2018-05-01";
 
 		document.getElementById('I_O').checked=true;
 		updateSideBar('I_O');
@@ -1725,8 +1729,9 @@ function clearAllSideBar(clicked_id){
 		document.getElementById('location_Premise').checked=false;
 		updateSideBar('location_Premise');
 	
-		document.getElementById("daterange").value = "00/00/0000 0:00 AM - 00/00/0000 0:00 PM";
-		
+		//document.getElementById("StartDate").value = "00/00/0000 0:00 AM - 00/00/0000 0:00 PM";
+		document.getElementById("StartDate").value = "0000-00-00";
+		document.getElementById("EndDate").value = "0000-00-00";
 
 		document.getElementById('I_O').checked=false;
 		updateSideBar('I_O');
@@ -1831,7 +1836,7 @@ function showEltBlank(eltId) {
     </div>
     <hr> -->
     <div class="w3-container">
-      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Geo</a> -->
+      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Geo</a> -->
       <h3>Filters </h3>
       <h4><span style='color:#000000;font-size:24px' id='numCrimesPerFilter'>[0]</span> Resulting Crimes</h4>
     </div>
@@ -1839,9 +1844,9 @@ function showEltBlank(eltId) {
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>Close Menu</a>
  
       
-      <!-- <label class=container>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ <b>Weapon Filter</b> </label> -->
+      <!-- <label class=container>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ <b>Weapon Filter</b> </label> -->
       <!--
-      <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Filter</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Filter</a>
       <div id="weaponFilterDiv" class ="w3-padding-large">
         <label class=container> One<input type = "checkbox" ><span class="checkmark"></span></label> <!-- <input type = "checkbox" checked="checked"> -->
         <!--
@@ -1852,16 +1857,16 @@ function showEltBlank(eltId) {
     -->
 
   <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
-     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Crime Type</a>-->
+     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Crime Type</a>-->
 
      <hr>
      
-     <label class=container>  &nbsp </span> <button type="button" name="selectAllButton" class="selectButton" id ="selectAll" onclick="selectAllSideBar(id)";>Select All</button>  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </span> <button type="button" name="clearAllButton" class="clearAllButton" id ="clearAll" onclick="clearAllSideBar(id)";>Clear All</button></label>
+     <label class=container>  &nbsp </span> <button type="button" name="selectAllButton" class="selectButton" id ="selectAll" onclick="selectAllSideBar(id)";>Select All</button>  &nbsp&nbsp </span> <button type="button" name="clearAllButton" class="clearAllButton" id ="clearAll" onclick="clearAllSideBar(id)";>Clear All</button></label>
     
       </div>
     <hr>
     
-     <label class = container> <img src="images/qBlueSmaller.png" width='16' height='16' onClick="openTimeLinePopUp();" /> Time Picker&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <button type="button" name="clearButton" class="clearButton" id ="timePicker" onclick="clearSideBar(id)";>Clear</button></label>
+     <label class = container> <img src="images/qBlueSmaller.png" width='16' height='16' onClick="openTimeLinePopUp();" /> Filter by date range:&nbsp&nbsp&nbsp </label>
      <!--<input type="text" id="daterange" name="daterange" size = "31" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
  
 	<script type="text/javascript">
@@ -1883,7 +1888,7 @@ function showEltBlank(eltId) {
 	<hr>
 
 	<hr>
-	<label class = container> Time Range for each day</label>
+	<label class = container> Filter by time of day:</label>
 	<div style = "margin-bottom: 5px"> &nbsp&nbsp&nbsp Start time: &nbsp&nbsp <input type="time" id="StartTime" onchange="updateSideBar(id);" value="00:00:00"></div>
 	<div> &nbsp&nbsp&nbsp End time:  &nbsp&nbsp&nbsp&nbsp<input type="time" id="EndTime"  onchange="updateSideBar(id);" value="00:00:00"></div>
 	<hr>
@@ -1917,7 +1922,7 @@ function showEltBlank(eltId) {
     <hr>
   <!-- side panel for options of weapon type -->
 
-      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Type</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Type</a>-->
       <label class=container> &nbsp Weapon Type &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="weapon_type" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="weapon_type" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="weaponTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Firearm <input id ="weapon_firearm" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1928,7 +1933,7 @@ function showEltBlank(eltId) {
       </div>
       <hr>
       <!-- side panel for district, I will only list 4 for now, but we need to determine if we will list all 8+ -->
-      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  District</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  District</a>-->
       <label class=container> &nbsp District &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="district" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="district" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
         <label class=container> &nbsp Northern <input id ="district_north" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1975,7 +1980,7 @@ function showEltBlank(eltId) {
       <hr>
       
       <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
-        <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Location/Premise</a>-->
+        <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Location/Premise</a>-->
         <label class=container> &nbsp Premise &nbsp&nbsp&nbsp&nbsp&nbsp <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="location_Premise" onclick="clearSideBar(id);">Clear</button></label>
         <div id="locationTypeDiv" class ="w3-padding-large">
         	<label class=container> &nbsp Alley <input id ="premise_Alley" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -2031,9 +2036,9 @@ function showEltBlank(eltId) {
         
         </div>
         <hr>
-      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  News</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  General</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  History</a> -->
+      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  News</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  General</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  History</a> -->
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>Settings</a><br><br>
     </div>
   </nav>
