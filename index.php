@@ -630,7 +630,7 @@ function updateSideBar(clicked_id){
 	
 	//if(clicked_id=="daterange"){
 	//	console.log("Date picker calls function");
-		var dateSelect = 	document.getElementById("daterange").value;
+	/*	var dateSelect = 	document.getElementById("daterange").value;
 	//	console.log(dateSelect);
 		
 		var initSplit = dateSelect.split(' ');
@@ -672,7 +672,7 @@ function updateSideBar(clicked_id){
 	//	console.log(correctEndTime);
 		
 	//}
-	
+
 	if(clicked_id == "weapon_type"){
 		if (document.getElementById('weapon_type').checked) {
 			document.getElementById("weapon_firearm").checked = true;
@@ -1045,11 +1045,26 @@ function updateSideBar(clicked_id){
 	
 	
 	//date / time
-	var wt_StartDate = correctStartDate;
-	var wt_EndDate = correctEndDate;
-	var wt_StartTime = correctStartTime;
-	var wt_EndTime = correctEndTime;
-	
+	var wt_StartDate;
+	var wt_EndDate;
+	//var wt_StartDate = correctStartDate;
+	//var wt_EndDate = correctEndDate;
+	//var wt_StartTime = correctStartTime;
+	//var wt_EndTime = correctEndTime;
+	var sd = document.getElementById("StartDate").value;
+	var ed = document.getElementById("EndDate").value;
+	var StartDate = new Date(sd);
+	var EndDate = new Date(ed);
+	if (StartDate > EndDate){
+		alert("Please select valid dates.");
+	}
+	else {
+		wt_StartDate = sd;
+		wt_EndDate = ed;
+	}
+	console.log(wt_StartDate);
+
+
 	var startTime = document.getElementById("StartTime").value;
   var endTime = document.getElementById("EndTime").value;
 	
@@ -1847,7 +1862,7 @@ function showEltBlank(eltId) {
     <hr>
     
      <label class = container> <img src="images/qBlueSmaller.png" width='16' height='16' onClick="openTimeLinePopUp();" /> Time Picker&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <button type="button" name="clearButton" class="clearButton" id ="timePicker" onclick="clearSideBar(id)";>Clear</button></label>
-     <input type="text" id="daterange" name="daterange" size = "31" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
+     <!--<input type="text" id="daterange" name="daterange" size = "31" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
  
 	<script type="text/javascript">
 		$(function() {
@@ -1859,14 +1874,18 @@ function showEltBlank(eltId) {
         		}
     		});
 		});
-	</script>
+	</script> -->
+
+	<div style = "margin-bottom: 5px"> &nbsp&nbsp Start Date: &nbsp&nbsp <input type="date" id="StartDate" onchange="updateSideBar(id);" value="2010-01-01"></div>
+
+	<div> &nbsp&nbsp End Date:  &nbsp&nbsp&nbsp&nbsp<input type="date" id="EndDate"  onchange="updateSideBar(id);" value="2018-05-01"></div>
+
+	<hr>
 
 	<hr>
 	<label class = container> Time Range for each day</label>
 	<div style = "margin-bottom: 5px"> &nbsp&nbsp&nbsp Start time: &nbsp&nbsp <input type="time" id="StartTime" onchange="updateSideBar(id);" value="00:00:00"></div>
 	<div> &nbsp&nbsp&nbsp End time:  &nbsp&nbsp&nbsp&nbsp<input type="time" id="EndTime"  onchange="updateSideBar(id);" value="00:00:00"></div>
-	
-
 	<hr>
 	<!--
 	<label class=container>  &nbsp </span> <button type="button" name="clearButton" class="clearButton" id ="selectAll" onclick="selectAllSideBar(id)";>Select All</button></label>
