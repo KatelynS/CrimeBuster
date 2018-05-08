@@ -904,6 +904,194 @@ function hs_updateBarGraph(Data, bCType){
 	
 }
 
+//sm update bar graph
+function hs_updateBarGraph_stack(Data, bCType){
+	console.log("In hs_updateBarGraph -stack data is");
+	console.log(Data);
+	
+	
+	if(bCType=="districtBC"){
+		
+		Highcharts.chart('chart_highChart_stack', {
+		  chart: {
+		    type: 'bar'
+		  },
+		  title: {
+		    text: 'Crimes By District'
+		  },
+		  xAxis: {
+		    categories: ['Northern', 'Southern', 'Eastern', 'Western', 'Central', 'N. Eastern', 'N. Western', 'S. Eastern', 'S. Western'],
+		   
+		  },
+		  yAxis: {
+		    min: 0,
+		    title: {
+		      text: 'Number of Incidents'
+		    }
+		  },
+		  legend: {
+		    reversed: true
+		  },
+		  tooltip: {
+		    valueSuffix: ' Crimes'
+		  },
+		  plotOptions: {
+		    series: {
+		      stacking: 'normal'
+		    }
+		  },
+		  series: [{
+		    name: 'Year 2012',
+		    data: Data[0]
+		  }, {
+		    name: 'Year 2013',
+		    data: Data[1]
+		  }, {
+		    name: 'Year 2014',
+		    data: Data[2]
+		  }, {
+		    name: 'Year 2015',
+		    data: Data[3]
+		  },
+		  
+		  {
+		    name: 'Year 2016',
+		    data: Data[4]
+		  },
+		  {
+		    name: 'Year 2017',
+		    data: Data[5]
+		  },
+		  {
+		    name: 'Year 2018',
+		    data: Data[6]
+		  }]
+		});
+	}
+	
+	else if(bCType=="crimeBC"){
+		
+Highcharts.chart('chart_highChart_stack', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: 'Crimes By CrimeType(Description)'
+  },
+  xAxis: {
+    categories: ['AGG. Assault', 'Arson', 'ASL Threat', 'Auto Theft', 'Burglary', 'Common ASL', 'Homicide', 'Larceny', 'Larceny Auto', 'Rape', 'Robb-Street', 'Robb-Carjacking', 'Robb-Commercial', 'Robb-Residence', 'Shooting'],
+    
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Number of Incidents'
+    }
+  },
+  legend: {
+    reversed: true
+  },
+  tooltip: {
+    valueSuffix: ' Crimes'
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal'
+    }
+  },
+  series: [{
+    name: 'Year 2012',
+    data: Data[0]
+  }, {
+    name: 'Year 2013',
+    data: Data[1]
+  }, {
+    name: 'Year 2014',
+    data: Data[2]
+  }, {
+    name: 'Year 2015',
+    data: Data[3]
+  },
+  
+  {
+    name: 'Year 2016',
+    data: Data[4]
+  },
+  {
+    name: 'Year 2017',
+    data: Data[5]
+  },
+  {
+    name: 'Year 2018',
+    data: Data[6]
+  }]
+});
+	}
+	
+	else if(bCType=="weaponBC"){
+		
+		Highcharts.chart('chart_highChart_stack', {
+		  chart: {
+		    type: 'bar'
+		  },
+		  title: {
+		    text: 'Crimes with Weapons'
+		  },
+		  xAxis: {
+		    categories: ['Firearm', 'Hands', 'Knife', 'Other', 'No Weapon'],
+		  },
+		  yAxis: {
+		    min: 0,
+		    title: {
+		      text: 'Number of Incidents'
+		    }
+		  },
+		  legend: {
+		    reversed: true
+		  },
+		  tooltip: {
+		    valueSuffix: ' Crimes'
+		  },
+		  plotOptions: {
+		    series: {
+		      stacking: 'normal'
+		    }
+		  },
+		  series: [{
+		    name: 'Year 2012',
+		    data: Data[0]
+		  }, {
+		    name: 'Year 2013',
+		    data: Data[1]
+		  }, {
+		    name: 'Year 2014',
+		    data: Data[2]
+		  }, {
+		    name: 'Year 2015',
+		    data: Data[3]
+		  },
+		  
+		  {
+		    name: 'Year 2016',
+		    data: Data[4]
+		  },
+		  {
+		    name: 'Year 2017',
+		    data: Data[5]
+		  },
+		  {
+		    name: 'Year 2018',
+		    data: Data[6]
+		  }]
+		});
+	}
+	
+
+	
+	
+	
+}
+
 //manipilation of side bar
 function updateSideBar(clicked_id){
 	
@@ -2002,6 +2190,7 @@ function updateSideBar(clicked_id){
 				//updateBarGraph(data, bCType);
 				console.log("Calling the updated charts");
 				hs_updateBarGraph(data, bCType);
+				hs_updateBarGraph_stack(data, bCType);
 		
 			}//inner handler
 	
@@ -2487,6 +2676,10 @@ function showEltBlank(eltId) {
     <!-- <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div> -->
     
     <div id="chart_highChart"></div>
+    
+     <br><p>Other Charts - > Stacked Chart</p><br>
+     
+     <div id="chart_highChart_stack"></div>
 
  
   </div>
