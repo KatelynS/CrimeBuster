@@ -879,7 +879,7 @@ function updateSideBar(clicked_id){
 			
 		}
 	}
-	
+	/*
   if(clicked_id == "neighborhood"){
 		if (document.getElementById('neighborhood').checked) {
 			document.getElementById("fairfield").checked = true;
@@ -910,7 +910,7 @@ function updateSideBar(clicked_id){
 			
 		}
 	}
-	
+	*/
 	
   //weapons
   var wt_Other="n/a";
@@ -1254,7 +1254,7 @@ function updateSideBar(clicked_id){
   		//console.log("FIREARM");
   	}
   	
-	
+	/*
 	if(document.getElementById('berea').checked) {
   		wt_berea = "Berea";
   	}
@@ -1288,7 +1288,7 @@ function updateSideBar(clicked_id){
   	if(document.getElementById('neigh_other').checked) {
   		wt_neighOther="NONE";
   	}
-  
+  */
   //firearm
   
   //if(clicked_id=="weapon_firearm"||clicked_id=="weapon_hands"||clicked_id=="weapon_knife"||clicked_id=="weapon_other"){
@@ -1960,7 +1960,7 @@ function showEltBlank(eltId) {
         </div>
       <hr>
       
-      
+      <!--
        <label class=container> &nbsp Neighborhood &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="neighborhood" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="neighborhood" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
       	<label class=container> &nbsp Berea <input id ="berea" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -1978,7 +1978,7 @@ function showEltBlank(eltId) {
         
       </div>
       <hr>
-      
+      -->
       <!-- side panel for location / sourrounding of crime. Note there are alot of options for these. We will need to narrow by alot-->
         <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Location/Premise</a>-->
         <label class=container> &nbsp Premise &nbsp&nbsp&nbsp&nbsp&nbsp <input id ="location_Premise" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="location_Premise" onclick="clearSideBar(id);">Clear</button></label>
