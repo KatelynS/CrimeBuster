@@ -1866,7 +1866,7 @@ function showEltBlank(eltId) {
       </div>
     <hr>
     
-     <label class = container> <img src="images/qBlueSmaller.png" width='16' height='16' onClick="openTimeLinePopUp();" /> Filter by date range:&nbsp&nbsp&nbsp </label>
+     <label class = container>  Filter by date range:&nbsp&nbsp&nbsp </label>
      <!--<input type="text" id="daterange" name="daterange" size = "31" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
  
 	<script type="text/javascript">
@@ -1887,8 +1887,8 @@ function showEltBlank(eltId) {
 
 	<hr>
 
-	<hr>
-	<label class = container> Filter by time of day:</label>
+	
+	<label class = container> <img src="images/qBlueSmaller.png" width='16' height='16' onClick="openTimeLinePopUp();" /> Filter by time of day:</label>
 	<div style = "margin-bottom: 5px"> &nbsp&nbsp&nbsp Start time: &nbsp&nbsp <input type="time" id="StartTime" onchange="updateSideBar(id);" value="00:00:00"></div>
 	<div> &nbsp&nbsp&nbsp End time:  &nbsp&nbsp&nbsp&nbsp<input type="time" id="EndTime"  onchange="updateSideBar(id);" value="00:00:00"></div>
 	<hr>
