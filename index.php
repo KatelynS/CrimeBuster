@@ -2057,22 +2057,22 @@ function showEltBlank(eltId) {
 
     <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-quarter">
-        <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-container w3-dark-grey w3-padding-16">
           <label class=container>&nbsp  Map <input id ="vis_map" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
       <div class="w3-quarter">
-        <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-container w3-dark-grey w3-padding-16">
          <label class=container>&nbsp Charts <input id ="vis_chart" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
       <div class="w3-quarter">
-        <div class="w3-container w3-teal w3-padding-16">
-          <label class=container>&nbsp Heat Map <input id ="vis_heatmap" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
+        <div class="w3-container w3-dark-grey w3-padding-16">
+          <label class=container>&nbsp Heat Chart <input id ="vis_heatmap" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
       <div class="w3-quarter">
-        <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-container w3-dark-grey w3-text-white w3-padding-16">
           <label class=container>&nbsp Data Table <input id ="vis_table" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
@@ -2081,7 +2081,7 @@ function showEltBlank(eltId) {
     <div class="w3-panel" id="mapPanel">
       <div class="w3-row-padding" style="margin:0 -16px">
        <!--	 <div class="w3-half"> -->
-          <h5>Map</h5> <label class=container> &nbsp Cluster Map Markers <input style="background:#000000"  id ="cluster" type = "checkbox" onchange="updateMarkers(id);"> <span class="checkmark"></span></label>
+          <h5>Map   <label class=container> &nbsp Cluster Map Markers <input style="background:#000000"  id ="cluster" type = "checkbox" onchange="updateMarkers(id);"> <span class="checkmark"></span></label> </h5> 
          
   		<div id="map" class="container" style="width:100%;height:800px" alt="Crime map of Baltimore"</div>
   	 <!--	<div id="map" class="fill" alt="Crime map of Baltimore"</div> -->
