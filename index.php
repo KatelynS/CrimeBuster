@@ -623,6 +623,27 @@ function getTwentyFourHourTime(amPmString) {
 	return d.getHours() + ':' + d.getMinutes(); 
 }
 
+function fix2DArray(Data){
+	var myOtherArray = [];
+	
+	for(var x=0; x<Data[0].length; x++){
+		var myInnerArr = [];
+		for(var y =0; y<Data.length; y++){
+			//console.log(Data[y][x]);
+			myInnerArr.push(Data[y][x]);
+			
+			} 
+			//console.log("First ARray about to push");
+			myOtherArray.push(myInnerArr);
+	
+	}
+	
+	console.log("new Array is now");
+	console.log(myOtherArray);
+	
+	return myOtherArray;
+}
+
 //sm update bar graph
 function hs_updateBarGraph(Data, bCType){
 	console.log("In hs_updateBarGraph - data is");
@@ -714,7 +735,7 @@ function hs_updateBarGraph(Data, bCType){
 	
 	else if(bCType=="crimeBC"){
 		console.log(Data[0]);
-		console.log("In chart file - initiate district");
+		console.log("In chart file - initiate crime type");
 		
 		Highcharts.chart('chart_highChart', {
   chart: {
@@ -797,6 +818,8 @@ function hs_updateBarGraph(Data, bCType){
 	}
 	
 	else if(bCType=="weaponBC"){
+		console.log(Data[0]);
+		console.log("In chart file - initiate district");
 		
 		Highcharts.chart('chart_highChart', {
   chart: {
@@ -867,11 +890,11 @@ function hs_updateBarGraph(Data, bCType){
   },
   {
     name: 'Year 2017',
-    data: [0, 0, 0, 0, 0]
+    data: Data[5]
   },
   {
     name: 'Year 2018',
-    data: [0, 0, 0, 0, 0]
+    data: Data[6]
   }]
 });
 
@@ -1737,6 +1760,8 @@ function updateSideBar(clicked_id){
 		    	console.log("should return here Highchart bar charts and such");
 		    	console.log(msg);
 		    	//var bCType = "crimeBC";
+		    	console.log("Calling fix2D array");
+		    	msg = fix2DArray(msg);
 		       handleResponseBChart_hs(msg, "weaponBC");
 		    },
 		    
@@ -2447,9 +2472,9 @@ function showEltBlank(eltId) {
 
      <span style="text-align: center"> Category </span>
      <select id='barChartX' name='barChartX' onchange="updateSideBar(id);">
-		      <option value="" selected='selected'>Please select an option</option>
+		    <!--  <option value="" selected='selected'>Please select an option</option> -->
 		      <option value="crime_Type_barChart" >Crime Type</option>
-          <option value="weapon_Type_barChart" >Weapon Type</option>
+          <option value="weapon_Type_barChart" selected='selected'>Weapon Type</option>
           <option value="district_Type_barChart">District</option>
           
 		      
