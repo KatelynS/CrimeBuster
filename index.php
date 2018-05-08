@@ -90,11 +90,13 @@ $(document).ready(function() {
     document.getElementById("weapon_type").checked = true;
     document.getElementById("district").checked = true;
     document.getElementById("location_Premise").checked = true;
+    document.getElementById("I_O").checked = true;
     
     updateSideBar("crime_type");
     updateSideBar("weapon_type");
     updateSideBar("district");
     updateSideBar("location_Premise");
+    updateSideBar("I_O");
     
     getAuthenticatedUsername();
     
@@ -471,7 +473,7 @@ function heatMapData(Data){
   colorAxis: {
     min: 0,
     minColor: '#FFFFFF',
-    maxColor: Highcharts.getOptions().colors[0]
+    maxColor: Highcharts.getOptions().colors[8]
   },
 
   legend: {
@@ -1622,13 +1624,12 @@ function updateSideBar(clicked_id){
     
 	}//ends if statement
 	function handleResponse(data) {
+   
     // do something with data here, pershaps render map
 
     //console.log("In handle response");
    // console.log(data);
 	//console.log("In handle response markers type is");
-	//console.log(typeof markers);
-	updateMap(data[0], markers);
 	console.log("Before call heatMap ");
 	heatMapData(data[0]);
 	
@@ -1638,6 +1639,10 @@ function updateSideBar(clicked_id){
 	var retStr = "<span style='color:##000000;'>["+crimesCount+"]</span>";
 	//document.getElementById('numCrimesPerFilter').innerHTML="<span style='color:#000000;'>[crimesCount]</span>";
 	document.getElementById('numCrimesPerFilter').innerHTML=retStr;
+	
+	//console.log(typeof markers);
+	console.log("In Handle response before update Map");
+	updateMap(data[0], markers);
 	
 	}
 	
