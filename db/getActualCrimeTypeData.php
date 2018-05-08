@@ -78,7 +78,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -118,7 +118,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -161,7 +161,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -201,7 +201,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -261,7 +261,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -301,7 +301,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -344,7 +344,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -384,7 +384,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -449,7 +449,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -489,7 +489,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -532,7 +532,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -572,7 +572,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -638,7 +638,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -678,7 +678,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -721,7 +721,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -761,7 +761,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -826,7 +826,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -866,7 +866,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -909,7 +909,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -949,7 +949,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1015,7 +1015,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1055,7 +1055,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1098,7 +1098,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1138,7 +1138,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1206,7 +1206,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1246,7 +1246,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1289,7 +1289,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1329,7 +1329,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1395,7 +1395,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1435,7 +1435,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1478,7 +1478,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1518,7 +1518,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1583,7 +1583,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1623,7 +1623,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1666,7 +1666,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1706,7 +1706,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1771,7 +1771,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1811,7 +1811,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1854,7 +1854,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1894,7 +1894,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1959,7 +1959,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -1999,7 +1999,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2042,7 +2042,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2082,7 +2082,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2148,7 +2148,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2188,7 +2188,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2231,7 +2231,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2271,7 +2271,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2333,7 +2333,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2373,7 +2373,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2416,7 +2416,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2456,7 +2456,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2518,7 +2518,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2558,7 +2558,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2601,7 +2601,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2641,7 +2641,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2703,7 +2703,7 @@ for($x = 0; $x < 7; $x++){
  	if($startTime < $endTime){
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2743,7 +2743,7 @@ for($x = 0; $x < 7; $x++){
  }else{
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2786,7 +2786,7 @@ for($x = 0; $x < 7; $x++){
 		if($startTime < $endTime){
 		
  		$results = $db->query("
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
@@ -2826,7 +2826,7 @@ for($x = 0; $x < 7; $x++){
  		
  		$results = $db->query("
  		
- 		SELECT COUNT(sub5.weapon) AS total
+ 		SELECT COUNT(sub5.description) AS total
  		
  			FROM (SELECT sub4.*
  
