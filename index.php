@@ -62,6 +62,8 @@ include "sso/UMBCUtils.php";
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/heatmap.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<!--
+<script src="scripts/highCharts_weaponChart.js"></script> -->
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
   
@@ -619,6 +621,264 @@ function formatDate(str){
 function getTwentyFourHourTime(amPmString) { 
 	var d = new Date("1/1/2013 " + amPmString); 
 	return d.getHours() + ':' + d.getMinutes(); 
+}
+
+//sm update bar graph
+function hs_updateBarGraph(Data, bCType){
+	console.log("In hs_updateBarGraph - data is");
+	console.log(Data);
+	
+	if(bCType=="districtBC"){
+		console.log(Data[0]);
+		console.log("In chart file - initiate district");
+		
+		Highcharts.chart('chart_highChart', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: 'Crimes By District'
+  },
+  subtitle: {
+    //text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+  },
+  xAxis: {
+  	categories: ['Northern', 'Southern', 'Eastern', 'Western', 'Central', 'N. Eastern', 'N. Western', 'S. Eastern', 'S. Western'],
+    //categories: ['Northern', 'Southern', 'Eastern', 'Western'],
+    title: {
+      text: null
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Number of Incidents',
+      align: 'high'
+    },
+    labels: {
+      overflow: 'justify'
+    }
+  },
+  tooltip: {
+    valueSuffix: ' Crimes'
+  },
+  plotOptions: {
+    bar: {
+      dataLabels: {
+        enabled: true
+      }
+    }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+    x: -40,
+    y: 80,
+    floating: true,
+    borderWidth: 1,
+    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+    shadow: true
+  },
+  credits: {
+    enabled: false
+  },
+  series: [{
+    name: 'Year 2012',
+    data: Data[0]
+  }, {
+    name: 'Year 2013',
+    data: Data[1]
+  }, {
+    name: 'Year 2014',
+    data: Data[2]
+  }, {
+    name: 'Year 2015',
+    data: Data[3]
+  },
+  
+  {
+    name: 'Year 2016',
+    data: Data[4]
+  },
+  {
+    name: 'Year 2017',
+    data: Data[5]
+  },
+  {
+    name: 'Year 2018',
+    data: Data[6]
+  }]
+});
+	}
+	
+	else if(bCType=="crimeBC"){
+		console.log(Data[0]);
+		console.log("In chart file - initiate district");
+		
+		Highcharts.chart('chart_highChart', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: 'Crimes By CrimeType(Description)'
+  },
+  subtitle: {
+    //text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+  },
+  xAxis: {
+  	categories: ['AGG. Assault', 'Arson', 'ASL Threat', 'Auto Theft', 'Burglary', 'Common ASL', 'Homicide', 'Larceny', 'Larceny Auto', 'Rape', 'Robb-Street', 'Robb-Carjacking', 'Robb-Commercial', 'Robb-Residence', 'Shooting'],
+    
+    title: {
+      text: null
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Number of Incidents',
+      align: 'high'
+    },
+    labels: {
+      overflow: 'justify'
+    }
+  },
+  tooltip: {
+    valueSuffix: ' Crimes'
+  },
+  plotOptions: {
+    bar: {
+      dataLabels: {
+        enabled: true
+      }
+    }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+    x: -40,
+    y: 80,
+    floating: true,
+    borderWidth: 1,
+    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+    shadow: true
+  },
+  credits: {
+    enabled: false
+  },
+  series: [{
+    name: 'Year 2012',
+    data: Data[0]
+  }, {
+    name: 'Year 2013',
+    data: Data[1]
+  }, {
+    name: 'Year 2014',
+    data: Data[2]
+  }, {
+    name: 'Year 2015',
+    data: Data[3]
+  },
+  
+  {
+    name: 'Year 2016',
+    data: Data[4]
+  },
+  {
+    name: 'Year 2017',
+    data: Data[5]
+  },
+  {
+    name: 'Year 2018',
+    data: Data[6]
+  }]
+});
+	}
+	
+	else if(bCType=="weaponBC"){
+		
+		Highcharts.chart('chart_highChart', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: 'Crimes with Weapons'
+  },
+  subtitle: {
+    //text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+  },
+  xAxis: {
+    categories: ['Firearm', 'Hands', 'Knife', 'Other', 'No Weapon'],
+    title: {
+      text: null
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Number of Incidents',
+      align: 'high'
+    },
+    labels: {
+      overflow: 'justify'
+    }
+  },
+  tooltip: {
+    valueSuffix: ' Crimes'
+  },
+  plotOptions: {
+    bar: {
+      dataLabels: {
+        enabled: true
+      }
+    }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+    x: -40,
+    y: 80,
+    floating: true,
+    borderWidth: 1,
+    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+    shadow: true
+  },
+  credits: {
+    enabled: false
+  },
+  series: [{
+    name: 'Year 2012',
+    data: Data[0]
+  }, {
+    name: 'Year 2013',
+    data: Data[1]
+  }, {
+    name: 'Year 2014',
+    data: Data[2]
+  }, {
+    name: 'Year 2015',
+    data: Data[3]
+  },
+  {
+    name: 'Year 2016',
+    data: Data[4]
+  },
+  {
+    name: 'Year 2017',
+    data: [0, 0, 0, 0, 0]
+  },
+  {
+    name: 'Year 2018',
+    data: [0, 0, 0, 0, 0]
+  }]
+});
+
+	}//ends if 
+	
+	
+	
 }
 
 //manipilation of side bar
@@ -1477,11 +1737,9 @@ function updateSideBar(clicked_id){
 		    	console.log("should return here Highchart bar charts and such");
 		    	console.log(msg);
 		    	//var bCType = "crimeBC";
-		        //handleResponseBChart(msg, "weaponBC");
+		       handleResponseBChart_hs(msg, "weaponBC");
 		    },
-		    /*failure:function(msg2){
-		    		console.log("did not work");
-		    }*/
+		    
 		    dataType:"json"
 			});
 			
@@ -1518,6 +1776,35 @@ function updateSideBar(clicked_id){
 		}//close if
 		
 		//ajax call for crime type bar chart
+		if(document.getElementById('barChartX').value =="crime_Type_barChart"){
+			console.log("Calling crime type from bar chart - high chart");
+			$.ajax({
+		    url:"db/getActualCrimeTypeData.php",
+		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
+		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
+		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
+		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
+		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
+		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
+		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
+		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
+		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
+		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
+		    type:"POST",
+		    success:function(msg){
+		    	console.log("should return here for bar chart - crime type");
+		    	//console.log(msg);
+		    	//var bCType = "crimeBC";
+		        handleResponseBChart_hs(msg, "crimeBC");
+		    },
+		    
+		    dataType:"json"
+			});
+			
+			
+		}//close if
+		
+		//ajax call for crime type bar chart
 		if(document.getElementById('barChartX').value =="district_Type_barChart"){
 			console.log("Calling crime type from bar chart");
 			$.ajax({
@@ -1544,15 +1831,42 @@ function updateSideBar(clicked_id){
 			});
 			
 			
+		}//close if
+		
+		//ajax call for crime type bar chart
+		if(document.getElementById('barChartX').value =="district_Type_barChart"){
+			console.log("Calling district from bar chart - highchart");
+			$.ajax({
+		    url:"db/getActualDistrictData.php",
+		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
+		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
+		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
+		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
+		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
+		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
+		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
+		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
+		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
+		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
+		    type:"POST",
+		    success:function(msg){
+		    	console.log("should return here for bar chart - crime type");
+		    	//console.log(msg);
+		    	//var bCType = "crimeBC";
+		        handleResponseBChart_hs(msg, "districtBC");
+		    },
+		  
+		    dataType:"json"
+			});
 			
 			
 		}//close if
 	
 	//ajax call for location bar chart should be here
-	if(document.getElementById('barChartX').value =="location_Type_barChart"){
+	/*if(document.getElementById('barChartX').value =="location_Type_barChart"){
 		var msg= [];
 		handleResponseBChart(msg, "locationBC");
-	}
+	}*/
 	
 	
 	$.ajax({
@@ -1651,6 +1965,18 @@ function updateSideBar(clicked_id){
 				console.log(data);
 				console.log(bCType)
 				updateBarGraph(data, bCType);
+				console.log("Calling the updated charts");
+				hs_updateBarGraph(data, bCType);
+		
+			}//inner handler
+			
+			function handleResponseBChart_hs(data, bCType) {
+				console.log("IN handle response for bar chart - High chart");
+				console.log(data);
+				console.log(bCType)
+				//updateBarGraph(data, bCType);
+				console.log("Calling the updated charts");
+				hs_updateBarGraph(data, bCType);
 		
 			}//inner handler
 	
@@ -2068,14 +2394,15 @@ function showEltBlank(eltId) {
       </div>
       <div class="w3-quarter">
         <div class="w3-container w3-dark-grey w3-padding-16">
-         <label class=container>&nbsp Charts <input id ="vis_chart" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
+          <label class=container>&nbsp Heat Chart <input id ="vis_heatmap" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
       <div class="w3-quarter">
         <div class="w3-container w3-dark-grey w3-padding-16">
-          <label class=container>&nbsp Heat Chart <input id ="vis_heatmap" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
+         <label class=container>&nbsp Charts <input id ="vis_chart" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
+      
       <div class="w3-quarter">
         <div class="w3-container w3-dark-grey w3-text-white w3-padding-16">
           <label class=container>&nbsp Data Table <input id ="vis_table" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
@@ -2086,7 +2413,7 @@ function showEltBlank(eltId) {
     <div class="w3-panel" id="mapPanel">
       <div class="w3-row-padding" style="margin:0 -16px">
        <!--	 <div class="w3-half"> -->
-       <h5>Map</h5> 
+       <h5><b>Map</b></h5> 
        
        <div class="w3-quarter">
         <div class="w3-content w3-dark-grey w3-padding-small">
@@ -2105,7 +2432,7 @@ function showEltBlank(eltId) {
 <div class="w3-panel" id="heatMapPanel">
   <div class="w3-row-padding" style="margin:0 -16px">
    
-      <h5>Charts</h5>
+      <h5><b>Heat Chart</b></h5>
       <!--  <img src="images/heatmap_placeImg.png" alt="heatMap pic"  -->
         <div id="heatMapVisualization" style="height: 500px; min-width: 610px; max-width: 1000px; margin: 0 auto"></div>
          <!-- height="42" width="42" -->
@@ -2116,18 +2443,25 @@ function showEltBlank(eltId) {
   
 <hr>
 <div class="w3-panel" id="barChartPanel">
- <span id="barChart"></span>
+	<h5><b>Charts</b></h5>
+
      <span style="text-align: center"> Category </span>
      <select id='barChartX' name='barChartX' onchange="updateSideBar(id);">
-		      <option value="" >Please select an option</option>
-		      <option value="crime_Type_barChart" selected='selected'>Crime Type</option>
+		      <option value="" selected='selected'>Please select an option</option>
+		      <option value="crime_Type_barChart" >Crime Type</option>
           <option value="weapon_Type_barChart" >Weapon Type</option>
           <option value="district_Type_barChart">District</option>
-          <option value="location_Type_barChart">Location</option>
+          
 		      
 		   </select>
     
+    <br>
     <div id="chart"></div>
+    <br><p>Other Charts - > WIll Change this to be a swap button</p><br>
+    
+    <!-- <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div> -->
+    
+    <div id="chart_highChart"></div>
 
  
   </div>
