@@ -79,8 +79,8 @@ include "sso/UMBCUtils.php";
 	
 	function getAuthenticatedUsername(){
 		var userName = <?php echo json_encode($reqFirstName) ?>;
-		console.log("User name");
-		console.log(userName);
+		//console.log("User name");
+		//console.log(userName);
 		
 		document.getElementById('authenticatedUsername').innerHTML=userName;
 		
@@ -304,7 +304,7 @@ function updateMap(crimes, myMarkers) {
 	initMap();
 	var info = new google.maps.InfoWindow();
 	markers = myMarkers;
-	console.log("In update map Marker Type is");
+	//console.log("In update map Marker Type is");
 	//console.log(typeof markers);
 	var locs = new Array();
 	var tips = new Array();
@@ -564,7 +564,7 @@ for(var i = 0; i < dataSet.length; i++){
 var chart = Highcharts.chart('timelineSeries', {
 
   title: {
-    text: 'Crime Time Chart'
+    text: 'Time Series By Month'
   },
 
   subtitle: {
@@ -597,7 +597,7 @@ var chart = Highcharts.chart('timelineSeries', {
 
 function heatMapData(Data){
 	
-	console.log("In heat Map function - data is in dataSet variable");
+	//console.log("In heat Map function - data is in dataSet variable");
 	dataSet = Data;
 	tempStart=1;
 	//console.log(dataSet);
@@ -757,82 +757,35 @@ function updateVisualizations(clicked_id){
 	//hideElt('tablePanel');
 	
 	hideElt('commentsPanel_old');
-	console.log(clicked_id);
+//	console.log(clicked_id);
 		
 		if(document.getElementById('vis_map').checked){
 			showElt('mapPanel');
 			//showElt('commentsPanel');
-			console.log("showing map - showing comments");
+			//console.log("showing map - showing comments");
 		}
 		if(document.getElementById('vis_chart').checked){
 			showElt('barChartPanel');
-			console.log("showing chart");
+			//console.log("showing chart");
 		}
 		if(document.getElementById('vis_heatmap').checked){
-			showElt('heatMapPanel');
-			console.log("showing heat map");
+			showElt('timeSeriesPanel');
+			//showElt('timelinePanel');
+			//console.log("showing heat map");
 		}
 		if(document.getElementById('vis_table').checked){
 			showElt('tablePanel');
-			console.log("showing table");
+			//console.log("showing table");
 		}
 		
 	
-			//testing ajax
-			/*	if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        
-       // calling appropriate chart using ajax
-        if(clicked_id == "barChartX"){
-        	var myArray = new Array();
-        	myArray.push("Test1");
-        	var xVal = document.getElementById('barChartX').value;
-        	 console.log(xVal);
-        	 xmlhttp.onreadystatechange = function() {
-            
-                document.getElementById("barChart").innerHTML = this.responseText;
-        	};
-        var str=1;
-        //xmlhttp.open("GET","db/barChart.php?q="+xVal, myArray, true);
-        xmlhttp.open("GET","db/barChart2.php", true);
-        xmlhttp.send();
-        }
-       
-        
-        */
 	
 }
 
-//ignore this for now
-function updateFormControls() {
 
-		//testing ajax
-				if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        
-        xmlhttp.onreadystatechange = function() {
-            //if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("ajaxText").innerHTML = this.responseText;
-            //}
-        };
-        var str=1;
-        xmlhttp.open("GET","db/templateAjax.php?q="+str,true);
-        xmlhttp.send();
-
-}
 
 function formatDate(str){
-	console.log("Call format date");
+//	console.log("Call format date");
 	var splitD = str.split('/');
 	var returnStr = splitD[2]+'-'+splitD[0]+'-'+splitD[1];
 	return returnStr;
@@ -860,8 +813,8 @@ function fix2DArray(Data){
 	
 	}
 	
-	console.log("new Array is now");
-	console.log(myOtherArray);
+//	console.log("new Array is now");
+	//console.log(myOtherArray);
 	
 	return myOtherArray;
 }
@@ -884,8 +837,9 @@ function hs_updateBarGraph_percent(Data, bCType){
 		    title: {
 		      text: 'Number of Incidents',
 		    },
+		    
 		    stackLabels: {
-		      enabled: false,
+		      enabled: true,
 		      style: {
 		        fontWeight: 'bold',
 		        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
@@ -911,7 +865,165 @@ function hs_updateBarGraph_percent(Data, bCType){
 		    column: {
 		      stacking: 'normal',
 		      dataLabels: {
-		        enabled: true,
+		        enabled: false,
+		        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+		      }
+		    }
+		  },
+		  series:  [{
+    name: 'Year 2012',
+    data: Data[0]
+  }, {
+    name: 'Year 2013',
+    data: Data[1]
+  }, {
+    name: 'Year 2014',
+    data: Data[2]
+  }, {
+    name: 'Year 2015',
+    data: Data[3]
+  },
+  
+  {
+    name: 'Year 2016',
+    data: Data[4]
+  },
+  {
+    name: 'Year 2017',
+    data: Data[5]
+  },
+  {
+    name: 'Year 2018',
+    data: Data[6]
+  }]
+		});
+	}
+	
+	else if(bCType=="crimeBC"){
+		
+		Highcharts.chart('chart_percent', {
+		  chart: {
+		    type: 'column'
+		  },
+		  title: {
+		    text: 'Crimes By CrimeType(Description)'
+		  },
+		  xAxis: {
+		    categories: ['AGG. Assault', 'Arson', 'ASL Threat', 'Auto Theft', 'Burglary', 'Common ASL', 'Homicide', 'Larceny', 'Larceny Auto', 'Rape', 'Robb-Street', 'Robb-Carjacking', 'Robb-Commercial', 'Robb-Residence', 'Shooting'],
+   	  },
+		  yAxis: {
+		    min: 0,
+		    title: {
+		      text: 'Number of Incidents',
+		    },
+		    
+		    stackLabels: {
+		      enabled: true,
+		      style: {
+		        fontWeight: 'bold',
+		        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+		      }
+		    }
+		  },
+		  legend: {
+		    align: 'right',
+		    x: -30,
+		    verticalAlign: 'top',
+		    y: 25,
+		    floating: true,
+		    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+		    borderColor: '#CCC',
+		    borderWidth: 1,
+		    shadow: false
+		  },
+		  tooltip: {
+		    headerFormat: '<b>{point.x}</b><br/>',
+		    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+		  },
+		  plotOptions: {
+		    column: {
+		      stacking: 'normal',
+		      dataLabels: {
+		        enabled: false,
+		        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+		      }
+		    }
+		  },
+		  series:  [{
+    name: 'Year 2012',
+    data: Data[0]
+  }, {
+    name: 'Year 2013',
+    data: Data[1]
+  }, {
+    name: 'Year 2014',
+    data: Data[2]
+  }, {
+    name: 'Year 2015',
+    data: Data[3]
+  },
+  
+  {
+    name: 'Year 2016',
+    data: Data[4]
+  },
+  {
+    name: 'Year 2017',
+    data: Data[5]
+  },
+  {
+    name: 'Year 2018',
+    data: Data[6]
+  }]
+		});
+	}
+	
+	else if(bCType=="weaponBC"){
+		
+		Highcharts.chart('chart_percent', {
+		  chart: {
+		    type: 'column'
+		  },
+		  title: {
+		    text: 'Crimes with Weapons'
+		  },
+		  xAxis: {
+		    categories: ['Firearm', 'Hands', 'Knife', 'Other', 'No Weapon'],
+     },
+		  yAxis: {
+		    min: 0,
+		    title: {
+		      text: 'Number of Incidents',
+		    },
+		    
+		    stackLabels: {
+		      enabled: true,
+		      style: {
+		        fontWeight: 'bold',
+		        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+		      }
+		    }
+		  },
+		  legend: {
+		    align: 'right',
+		    x: -30,
+		    verticalAlign: 'top',
+		    y: 25,
+		    floating: true,
+		    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+		    borderColor: '#CCC',
+		    borderWidth: 1,
+		    shadow: false
+		  },
+		  tooltip: {
+		    headerFormat: '<b>{point.x}</b><br/>',
+		    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+		  },
+		  plotOptions: {
+		    column: {
+		      stacking: 'normal',
+		      dataLabels: {
+		        enabled: false,
 		        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
 		      }
 		    }
@@ -2599,6 +2711,87 @@ function clearAllSideBar(clicked_id){
 	updateSideBar(clicked_id);
 }
 
+function toggleBarCharts(clicked_id){
+	console.log("In toogle bar func");
+	console.log(clicked_id);
+	var btnVal =document.getElementById(clicked_id).innerHTML;
+	console.log(btnVal);
+	
+	if(clicked_id=="verticalChart"){
+		//when on
+		if(btnVal=="Vertical Chart - On"){
+			document.getElementById("verticalChart").innerHTML = "Vertical Chart - Off";
+			hideElt('chart_percentPanel');
+			
+		}
+		//when off
+		else{
+			document.getElementById("verticalChart").innerHTML = "Vertical Chart - On";
+			showElt('chart_percentPanel');
+		}
+	}
+	else if(clicked_id=="horizontalChart"){
+		if(btnVal=="Horizontal Chart - On"){
+			document.getElementById("horizontalChart").innerHTML = "Horizontal Chart - Off";
+			hideElt('chart_highChartPanel');
+			
+		}
+		//when off
+		else{
+			document.getElementById("horizontalChart").innerHTML = "Horizontal Chart - On";
+			showElt('chart_highChartPanel');
+		}
+		
+	}
+	else if(clicked_id=="stackChart"){
+		if(btnVal=="Stack Chart - On"){
+			document.getElementById("stackChart").innerHTML = "Stack Chart - Off";
+			hideElt('chart_highChart_stackPanel');
+			
+		}
+		//when off
+		else{
+			document.getElementById("stackChart").innerHTML = "Stack Chart - On";
+			showElt('chart_highChart_stackPanel');
+		}
+	}
+}
+
+function toggleTimeSeries(clicked_id){
+	console.log("In toogle time series");
+	console.log(clicked_id);
+	var btnVal =document.getElementById(clicked_id).innerHTML;
+	console.log(btnVal);
+	
+	if(clicked_id=="heatMap_ts"){
+		//when on
+		if(btnVal=="Heat Chart - On"){
+			document.getElementById(clicked_id).innerHTML = "Heat Chart - Off";
+			hideElt('heatMapPanel');
+			
+		}
+		//when off
+		else{
+			document.getElementById(clicked_id).innerHTML = "Heat Chart - On";
+			showElt('heatMapPanel');
+		}
+	}
+	else if(clicked_id=="timeLine_ts"){
+		if(btnVal=="Time Line - On"){
+			document.getElementById(clicked_id).innerHTML = "Time Line - Off";
+			hideElt('timelinePanel');
+			
+		}
+		//when off
+		else{
+			document.getElementById(clicked_id).innerHTML = "Time Line - On";
+			showElt('timelinePanel');
+		}
+		
+	}
+	
+}
+
 function openTimeLinePopUp(){
 	//var myPopup = window.open("Blab blab", "Display Message", "width=200, height=100");
 	window.alert("Note: times picked are applied to every day in the selected time frame.");
@@ -2610,10 +2803,11 @@ function openTimeLinePopUp(){
 //hides all fields on page
 function hideall() {
 	hideElt('mapPanel');
-	hideElt('heatMapPanel');
+	//hideElt('heatMapPanel');
 	hideElt('barChartPanel');
 	hideElt('tablePanel');
 	hideElt('commentsPanel');
+	hideElt('timeSeriesPanel');
 }
 
 //remove an element/frame from form
@@ -2916,9 +3110,11 @@ function showEltBlank(eltId) {
       </div>
       <div class="w3-quarter">
         <div class="w3-container w3-dark-grey w3-padding-16">
-          <label class=container>&nbsp Heat Chart <input id ="vis_heatmap" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
+          <label class=container>&nbsp Time Series <input id ="vis_heatmap" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
         </div>
       </div>
+      
+     
       <div class="w3-quarter">
         <div class="w3-container w3-dark-grey w3-padding-16">
          <label class=container>&nbsp Charts <input id ="vis_chart" type = "checkbox" onchange="updateVisualizations(id);" checked> <span class="checkmark"></span></label>
@@ -2951,10 +3147,12 @@ function showEltBlank(eltId) {
   		</div>
 <hr>
 
+<div class="w3-panel" id="timeSeriesPanel">
+	<span><b>Time Series</b></span> &nbsp&nbsp <button id="heatMap_ts" onClick="toggleTimeSeries(id);">Heat Chart - On</button> <button id="timeLine_ts" onClick="toggleTimeSeries(id);">Time Line - On</button>
 <div class="w3-panel" id="heatMapPanel">
   <div class="w3-row-padding" style="margin:0 -16px">
    
-      <h5><b>Heat Chart</b></h5>
+      <!--<h5><b>Heat Chart</b></h5>-->
       <!--  <img src="images/heatmap_placeImg.png" alt="heatMap pic"  -->
         <div id="heatMapVisualization" style="height: 500px; min-width: 610px; max-width: 1000px; margin: 0 auto"></div>
          <!-- height="42" width="42" -->
@@ -2965,18 +3163,20 @@ function showEltBlank(eltId) {
   
   <div class="w3-panel" id="timelinePanel">
   <div class="w3-row-padding" style="margin:0 -16px">
-  	<h5><b>Time Line By Month</b></h5>
-  <div id="timelineSeries"></div>
+  	<!--<h5><b>Time Line</b></h5>-->
+  <div id="timelineSeries" style="height: 500px; min-width: 610px; max-width: 1000px; margin: 0 auto"></div>
 
 
 </div>
   </div>
   
+</div>
 <hr>
+
 <div class="w3-panel" id="barChartPanel">
 	<h5><b>Charts</b></h5>
 
-     <span style="text-align: center"> Category </span>
+     <span style="text-align: center"> Outer Category Filter </span>
      <select id='barChartX' name='barChartX' onchange="updateSideBar(id);">
 		    <!--  <option value="" selected='selected'>Please select an option</option> -->
 		      <option value="crime_Type_barChart" >Crime Type</option>
@@ -2985,19 +3185,30 @@ function showEltBlank(eltId) {
           
 		      
 		   </select>
+		   &nbsp&nbsp
+		   <button id="verticalChart" onClick="toggleBarCharts(id);">Vertical Chart - On</button> <button id="horizontalChart" onClick="toggleBarCharts(id);">Horizontal Chart - On</button> <button id="stackChart" onClick="toggleBarCharts(id);">Stack Chart - On</button>
     
     <br>
-    <p>Stack Percent Chart</p>
-    <div id="chart_percent"></div>
-    <br><p>Other Charts - > WIll Change this to be a swap button</p><br>
+    
+    <div id="chart_percentPanel">
+    	<br><br>
+    	<div id="chart_percent"></div>
+    </div>
+    
+    <div id="chart_highChartPanel">
+    	<br><br>
+    	<div id="chart_highChart"></div>
+    </div>
+    
+    <div id="chart_highChart_stackPanel">
+    	<br><br>
+    	 <div id="chart_highChart_stack"></div>
+    </div>
+    
+    
     
     <!-- <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div> -->
     
-    <div id="chart_highChart"></div>
-    
-     <br><p>Other Charts - > Stacked Chart</p><br>
-     
-     <div id="chart_highChart_stack"></div>
 
  
   </div>
