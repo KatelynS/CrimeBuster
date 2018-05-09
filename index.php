@@ -109,9 +109,33 @@ $(document).ready(function() {
 } ); 
 
 
+/*
 //adding code for  time line - > this should be in a function
 $(document).ready(function() {
-	
+
+
+var monthdata = [0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0];
+
+console.log("HI");
+
+for(var i = 0; i < dataSet.length; i++){
+		var loc = dataSet[i].split(",");
+		var fulltime = loc[3];
+		var timeloc = fulltime.split(":");
+		var hour = timeloc[0];
+		var date = loc[4].substring(0, 10);
+		var year = getYear(date);
+		var month = getMonth(date);
+		console.log(year);
+		console.log(month);
+	}
+
 var chart = Highcharts.chart('timelineSeries', {
 
   title: {
@@ -123,13 +147,19 @@ var chart = Highcharts.chart('timelineSeries', {
   },
 
   xAxis: {
-    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    categories: ['Jan 2012', 'Feb 2012', 'Mar 2012', 'Apr 2012', 'May 2012', 'Jun 2012', 'Jul 2012', 'Aug 2012', 'Sep 2012', 'Oct 2012', 'Nov 2012', 'Dec 2012',
+    			'Jan 2013', 'Feb 2013', 'Mar 2013', 'Apr 2013', 'May 2013', 'Jun 2013', 'Jul 2013', 'Aug 2013', 'Sep 2013', 'Oct 2013', 'Nov 2013', 'Dec 2013',
+    			'Jan 2014', 'Feb 2014', 'Mar 2014', 'Apr 2014', 'May 2014', 'Jun 2014', 'Jul 2014', 'Aug 2014', 'Sep 2014', 'Oct 2014', 'Nov 2014', 'Dec 2014',
+    			'Jan 2015', 'Feb 2015', 'Mar 2015', 'Apr 2015', 'May 2015', 'Jun 2015', 'Jul 2015', 'Aug 2015', 'Sep 2015', 'Oct 2015', 'Nov 2015', 'Dec 2015',
+    			'Jan 2016', 'Feb 2016', 'Mar 2016', 'Apr 2016', 'May 2016', 'Jun 2016', 'Jul 2016', 'Aug 2016', 'Sep 2016', 'Oct 2016', 'Nov 2016', 'Dec 2016',
+    			'Jan 2017', 'Feb 2017', 'Mar 2017', 'Apr 2017', 'May 2017', 'Jun 2017', 'Jul 2017', 'Aug 2017', 'Sep 2017', 'Oct 2017', 'Nov 2017', 'Dec 2017',
+    			'Jan 2018', 'Feb 2018', 'Mar 2018', 'Apr 2018']
   },
 
   series: [{
     type: 'column',
     colorByPoint: true,
-    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+    data: monthdata,
     showInLegend: false
   }]
 
@@ -173,7 +203,7 @@ $('#polar').click(function () {
 });
 
 }); 	//close function
-
+*/
 
 $(document).ready(function() {
 	
@@ -441,6 +471,128 @@ function viewComments() {
 function getDayOfWeek(date) {
 var dayOfWeek = new Date(date).getDay(); 
 return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+}
+
+function timeSeriesData(Data){
+
+	var monthdata = [0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0,0,0,0,0,0,0,0,0,
+					0,0,0,0];
+
+
+var dataSet= Data;
+
+for(var i = 0; i < dataSet.length; i++){
+		var loc = dataSet[i].split(",");
+		var fulltime = loc[3];
+		var timeloc = fulltime.split(":");
+		var hour = timeloc[0];
+		var date = loc[4].substring(0, 10);
+		var year = date.substring(0,4);
+		var month = date.substring(5,7);
+		var yearindex = 0;
+		var monthindex = 0;
+		if (year == "2012"){
+			yearindex = 0;
+		}
+		if (year == "2013"){
+			yearindex = 1;
+		}
+		if (year == "2014"){
+			yearindex = 2;
+		}
+		if (year == "2015"){
+			yearindex = 3;
+		}
+		if (year == "2016"){
+			yearindex = 4;
+		}
+		if (year == "2017"){
+			yearindex = 5;
+		}
+		if (year == "2018"){
+			yearindex = 6;
+		}
+
+		if (month == "01"){
+			monthindex = 0;
+		}
+
+		if (month == "02"){
+			monthindex = 1;
+		}
+		if (month == "03"){
+			monthindex = 2;
+		}
+		if (month == "04"){
+			monthindex = 3;
+		}
+		if (month == "05"){
+			monthindex = 4;
+		}
+		if (month == "06"){
+			monthindex = 5;
+		}
+		if (month == "07"){
+			monthindex = 6;
+		}
+
+		if (month == "08"){
+			monthindex = 7;
+		}
+		if (month == "09"){
+			monthindex = 8;
+		}
+		if (month == "10"){
+			monthindex = 9;
+		}
+		if (month == "11"){
+			monthindex = 10;
+		}
+		if (month == "12"){
+			monthindex = 11;
+		}
+		
+		var dataindex = yearindex*12 + monthindex;
+		monthdata[dataindex]++;
+	}
+
+var chart = Highcharts.chart('timelineSeries', {
+
+  title: {
+    text: 'Crime Time Chart'
+  },
+
+  subtitle: {
+    text: 'By Month'
+  },
+
+  xAxis: {
+    categories: ['Jan 2012', 'Feb 2012', 'Mar 2012', 'Apr 2012', 'May 2012', 'Jun 2012', 'Jul 2012', 'Aug 2012', 'Sep 2012', 'Oct 2012', 'Nov 2012', 'Dec 2012',
+    			'Jan 2013', 'Feb 2013', 'Mar 2013', 'Apr 2013', 'May 2013', 'Jun 2013', 'Jul 2013', 'Aug 2013', 'Sep 2013', 'Oct 2013', 'Nov 2013', 'Dec 2013',
+    			'Jan 2014', 'Feb 2014', 'Mar 2014', 'Apr 2014', 'May 2014', 'Jun 2014', 'Jul 2014', 'Aug 2014', 'Sep 2014', 'Oct 2014', 'Nov 2014', 'Dec 2014',
+    			'Jan 2015', 'Feb 2015', 'Mar 2015', 'Apr 2015', 'May 2015', 'Jun 2015', 'Jul 2015', 'Aug 2015', 'Sep 2015', 'Oct 2015', 'Nov 2015', 'Dec 2015',
+    			'Jan 2016', 'Feb 2016', 'Mar 2016', 'Apr 2016', 'May 2016', 'Jun 2016', 'Jul 2016', 'Aug 2016', 'Sep 2016', 'Oct 2016', 'Nov 2016', 'Dec 2016',
+    			'Jan 2017', 'Feb 2017', 'Mar 2017', 'Apr 2017', 'May 2017', 'Jun 2017', 'Jul 2017', 'Aug 2017', 'Sep 2017', 'Oct 2017', 'Nov 2017', 'Dec 2017',
+    			'Jan 2018', 'Feb 2018', 'Mar 2018', 'Apr 2018']
+  },
+
+  series: [{
+    type: 'column',
+    colorByPoint: true,
+    data: monthdata,
+    showInLegend: false
+  }]
+
+});
+
+
+
+
 }
 
 function heatMapData(Data){
@@ -2311,6 +2463,9 @@ function updateSideBar(clicked_id){
 	//console.log("In handle response markers type is");
 	console.log("Before call heatMap ");
 	heatMapData(data[0]);
+
+	console.log("Before call time series function ");
+	timeSeriesData(data[0]);
 	
 	//display to the map the number of crimes with these filters
 	var crimesCount = data[0].length;
@@ -2806,14 +2961,13 @@ function showEltBlank(eltId) {
   
   </div>
   </div>
+  <hr>
   
-  <div class="w3-panel" id="heatMapPanel">
+  <div class="w3-panel" id="timelinePanel">
   <div class="w3-row-padding" style="margin:0 -16px">
-  
+  	<h5><b>Time Line By Month</b></h5>
   <div id="timelineSeries"></div>
-<button id="plain">Plain</button>
-<button id="inverted">Inverted</button>
-<button id="polar">Polar</button>
+
 
 </div>
   </div>
