@@ -42,7 +42,9 @@ include "sso/UMBCUtils.php";
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- styles are here -->
 <link href="styles/style2.css" rel="stylesheet" type="text/css">
-<link href="c3-0.5.3/c3.css" rel="stylesheet">
+
+<!--
+<link href="c3-0.5.3/c3.css" rel="stylesheet"> -->
 
 <!-- javascript functions goes here
  <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
@@ -62,6 +64,8 @@ include "sso/UMBCUtils.php";
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/heatmap.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!--
 <script src="scripts/highCharts_weaponChart.js"></script> -->
 
@@ -103,6 +107,72 @@ $(document).ready(function() {
     getAuthenticatedUsername();
     
 } ); 
+
+
+//adding code for  time line - > this should be in a function
+$(document).ready(function() {
+	
+var chart = Highcharts.chart('timelineSeries', {
+
+  title: {
+    text: 'Chart.update'
+  },
+
+  subtitle: {
+    text: 'Plain'
+  },
+
+  xAxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  },
+
+  series: [{
+    type: 'column',
+    colorByPoint: true,
+    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+    showInLegend: false
+  }]
+
+});
+
+
+$('#plain').click(function () {
+  chart.update({
+    chart: {
+      inverted: false,
+      polar: false
+    },
+    subtitle: {
+      text: 'Plain'
+    }
+  });
+});
+
+$('#inverted').click(function () {
+  chart.update({
+    chart: {
+      inverted: true,
+      polar: false
+    },
+    subtitle: {
+      text: 'Inverted'
+    }
+  });
+});
+
+$('#polar').click(function () {
+  chart.update({
+    chart: {
+      inverted: false,
+      polar: true
+    },
+    subtitle: {
+      text: 'Polar'
+    }
+  });
+});
+
+}); 	//close function
 
 
 $(document).ready(function() {
@@ -232,7 +302,7 @@ function updateMap(crimes, myMarkers) {
 		*/
 		switch (crime) {
 			case "AGG. ASSAULT":
-				 console.log("Agg. Assault");
+				// console.log("Agg. Assault");
 				 dot.push("images/black.png");
 			break;
 			case "ARSON":
@@ -644,6 +714,86 @@ function fix2DArray(Data){
 	return myOtherArray;
 }
 
+function hs_updateBarGraph_percent(Data, bCType){
+	if(bCType=="districtBC"){
+		
+		Highcharts.chart('chart_percent', {
+		  chart: {
+		    type: 'column'
+		  },
+		  title: {
+		    text: 'Crimes By District'
+		  },
+		  xAxis: {
+		    categories: ['Northern', 'Southern', 'Eastern', 'Western', 'Central', 'N. Eastern', 'N. Western', 'S. Eastern', 'S. Western'],
+		  },
+		  yAxis: {
+		    min: 0,
+		    title: {
+		      text: 'Number of Incidents',
+		    },
+		    stackLabels: {
+		      enabled: false,
+		      style: {
+		        fontWeight: 'bold',
+		        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+		      }
+		    }
+		  },
+		  legend: {
+		    align: 'right',
+		    x: -30,
+		    verticalAlign: 'top',
+		    y: 25,
+		    floating: true,
+		    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+		    borderColor: '#CCC',
+		    borderWidth: 1,
+		    shadow: false
+		  },
+		  tooltip: {
+		    headerFormat: '<b>{point.x}</b><br/>',
+		    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+		  },
+		  plotOptions: {
+		    column: {
+		      stacking: 'normal',
+		      dataLabels: {
+		        enabled: true,
+		        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+		      }
+		    }
+		  },
+		  series:  [{
+    name: 'Year 2012',
+    data: Data[0]
+  }, {
+    name: 'Year 2013',
+    data: Data[1]
+  }, {
+    name: 'Year 2014',
+    data: Data[2]
+  }, {
+    name: 'Year 2015',
+    data: Data[3]
+  },
+  
+  {
+    name: 'Year 2016',
+    data: Data[4]
+  },
+  {
+    name: 'Year 2017',
+    data: Data[5]
+  },
+  {
+    name: 'Year 2018',
+    data: Data[6]
+  }]
+		});
+	}
+	
+}
 //sm update bar graph
 function hs_updateBarGraph(Data, bCType){
 	console.log("In hs_updateBarGraph - data is");
@@ -937,7 +1087,7 @@ function hs_updateBarGraph_stack(Data, bCType){
 		  },
 		  plotOptions: {
 		    series: {
-		      stacking: 'normal'
+		      stacking: 'normal',
 		    }
 		  },
 		  series: [{
@@ -1896,6 +2046,8 @@ function updateSideBar(clicked_id){
 
 	//ajax calls here
 
+/*
+
 	//ajax call for  bar chart
 		if(document.getElementById('barChartX').value =="weapon_Type_barChart"){
 			console.log("Calling weapon type from bar chart");
@@ -1918,14 +2070,12 @@ function updateSideBar(clicked_id){
 		    	//var bCType = "crimeBC";
 		        handleResponseBChart(msg, "weaponBC");
 		    },
-		    /*failure:function(msg2){
-		    		console.log("did not work");
-		    }*/
+		   
 		    dataType:"json"
 			});
 			
 		
-		}//close if
+		}//close if  */
 		
 		//testing for updated weapon bar chart
 			//ajax call for  bar chart
@@ -1959,6 +2109,7 @@ function updateSideBar(clicked_id){
 		
 		}//close if
 		
+		/*
 		//ajax call for crime type bar chart
 		if(document.getElementById('barChartX').value =="crime_Type_barChart"){
 			console.log("Calling crime type from bar chart");
@@ -1986,7 +2137,7 @@ function updateSideBar(clicked_id){
 			});
 			
 			
-		}//close if
+		}//close if */
 		
 		//ajax call for crime type bar chart
 		if(document.getElementById('barChartX').value =="crime_Type_barChart"){
@@ -2017,6 +2168,7 @@ function updateSideBar(clicked_id){
 			
 		}//close if
 		
+		/*
 		//ajax call for crime type bar chart
 		if(document.getElementById('barChartX').value =="district_Type_barChart"){
 			console.log("Calling crime type from bar chart");
@@ -2044,7 +2196,7 @@ function updateSideBar(clicked_id){
 			});
 			
 			
-		}//close if
+		}//close if */
 		
 		//ajax call for crime type bar chart
 		if(document.getElementById('barChartX').value =="district_Type_barChart"){
@@ -2189,6 +2341,7 @@ function updateSideBar(clicked_id){
 				console.log(bCType)
 				//updateBarGraph(data, bCType);
 				console.log("Calling the updated charts");
+				hs_updateBarGraph_percent(data, bCType);
 				hs_updateBarGraph(data, bCType);
 				hs_updateBarGraph_stack(data, bCType);
 		
@@ -2654,6 +2807,16 @@ function showEltBlank(eltId) {
   </div>
   </div>
   
+  <div class="w3-panel" id="heatMapPanel">
+  <div class="w3-row-padding" style="margin:0 -16px">
+  
+  <div id="timelineSeries"></div>
+<button id="plain">Plain</button>
+<button id="inverted">Inverted</button>
+<button id="polar">Polar</button>
+
+</div>
+  </div>
   
 <hr>
 <div class="w3-panel" id="barChartPanel">
@@ -2670,7 +2833,8 @@ function showEltBlank(eltId) {
 		   </select>
     
     <br>
-    <div id="chart"></div>
+    <p>Stack Percent Chart</p>
+    <div id="chart_percent"></div>
     <br><p>Other Charts - > WIll Change this to be a swap button</p><br>
     
     <!-- <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div> -->
@@ -2815,10 +2979,10 @@ function showEltBlank(eltId) {
     
  </script>
   <!-- Load d3.js and c3.js 
-<script src="/path/to/d3.v4.min.js" charset="utf-8"></script> -->
+<script src="/path/to/d3.v4.min.js" charset="utf-8"></script> 
 <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
 <script src="c3-0.5.3/c3.min.js"></script>
-<script src="scripts/chartVis.js"></script>
+<script src="scripts/chartVis.js"></script> -->
 
 
 <!--
