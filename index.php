@@ -1060,12 +1060,12 @@ function hs_updateBarGraph_percent(Data, bCType){
 }
 //sm update bar graph
 function hs_updateBarGraph(Data, bCType){
-	console.log("In hs_updateBarGraph - data is");
-	console.log(Data);
+	//console.log("In hs_updateBarGraph - data is");
+	//console.log(Data);
 	
 	if(bCType=="districtBC"){
-		console.log(Data[0]);
-		console.log("In chart file - initiate district");
+	//	console.log(Data[0]);
+		//console.log("In chart file - initiate district");
 		
 		Highcharts.chart('chart_highChart', {
   chart: {
@@ -1148,8 +1148,8 @@ function hs_updateBarGraph(Data, bCType){
 	}
 	
 	else if(bCType=="crimeBC"){
-		console.log(Data[0]);
-		console.log("In chart file - initiate crime type");
+		//console.log(Data[0]);
+	//console.log("In chart file - initiate crime type");
 		
 		Highcharts.chart('chart_highChart', {
   chart: {
@@ -1232,8 +1232,8 @@ function hs_updateBarGraph(Data, bCType){
 	}
 	
 	else if(bCType=="weaponBC"){
-		console.log(Data[0]);
-		console.log("In chart file - initiate district");
+	//	console.log(Data[0]);
+	//	console.log("In chart file - initiate district");
 		
 		Highcharts.chart('chart_highChart', {
   chart: {
@@ -1320,8 +1320,8 @@ function hs_updateBarGraph(Data, bCType){
 
 //sm update bar graph
 function hs_updateBarGraph_stack(Data, bCType){
-	console.log("In hs_updateBarGraph -stack data is");
-	console.log(Data);
+	//console.log("In hs_updateBarGraph -stack data is");
+	//console.log(Data);
 	
 	
 	if(bCType=="districtBC"){
@@ -1949,7 +1949,7 @@ function updateSideBar(clicked_id){
 		wt_StartDate = sd;
 		wt_EndDate = ed;
 	}
-	console.log(wt_StartDate);
+	//console.log(wt_StartDate);
 
 
 	var startTime = document.getElementById("StartTime").value;
@@ -2310,41 +2310,11 @@ function updateSideBar(clicked_id){
 
 	//ajax calls here
 
-/*
-
-	//ajax call for  bar chart
-		if(document.getElementById('barChartX').value =="weapon_Type_barChart"){
-			console.log("Calling weapon type from bar chart");
-			$.ajax({
-		    url:"db/getWeaponChartData.php",
-		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
-		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
-		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
-		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
-		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
-		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
-		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
-		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
-		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
-		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
-		    type:"POST",
-		    success:function(msg){
-		    	console.log("should return here for bar chart");
-		    	//console.log(msg);
-		    	//var bCType = "crimeBC";
-		        handleResponseBChart(msg, "weaponBC");
-		    },
-		   
-		    dataType:"json"
-			});
-			
-		
-		}//close if  */
 		
 		//testing for updated weapon bar chart
 			//ajax call for  bar chart
 		if(document.getElementById('barChartX').value =="weapon_Type_barChart"){
-			console.log("Calling weapon type from bar chart");
+			//console.log("Calling weapon type from bar chart");
 			$.ajax({
 		    url:"db/getActualWeaponChartData.php",
 		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
@@ -2359,10 +2329,10 @@ function updateSideBar(clicked_id){
 		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
 		    type:"POST",
 		    success:function(msg){
-		    	console.log("should return here Highchart bar charts and such");
-		    	console.log(msg);
+		    	//console.log("should return here Highchart bar charts and such");
+		    	//console.log(msg);
 		    	//var bCType = "crimeBC";
-		    	console.log("Calling fix2D array");
+		    	//console.log("Calling fix2D array");
 		    	msg = fix2DArray(msg);
 		       handleResponseBChart_hs(msg, "weaponBC");
 		    },
@@ -2373,39 +2343,11 @@ function updateSideBar(clicked_id){
 		
 		}//close if
 		
-		/*
-		//ajax call for crime type bar chart
-		if(document.getElementById('barChartX').value =="crime_Type_barChart"){
-			console.log("Calling crime type from bar chart");
-			$.ajax({
-		    url:"db/getDescriptionData.php",
-		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
-		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
-		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
-		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
-		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
-		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
-		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
-		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
-		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
-		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
-		    type:"POST",
-		    success:function(msg){
-		    	console.log("should return here for bar chart - crime type");
-		    	//console.log(msg);
-		    	//var bCType = "crimeBC";
-		        handleResponseBChart(msg, "crimeBC");
-		    },
-		    
-		    dataType:"json"
-			});
-			
-			
-		}//close if */
+		
 		
 		//ajax call for crime type bar chart
 		if(document.getElementById('barChartX').value =="crime_Type_barChart"){
-			console.log("Calling crime type from bar chart - high chart");
+			//console.log("Calling crime type from bar chart - high chart");
 			$.ajax({
 		    url:"db/getActualCrimeTypeData.php",
 		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
@@ -2420,7 +2362,7 @@ function updateSideBar(clicked_id){
 		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
 		    type:"POST",
 		    success:function(msg){
-		    	console.log("should return here for bar chart - crime type");
+		    	//console.log("should return here for bar chart - crime type");
 		    	//console.log(msg);
 		    	//var bCType = "crimeBC";
 		        handleResponseBChart_hs(msg, "crimeBC");
@@ -2432,39 +2374,11 @@ function updateSideBar(clicked_id){
 			
 		}//close if
 		
-		/*
-		//ajax call for crime type bar chart
-		if(document.getElementById('barChartX').value =="district_Type_barChart"){
-			console.log("Calling crime type from bar chart");
-			$.ajax({
-		    url:"db/getDistrictData.php",
-		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
-		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
-		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
-		    	wt_Homicide1: wt_Homicide, wt_Larceny1: wt_Larceny, wt_LarcenyAuto1: wt_LarcenyAuto, wt_Rape1: wt_Rape,
-		    	wt_RobberyStreet1: wt_RobberyStreet, wt_RobberyCar1: wt_RobberyCar, wt_RobberyCom1: wt_RobberyCom,
-		    	wt_RobberyRes1: wt_RobberyRes, wt_Shooting1: wt_Shooting, wt_Northern1: wt_Northern, 
-		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
-		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
-		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
-		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
-		    type:"POST",
-		    success:function(msg){
-		    	console.log("should return here for bar chart - crime type");
-		    	//console.log(msg);
-		    	//var bCType = "crimeBC";
-		        handleResponseBChart(msg, "districtBC");
-		    },
-		  
-		    dataType:"json"
-			});
-			
-			
-		}//close if */
+		
 		
 		//ajax call for crime type bar chart
 		if(document.getElementById('barChartX').value =="district_Type_barChart"){
-			console.log("Calling district from bar chart - highchart");
+			//console.log("Calling district from bar chart - highchart");
 			$.ajax({
 		    url:"db/getActualDistrictData.php",
 		    data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
@@ -2479,7 +2393,7 @@ function updateSideBar(clicked_id){
 		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
 		    type:"POST",
 		    success:function(msg){
-		    	console.log("should return here for bar chart - crime type");
+		    //	console.log("should return here for bar chart - crime type");
 		    	//console.log(msg);
 		    	//var bCType = "crimeBC";
 		        handleResponseBChart_hs(msg, "districtBC");
@@ -2491,11 +2405,6 @@ function updateSideBar(clicked_id){
 			
 		}//close if
 	
-	//ajax call for location bar chart should be here
-	/*if(document.getElementById('barChartX').value =="location_Type_barChart"){
-		var msg= [];
-		handleResponseBChart(msg, "locationBC");
-	}*/
 	
 	
 	$.ajax({
@@ -2568,46 +2477,42 @@ function updateSideBar(clicked_id){
 	}//ends if statement
 	function handleResponse(data) {
    
-    // do something with data here, pershaps render map
+ 
+		//console.log("Before call heatMap ");
+		heatMapData(data[0]);
 
-    //console.log("In handle response");
-   // console.log(data);
-	//console.log("In handle response markers type is");
-	console.log("Before call heatMap ");
-	heatMapData(data[0]);
-
-	console.log("Before call time series function ");
-	timeSeriesData(data[0]);
-	
-	//display to the map the number of crimes with these filters
-	var crimesCount = data[0].length;
-	//console.log(crimesCount);
-	var retStr = "<span style='color:##000000;'>["+crimesCount+"]</span>";
-	//document.getElementById('numCrimesPerFilter').innerHTML="<span style='color:#000000;'>[crimesCount]</span>";
-	document.getElementById('numCrimesPerFilter').innerHTML=retStr;
-	
-	//console.log(typeof markers);
-	console.log("In Handle response before update Map");
-	updateMap(data[0], markers);
+		//console.log("Before call time series function ");
+		timeSeriesData(data[0]);
+		
+		//display to the map the number of crimes with these filters
+		var crimesCount = data[0].length;
+		//console.log(crimesCount);
+		var retStr = "<span style='color:##000000;'>["+crimesCount+"]</span>";
+		//document.getElementById('numCrimesPerFilter').innerHTML="<span style='color:#000000;'>[crimesCount]</span>";
+		document.getElementById('numCrimesPerFilter').innerHTML=retStr;
+		
+		//console.log(typeof markers);
+	//	console.log("In Handle response before update Map");
+		updateMap(data[0], markers);
 	
 	}
 	
 	function handleResponseBChart(data, bCType) {
-				console.log("IN handle response for bar chart");
-				console.log(data);
-				console.log(bCType)
+			//	console.log("IN handle response for bar chart");
+			//	console.log(data);
+			//	console.log(bCType)
 				updateBarGraph(data, bCType);
-				console.log("Calling the updated charts");
+			//	console.log("Calling the updated charts");
 				hs_updateBarGraph(data, bCType);
 		
 			}//inner handler
 			
 			function handleResponseBChart_hs(data, bCType) {
-				console.log("IN handle response for bar chart - High chart");
-				console.log(data);
-				console.log(bCType)
+			//	console.log("IN handle response for bar chart - High chart");
+			//	console.log(data);
+			//	console.log(bCType)
 				//updateBarGraph(data, bCType);
-				console.log("Calling the updated charts");
+				//console.log("Calling the updated charts");
 				hs_updateBarGraph_percent(data, bCType);
 				hs_updateBarGraph(data, bCType);
 				hs_updateBarGraph_stack(data, bCType);
