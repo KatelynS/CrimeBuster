@@ -387,7 +387,7 @@ function updateMap(crimes, myMarkers) {
 			'<h1 id="firstHeading" class="firstHeading">'+crime+'</h1>'+
 			'<div id="bodyContent">'+
 			'<p>'+crime+' was commited here at '+time+' on '+date+'.</p>'+
-			'<p>for full entry, click <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+			'<p>for full entry, click <a target="_blank" href="https://data.baltimorecity.gov/Public-Safety/BPD-Part-1-Victim-Based-Crime-Data/wsfq-mvij/data">'+
 			'here</a></p> '+
 			'<p><button onclick="addComment()">Add comment</button>' +
 			'<button onclick="viewComments()">View comments</button></p>' +
@@ -462,7 +462,7 @@ function addComment() {
 //KS--load comments
 function viewComments() {
 	//load comments and jump to comment section
-	$('#commentsPanel').goTo();
+	$('#tablePanel').goTo();
 }
 
 //SM
@@ -2215,7 +2215,7 @@ function updateSideBar(clicked_id){
   	}
   	if (document.getElementById('arson').checked) {
   		wt_Arson="ARSON";
-  	//	console.log("ARSON");
+  		console.log("ARSON");
   	}
   	if (document.getElementById('assault_threat').checked) {
   		wt_AssaultByThreat="ASSAULT BY THREAT";
@@ -2456,7 +2456,7 @@ function updateSideBar(clicked_id){
 			 $('#table_id').dataTable( {
         
         ajax:({
-        	url: 'db/getTableData.php',
+        	url: 'db/getTableData2.php',
         	data: {wt_Other1: wt_Other, wt_Hands1: wt_Hands, wt_Knife1: wt_Knife, wt_Firearm1: wt_Firearm,
 		    	wt_None1: wt_None, wt_AggAssault1: wt_AggAssault, wt_Arson1: wt_Arson, wt_AssaultByThreat1: wt_AssaultByThreat, 
 		    	wt_AutoTheft1: wt_AutoTheft, wt_Burglary1: wt_Burglary, wt_CommonAssault1: wt_CommonAssault,
@@ -2466,7 +2466,27 @@ function updateSideBar(clicked_id){
 		    	wt_Southern1: wt_Southern, wt_Eastern1: wt_Eastern, wt_Western1: wt_Western, wt_Central1: 
 		    	wt_Central, wt_NorthEastern1: wt_NorthEastern, wt_NorthWestern1: wt_NorthWestern,
 		    	wt_SouthEastern1: wt_SouthEastern, wt_SouthWestern1: wt_SouthWestern, wt_StartDate1: wt_StartDate,
-		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
+		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime, 
+		    	wt_inside1:wt_inside, wt_inside21:wt_inside2, wt_outside1: wt_outside, wt_outside21:wt_outside2,
+		    	wt_unspecified1: wt_unspecified, wt_berea1:wt_berea, wt_cherryHill1:wt_cherryHill,
+		    	wt_dorchester1:wt_dorchester,  wt_ellwoodPark1:wt_ellwoodPark, wt_fairfield1:wt_fairfield,
+		    	wt_greenmont1:wt_greenmont, wt_orangeville1:wt_orangeville, wt_madison1:wt_madison,
+		    	wt_pulaski1:wt_pulaski, wt_rosemont1:wt_rosemont, wt_neighOther1:wt_neighOther,
+		    	wt_alley:wt_alley,wt_apt:wt_apt,wt_aptTwo:wt_aptTwo,wt_atm:wt_atm,wt_bank:wt_bank,
+		    	wt_bar:wt_bar,wt_barber:wt_barber,wt_bridge:wt_bridge,wt_bus:wt_bus,wt_busTwo:wt_busTwo,
+		    	wt_auto:wt_auto,wt_busThree:wt_busThree,wt_busFour:wt_busFour,wt_carry:wt_carry,wt_conv:wt_conv,
+		    	wt_cloth:wt_cloth,wt_shop:wt_shop,wt_court:wt_court,wt_dept:wt_dept,wt_driveway:wt_driveway,
+		    	wt_drug:wt_drug,wt_dwelling:wt_dwelling,wt_fast:wt_fast,wt_fire:wt_fire,wt_garage:wt_garage,
+		    	wt_garageTwo:wt_garageTwo,wt_gas:wt_gas,wt_grocery:wt_grocery,wt_home:wt_home,wt_hosp:wt_hosp,
+		    	wt_hotel:wt_hotel,wt_laundry:wt_laundry,wt_lightRail:wt_lightRail,wt_liquor:wt_liquor,
+		    	wt_market:wt_market,wt_office:wt_office,wt_rec:wt_rec,wt_religious:wt_religious,
+		    	wt_retail:wt_retail,wt_rest:wt_rest,wt_row:wt_row,wt_park:wt_park,wt_parking:wt_parking,
+		    	wt_parkingTwo:wt_parkingTwo,wt_play:wt_play,wt_porch:wt_porch,wt_publ:wt_publ,
+		    	wt_publTwo:wt_publTwo,wt_school:wt_school,wt_specialty:wt_specialty,wt_stadium:wt_stadium,
+		    	wt_streetCap:wt_streetCap,wt_street:wt_street,wt_subway:wt_subway,wt_vac:wt_vac,wt_war:wt_war,
+		    	wt_whole:wt_whole,wt_yard:wt_yard,wt_yardTwo:wt_yardTwo,wt_otherOne:wt_otherOne,
+		    	wt_otherTwo:wt_otherTwo,wt_otherThree:wt_otherThree,wt_otherFour:wt_otherFour,
+		    	wt_rent:wt_rent},
         	type: 'POST',
         	
         	}),
