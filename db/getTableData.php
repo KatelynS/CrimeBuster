@@ -1,4 +1,5 @@
 <?php
+//get data for table viz - without premise filter
 
 //weapon type
 $other=($_POST['wt_Other1']);

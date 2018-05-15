@@ -1,6 +1,6 @@
 <?PHP
-//index.php
-//php code stuff as setting up db and stuff goes here
+//index_compareChart.php 
+//this file is similar to index.php, however it has the starting code for comparing charts
 
 $db = new SQLite3('db/mydb.db');
 $myStreet="STREET";

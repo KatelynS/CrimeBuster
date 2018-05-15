@@ -1,6 +1,6 @@
 <?php
 
-//$q = ($_GET['test']);
+//returns object that has count base on selected district - initiate setup without premise
 
 //weapon type
 $other=($_POST['wt_Other1']);

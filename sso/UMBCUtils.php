@@ -1,5 +1,7 @@
 <?php
 
+//code to get user info base on umbc authenticated site
+
 class UMBCUtils {
 
    static function getMIMETypeFromFileName($FileName) {

@@ -1,3 +1,5 @@
+//charts using c3 library
+
 
 var chart = c3.generate({
     bindto: '#chart',

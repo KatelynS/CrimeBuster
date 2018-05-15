@@ -1,6 +1,6 @@
 <?php
 
-//$q = ($_GET['test']);
+//returns lat and lon for map visualizations
 
 //weapon type
 $other=($_POST['wt_Other1']);
@@ -1389,18 +1389,18 @@ if($none == "NONE"){
 $aggAssVar =10;
 
 $myArray = array();
-$dateArray= array();
+//$dateArray= array();
 while ($row = $results->fetchArray()) {
 	array_push($myArray, $row[9].",". $row[16].",".$row[6].",".$row[5].",".$row[4]);
-	array_push($dateArray, $row[4]);
+	//array_push($dateArray, $row[4]);
 }
 
-//$countsArray = array();
-//array_push($countsArray, $aggAssVar);
+$countsArray = array();
+array_push($countsArray, $aggAssVar);
 
 $dataArray = array();
 array_push($dataArray, $myArray);
-array_push($dataArray, $dateArray);
+array_push($dataArray, $countsArray);
 
 
 echo json_encode($dataArray);

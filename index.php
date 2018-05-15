@@ -1,13 +1,10 @@
 <?PHP
-//index.php
-//php code stuff as setting up db and stuff goes here
+//index.php - main page for crime buster. This controps the application and connects to all other files
 
+
+//initiate db setup
 $db = new SQLite3('db/mydb.db');
-$myStreet="STREET";
-//$results = $db->query("SELECT * FROM mydb WHERE premise='$myStreet'");
 $results = $db->query("SELECT * FROM mydb");
-
-
 
 $myArray = array();
 while ($row = $results->fetchArray()) {
@@ -15,7 +12,7 @@ while ($row = $results->fetchArray()) {
 	
 }
 
-
+//get user info base on authenticated system
 include "sso/UMBCUtils.php";
 
    $shibArr=UMBCUtils::getShibbolethInfo();
@@ -28,7 +25,7 @@ include "sso/UMBCUtils.php";
    $reqAffiliation=$shibArr['Affiliation'];
    $reqRTEmail=$shibArr['RTEmail'];
 
-//echo json_encode($myArray);
+
 
 ?>
 
@@ -37,18 +34,13 @@ include "sso/UMBCUtils.php";
 <title>CrimeBuster</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- styles are here -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- styles are here -->
 <link href="styles/style2.css" rel="stylesheet" type="text/css">
 
-<!--
-<link href="c3-0.5.3/c3.css" rel="stylesheet"> -->
-
-<!-- javascript functions goes here
- <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
- <script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.ocean.js"></script>  -->
+<!--additional scripts -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyBxevA7di7Avo5vGKAgPPSkJa8ud4gnI&callback=initMap"></script>
@@ -61,37 +53,31 @@ include "sso/UMBCUtils.php";
 <!-- Include Date Range Picker -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+<!-- scripts for highcharts -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/heatmap.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!--
-<script src="scripts/highCharts_weaponChart.js"></script> -->
 
+<!-- scripts for dataTable -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-  
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
-<!--<script src="scripts/heatMap.js"></script> -->
 
 <script type="text/javascript">
 	
+	//set authenticated user name base on sso info
 	function getAuthenticatedUsername(){
 		var userName = <?php echo json_encode($reqFirstName) ?>;
-		//console.log("User name");
-		//console.log(userName);
-		
 		document.getElementById('authenticatedUsername').innerHTML=userName;
 		
 	}
 
+//set up page and selection base on load
 $(document).ready(function() {
-	/*
-    $('#table_id').dataTable( {
-        "ajax": "db/getTableData.php"
-    } );*/
-    
+	
     document.getElementById("crime_type").checked = true;
     document.getElementById("weapon_type").checked = true;
     document.getElementById("district").checked = true;
@@ -109,108 +95,10 @@ $(document).ready(function() {
 } ); 
 
 
-/*
-//adding code for  time line - > this should be in a function
-$(document).ready(function() {
 
-
-var monthdata = [0,0,0,0,0,0,0,0,0,0,0,0,
-					0,0,0,0,0,0,0,0,0,0,0,0,
-					0,0,0,0,0,0,0,0,0,0,0,0,
-					0,0,0,0,0,0,0,0,0,0,0,0,
-					0,0,0,0,0,0,0,0,0,0,0,0,
-					0,0,0,0,0,0,0,0,0,0,0,0,
-					0,0,0,0];
-
-console.log("HI");
-
-for(var i = 0; i < dataSet.length; i++){
-		var loc = dataSet[i].split(",");
-		var fulltime = loc[3];
-		var timeloc = fulltime.split(":");
-		var hour = timeloc[0];
-		var date = loc[4].substring(0, 10);
-		var year = getYear(date);
-		var month = getMonth(date);
-		console.log(year);
-		console.log(month);
-	}
-
-var chart = Highcharts.chart('timelineSeries', {
-
-  title: {
-    text: 'Chart.update'
-  },
-
-  subtitle: {
-    text: 'Plain'
-  },
-
-  xAxis: {
-    categories: ['Jan 2012', 'Feb 2012', 'Mar 2012', 'Apr 2012', 'May 2012', 'Jun 2012', 'Jul 2012', 'Aug 2012', 'Sep 2012', 'Oct 2012', 'Nov 2012', 'Dec 2012',
-    			'Jan 2013', 'Feb 2013', 'Mar 2013', 'Apr 2013', 'May 2013', 'Jun 2013', 'Jul 2013', 'Aug 2013', 'Sep 2013', 'Oct 2013', 'Nov 2013', 'Dec 2013',
-    			'Jan 2014', 'Feb 2014', 'Mar 2014', 'Apr 2014', 'May 2014', 'Jun 2014', 'Jul 2014', 'Aug 2014', 'Sep 2014', 'Oct 2014', 'Nov 2014', 'Dec 2014',
-    			'Jan 2015', 'Feb 2015', 'Mar 2015', 'Apr 2015', 'May 2015', 'Jun 2015', 'Jul 2015', 'Aug 2015', 'Sep 2015', 'Oct 2015', 'Nov 2015', 'Dec 2015',
-    			'Jan 2016', 'Feb 2016', 'Mar 2016', 'Apr 2016', 'May 2016', 'Jun 2016', 'Jul 2016', 'Aug 2016', 'Sep 2016', 'Oct 2016', 'Nov 2016', 'Dec 2016',
-    			'Jan 2017', 'Feb 2017', 'Mar 2017', 'Apr 2017', 'May 2017', 'Jun 2017', 'Jul 2017', 'Aug 2017', 'Sep 2017', 'Oct 2017', 'Nov 2017', 'Dec 2017',
-    			'Jan 2018', 'Feb 2018', 'Mar 2018', 'Apr 2018']
-  },
-
-  series: [{
-    type: 'column',
-    colorByPoint: true,
-    data: monthdata,
-    showInLegend: false
-  }]
-
-});
-
-
-$('#plain').click(function () {
-  chart.update({
-    chart: {
-      inverted: false,
-      polar: false
-    },
-    subtitle: {
-      text: 'Plain'
-    }
-  });
-});
-
-$('#inverted').click(function () {
-  chart.update({
-    chart: {
-      inverted: true,
-      polar: false
-    },
-    subtitle: {
-      text: 'Inverted'
-    }
-  });
-});
-
-$('#polar').click(function () {
-  chart.update({
-    chart: {
-      inverted: false,
-      polar: true
-    },
-    subtitle: {
-      text: 'Polar'
-    }
-  });
-});
-
-}); 	//close function
-*/
-
+//setting up table on load
 $(document).ready(function() {
 	
-	/*
-	 $('#table_id').dataTable( {
-        "ajax": "db/getTableData.php"
-    } );  */
     $("#table_id").dataTable().fnDestroy();
     $('#table_id').dataTable( {
         
@@ -223,51 +111,13 @@ $(document).ready(function() {
         	
     } );
     
-    
-    
-    /* $('#table_id').DataTable();
-   
-   
-    
-   $('#table_id').DataTable( {
-   ajax:({
-        url: 'db/getTableData.php',
-        type: 'POST',
-        //dataType:"json",
-        success:function(msg){
-        	console.log("success on ajax call for table");
-        	console.log(msg);
-        },
-    })  */
 
 }); 	//close function
 	
-/*
-    // Get the Sidebar
-    var mySidebar = document.getElementById("mySidebar");
-
-    // Get the DIV with overlay effect
-    var overlayBg = document.getElementById("myOverlay");
-
-    // Toggle between showing and hiding the sidebar, and add overlay effect
-    function w3_open() {
-        if (mySidebar.style.display === 'block') {
-            mySidebar.style.display = 'none';
-            overlayBg.style.display = "none";
-        } else {
-            mySidebar.style.display = 'block';
-            overlayBg.style.display = "block";
-        }
-    }
-
-    // Close the sidebar with the close button
-    function w3_close() {
-        mySidebar.style.display = "none";
-        overlayBg.style.display = "none";
-    } */
 
 
-//KS
+
+//KS - code for inittializing map
 var markers = [];
 var map;
 var markerCluster = null;
@@ -280,6 +130,7 @@ function initMap() {
 
 
 /*
+//get location on a Map
 function getLocations(){
 	
 	var myLocations = new Array();
@@ -298,14 +149,13 @@ function getLocations(){
 }
 */
 
-//KS update map
+//KS update map - update map with locations
 function updateMap(crimes, myMarkers) {
 	// Create tooltip that will appear when marker is clicked
 	initMap();
 	var info = new google.maps.InfoWindow();
 	markers = myMarkers;
-	//console.log("In update map Marker Type is");
-	//console.log(typeof markers);
+	
 	var locs = new Array();
 	var tips = new Array();
 	var dot = new Array();
@@ -321,15 +171,7 @@ function updateMap(crimes, myMarkers) {
 		var date = loc[4].substring(0, 10);
 		var crimeID = loc[0]+':'+loc[1];
 		
-		/*
-		if(crime.includes("BURGLARY")) {
-				console.log("I WISH TO REPORT A BURGLARY!!!");
-				dot.push("images/blue.png");
-		}
-		else {
-			
-		}
-		*/
+		//adding images / color per crime
 		switch (crime) {
 			case "AGG. ASSAULT":
 				// console.log("Agg. Assault");
@@ -411,6 +253,7 @@ function updateMap(crimes, myMarkers) {
 	updateMarkers("cluster");
 }
 
+//update Map markers
 function updateMarkers(clicked_id){
 	//check to see if button is clicked
 	//if clicked, display clusters,
@@ -429,7 +272,7 @@ function updateMarkers(clicked_id){
 	}
 }
 
-//KS--add in code
+//KS--add in code - to be implemented - add comments to db
 function addComment() {
    var wt_userID = 12345;
     //ID = get max ID from existing comments
@@ -466,13 +309,13 @@ function viewComments() {
 }
 
 //SM
-
 // Accepts a Date object or date string that is recognized by the Date.parse() method
 function getDayOfWeek(date) {
 var dayOfWeek = new Date(date).getDay(); 
 return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
 }
 
+//creates time series viz
 function timeSeriesData(Data){
 
 	var monthdata = [0,0,0,0,0,0,0,0,0,0,0,0,
@@ -595,6 +438,7 @@ var chart = Highcharts.chart('timelineSeries', {
 
 }
 
+//create heatMap viz
 function heatMapData(Data){
 	
 	//console.log("In heat Map function - data is in dataSet variable");
@@ -783,7 +627,7 @@ function updateVisualizations(clicked_id){
 }
 
 
-
+//format a date with format that works with dataset
 function formatDate(str){
 //	console.log("Call format date");
 	var splitD = str.split('/');
@@ -793,11 +637,13 @@ function formatDate(str){
 	
 }
 
+//convert 12 hour to 24 hour time
 function getTwentyFourHourTime(amPmString) { 
 	var d = new Date("1/1/2013 " + amPmString); 
 	return d.getHours() + ':' + d.getMinutes(); 
 }
 
+//switch the x and y of a 2D array - > flipped values
 function fix2DArray(Data){
 	var myOtherArray = [];
 	
@@ -819,6 +665,7 @@ function fix2DArray(Data){
 	return myOtherArray;
 }
 
+//make stack vertical bar chart
 function hs_updateBarGraph_percent(Data, bCType){
 	if(bCType=="districtBC"){
 		
@@ -1058,7 +905,7 @@ function hs_updateBarGraph_percent(Data, bCType){
 	}
 	
 }
-//sm update bar graph
+//make horizontal bar chart
 function hs_updateBarGraph(Data, bCType){
 	//console.log("In hs_updateBarGraph - data is");
 	//console.log(Data);
@@ -1318,11 +1165,9 @@ function hs_updateBarGraph(Data, bCType){
 	
 }
 
-//sm update bar graph
+//make horizontal stacked bar chart
 function hs_updateBarGraph_stack(Data, bCType){
-	//console.log("In hs_updateBarGraph -stack data is");
-	//console.log(Data);
-	
+
 	
 	if(bCType=="districtBC"){
 		
@@ -1506,7 +1351,7 @@ Highcharts.chart('chart_highChart_stack', {
 	
 }
 
-//manipilation of side bar
+//Updates DOM and visualizations when an object / element is clicked
 function updateSideBar(clicked_id){
 	
 	//this is not needed - will probably set some global var to handle this
@@ -1767,6 +1612,7 @@ function updateSideBar(clicked_id){
 		}
 	}
 	/*
+	//when getting neighborhood
   if(clicked_id == "neighborhood"){
 		if (document.getElementById('neighborhood').checked) {
 			document.getElementById("fairfield").checked = true;
@@ -2142,6 +1988,7 @@ function updateSideBar(clicked_id){
   	}
   	
 	/*
+	//neighborhood
 	if(document.getElementById('berea').checked) {
   		wt_berea = "Berea";
   	}
@@ -2178,7 +2025,7 @@ function updateSideBar(clicked_id){
   */
   //firearm
   
-  //if(clicked_id=="weapon_firearm"||clicked_id=="weapon_hands"||clicked_id=="weapon_knife"||clicked_id=="weapon_other"){
+  
   	
   	if (document.getElementById('weapon_firearm').checked) {
   		wt_Firearm="FIREARM";
@@ -2200,15 +2047,8 @@ function updateSideBar(clicked_id){
   		//console.log("OTHER");
   	}
   	
-  //}
-  /*
-  if(clicked_id == "agg_assault" || clicked_id == "arson" || clicked_id == "assault_threat" || 
-  clicked_id == "auto_theft" || clicked_id == "burglary" || clicked_id == "common_assault" ||
-  clicked_id  == "homicide" || clicked_id == "larceny" || clicked_id == "larceny_auto" || clicked_id == "rape" || 
-  clicked_id == "robbery_street" || clicked_id == "robbery_carjacking" || clicked_id == 
-  "robbery_commercial" || clicked_id == "robbery_residence" || clicked_id == "shooting"){
-  */
-  	
+ 
+
   	if (document.getElementById('agg_assault').checked) {
   		wt_AggAssault="AGG. ASSAULT";
   	//	console.log("AGG. ASSAULT");
@@ -2270,12 +2110,7 @@ function updateSideBar(clicked_id){
   		//console.log("SHOOTING");
   	}
   	
-  //}
-  /*
-  if(clicked_id == "district_north" || clicked_id == "district_south" || clicked_id == "district_east" || 
-  clicked_id == "district_west" || clicked_id == "district_central" || clicked_id == "district_ne" ||
-  clicked_id  == "district_nw" || clicked_id == "district_se" || clicked_id == "district_sw"){
-  	*/
+  //district
   		if (document.getElementById('district_north').checked) {
   		wt_Northern="NORTHERN";
   	}
@@ -2310,8 +2145,6 @@ function updateSideBar(clicked_id){
 
 	//ajax calls here
 
-		
-		//testing for updated weapon bar chart
 			//ajax call for  bar chart
 		if(document.getElementById('barChartX').value =="weapon_Type_barChart"){
 			//console.log("Calling weapon type from bar chart");
@@ -2329,10 +2162,7 @@ function updateSideBar(clicked_id){
 		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
 		    type:"POST",
 		    success:function(msg){
-		    	//console.log("should return here Highchart bar charts and such");
-		    	//console.log(msg);
-		    	//var bCType = "crimeBC";
-		    	//console.log("Calling fix2D array");
+		    	
 		    	msg = fix2DArray(msg);
 		       handleResponseBChart_hs(msg, "weaponBC");
 		    },
@@ -2362,9 +2192,7 @@ function updateSideBar(clicked_id){
 		    	wt_EndDate1: wt_EndDate, wt_StartTime1: wt_StartTime, wt_EndTime1: wt_EndTime},
 		    type:"POST",
 		    success:function(msg){
-		    	//console.log("should return here for bar chart - crime type");
-		    	//console.log(msg);
-		    	//var bCType = "crimeBC";
+		    	
 		        handleResponseBChart_hs(msg, "crimeBC");
 		    },
 		    
@@ -2518,9 +2346,7 @@ function updateSideBar(clicked_id){
 	}
 	
 	function handleResponseBChart(data, bCType) {
-			//	console.log("IN handle response for bar chart");
-			//	console.log(data);
-			//	console.log(bCType)
+			
 				updateBarGraph(data, bCType);
 			//	console.log("Calling the updated charts");
 				hs_updateBarGraph(data, bCType);
@@ -2528,11 +2354,7 @@ function updateSideBar(clicked_id){
 			}//inner handler
 			
 			function handleResponseBChart_hs(data, bCType) {
-			//	console.log("IN handle response for bar chart - High chart");
-			//	console.log(data);
-			//	console.log(bCType)
-				//updateBarGraph(data, bCType);
-				//console.log("Calling the updated charts");
+			
 				hs_updateBarGraph_percent(data, bCType);
 				hs_updateBarGraph(data, bCType);
 				hs_updateBarGraph_stack(data, bCType);
@@ -2543,6 +2365,7 @@ function updateSideBar(clicked_id){
 	
 }//close function
 
+//select a sub menu in side Bar
 function clearSideBar(clicked_id){
 	
 	if(clicked_id=="crime_type"){
@@ -2574,6 +2397,7 @@ function clearSideBar(clicked_id){
 	
 }
 
+//check all visualizations
 function selectAllSideBar(clicked_id){
 	
 		document.getElementById('crime_type').checked=true;
@@ -2605,6 +2429,7 @@ function selectAllSideBar(clicked_id){
 	updateSideBar(clicked_id);
 }
 
+//uncheck all visualizations
 function clearAllSideBar(clicked_id){
 	
 		document.getElementById('crime_type').checked=false;
@@ -2636,6 +2461,7 @@ function clearAllSideBar(clicked_id){
 	updateSideBar(clicked_id);
 }
 
+//display or hide the various bar charts viz
 function toggleBarCharts(clicked_id){
 	console.log("In toogle bar func");
 	console.log(clicked_id);
@@ -2682,6 +2508,7 @@ function toggleBarCharts(clicked_id){
 	}
 }
 
+//display or hid the various time series viz
 function toggleTimeSeries(clicked_id){
 	console.log("In toogle time series");
 	console.log(clicked_id);
@@ -2717,18 +2544,17 @@ function toggleTimeSeries(clicked_id){
 	
 }
 
+//alert for time filter
 function openTimeLinePopUp(){
 	//var myPopup = window.open("Blab blab", "Display Message", "width=200, height=100");
 	window.alert("Note: times picked are applied to every day in the selected time frame.");
 	
-	//<area width=200, height=100> something here </area>
-	//document.getElementById("daterange").value = "01/01/2010 1:30 PM - 05/01/2018 1:30 PM";
-	//updateSideBar("timePickerCall");
+	
 }
+
 //hides all fields on page
 function hideall() {
 	hideElt('mapPanel');
-	//hideElt('heatMapPanel');
 	hideElt('barChartPanel');
 	hideElt('tablePanel');
 	hideElt('commentsPanel');
@@ -2777,6 +2603,7 @@ function showEltBlank(eltId) {
 
 </script>
 
+<!-- code for body that creates elements to hold the visualizations on the page -->
 <body class="w3-light-grey">
 
   <!-- Top container -->
@@ -2796,17 +2623,7 @@ function showEltBlank(eltId) {
   <!-- Sidebar/menu -->
   <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:305px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
-    <!--  <div class="w3-col s4">
-        <img src="images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
-      </div>
-      <div class="w3-col s8 w3-bar">
-        <span>Welcome, <strong>John</strong></span><br>
-        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
-      </div>
-    </div>
-    <hr> -->
+    
     <div class="w3-container">
       <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Geo</a> -->
       <h3>Filters </h3>
@@ -2815,22 +2632,7 @@ function showEltBlank(eltId) {
     <div class="w3-bar-block">
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>Close Menu</a>
  
-      
-      <!-- <label class=container>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ <b>Weapon Filter</b> </label> -->
-      <!--
-      <a href="#" class="w3-bar-item w3-button w3-padding" id="weaponFilterPanel"><i class="fa fa-bell fa-fw" onclick="updateSideBar(this.id)"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Weapon Filter</a>
-      <div id="weaponFilterDiv" class ="w3-padding-large">
-        <label class=container> One<input type = "checkbox" ><span class="checkmark"></span></label> <!-- <input type = "checkbox" checked="checked"> -->
-        <!--
-        <label class="container">Two<input type="checkbox"><span class="checkmark"></span></label>
-        <label class="container">Three<input type="checkbox"><span class="checkmark"></span></label>
-        <label class="container">Four<input type="checkbox"><span class="checkmark"></span></label>
-    </div>
-    -->
-
-  <!-- different options for crime type. note the class name ='w3-padding-large determines the padding'-->
-     <!-- <a href="#" class="w3-bar-item w3-button w3-padding" id="crimeTypePanel"><i class="fa fa-eye fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  Crime Type</a>-->
-
+     
      <hr>
      
      <label class=container>  &nbsp </span> <button type="button" name="selectAllButton" class="selectButton" id ="selectAll" onclick="selectAllSideBar(id)";>Select All</button>  &nbsp&nbsp </span> <button type="button" name="clearAllButton" class="clearAllButton" id ="clearAll" onclick="clearAllSideBar(id)";>Clear All</button></label>
@@ -2839,7 +2641,8 @@ function showEltBlank(eltId) {
     <hr>
     
      <label class = container>  Filter by date range:&nbsp&nbsp&nbsp </label>
-     <!--<input type="text" id="daterange" name="daterange" size = "31" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
+     <!--old date/time range filter
+     <input type="text" id="daterange" name="daterange" size = "31" onchange="updateSideBar(id);" value="01/01/2010 1:30 PM - 05/01/2018 1:30 PM" />
  
 	<script type="text/javascript">
 		$(function() {
@@ -2933,6 +2736,7 @@ function showEltBlank(eltId) {
       <hr>
       
       <!--
+      //neighborhood elements
        <label class=container> &nbsp Neighborhood &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id ="neighborhood" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span><button type="button" name="clearButton" class="clearButton" id ="neighborhood" onclick="clearSideBar(id)";>Clear</button></label>
       <div id="districtTypeDiv" class ="w3-padding-large">
       	<label class=container> &nbsp Berea <input id ="berea" type = "checkbox" onchange="updateSideBar(id);"> <span class="checkmark"></span></label>
@@ -3008,10 +2812,7 @@ function showEltBlank(eltId) {
         
         </div>
         <hr>
-      <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  News</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  General</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ  History</a> -->
-      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>Settings</a><br><br>
+          <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>Settings</a><br><br>
     </div>
   </nav>
 
@@ -3132,8 +2933,6 @@ function showEltBlank(eltId) {
     
     
     
-    <!-- <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div> -->
-    
 
  
   </div>
@@ -3193,7 +2992,7 @@ function showEltBlank(eltId) {
 
     <br> <br>
 
-<!--
+<!-- code for the comments Panel
     <div class="w3-container" id="commentsPanel_old">
       <h5>Recent Comments</h5>
       <div class="w3-row">
@@ -3268,17 +3067,5 @@ function showEltBlank(eltId) {
     }
     
  </script>
-  <!-- Load d3.js and c3.js 
-<script src="/path/to/d3.v4.min.js" charset="utf-8"></script> 
-<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-<script src="c3-0.5.3/c3.min.js"></script>
-<script src="scripts/chartVis.js"></script> -->
-
-
-<!--
-<script src="scripts/heatMap.js"></script> -->
-<!--
-<div id="heatMapVisualization" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>
--->
 
 </html>

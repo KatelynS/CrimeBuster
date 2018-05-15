@@ -1,3 +1,5 @@
+//code for connecting to db
+
 var mysql = require('mysql');
 
 var con = mysql.createConnection({

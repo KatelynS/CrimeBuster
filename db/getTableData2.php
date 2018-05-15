@@ -1,6 +1,6 @@
 <?php
 
-//$q = ($_GET['test']);
+//return object that has data for table visualization
 
 //weapon type
 $other=($_POST['wt_Other1']);

@@ -1,4 +1,6 @@
 //variables
+
+// template strating scripts that shows how to interact with elements from an html page - not relevant
 const gloverVid = document.getElementById("video_glover1");
 const gloverPic = document.getElementById('image_glover1');
 const triviaBtn = document.getElementById("trivia");

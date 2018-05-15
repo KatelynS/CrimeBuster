@@ -1,6 +1,6 @@
 <?php
 
-//$q = ($_GET['test']);
+//setup for db that inserts into comments table
 
 //weapon type
 $commentsID=($_POST['wt_commentsID1']);

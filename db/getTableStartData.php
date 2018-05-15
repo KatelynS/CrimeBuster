@@ -1,5 +1,6 @@
 <?php
 
+//get dataset that inistiate table visualization on load
 $db = new SQLite3('mydb.db');
 $results = $db->query("SELECT * FROM mydb");
 

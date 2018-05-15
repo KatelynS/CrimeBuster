@@ -1,4 +1,5 @@
 <?php
+//setting up file that reads from database - starting setup for onload
 $db = new SQLite3('mydb.db');
 
 $myStreet="STREET";
