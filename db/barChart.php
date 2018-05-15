@@ -1,7 +1,9 @@
+
  <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
  <script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.ocean.js"></script>
 
 <?php
+//Code for using fusion chart library for visualizations. This is outdated and was replace in the index.php file.
 
 include("../php-wrapper/wrappers2/php-wrapper/fusioncharts.php");
 
