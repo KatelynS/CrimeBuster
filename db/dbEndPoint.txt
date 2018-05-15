@@ -1,6 +1,0 @@
-//API Link and Key
-
-https://data.baltimorecity.gov/resource/4ih5-d5d5.csv
-SGRuFCK9E9miQCuFlMS07HxK4
-
-https://data.baltimorecity.gov/Public-Safety/BPD-Part-1-Victim-Based-Crime-Data/wsfq-mvij
