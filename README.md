@@ -8,7 +8,7 @@ and stacked bar graphs. These visualizations can be used to investigate and dete
 and occurrence of certain crime, which will assist the police in creating better solutions that will help make Baltimore safer. 
 
 Programmers:
-- Angel Cheng 
+- 	Angel Cheng 
 -	Sam Mendimasa 
 -	Katelyn Seitz 
 -	Zach Vance 
@@ -16,5 +16,7 @@ Programmers:
 Link for CrimeBuster: https://swe.umbc.edu/~sam34/cmsc447/Update/CrimeBuster/
 
 Please see the Tardigrate_AD_Document (Administrative Manual) file located in the docs folder for instructions on installing and using CrimeBuster.
+
+All the code is in the code folder, and all the presentations and updated documents which includes SRS, UID, SDD, CIR, TR, AM, are in the document folder. 
 
 Thank You!
