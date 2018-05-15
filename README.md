@@ -15,6 +15,6 @@ Programmers:
 
 Link for CrimeBuster: https://swe.umbc.edu/~sam34/cmsc447/Update/CrimeBuster/
 
-Please see the Tardigrate_AD_Document (Administrative Manual) file for instructions on installing and using CrimeBuster.
+Please see the Tardigrate_AD_Document (Administrative Manual) file located in the docs folder for instructions on installing and using CrimeBuster.
 
 Thank You!
